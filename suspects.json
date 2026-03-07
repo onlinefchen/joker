@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-07T05:21:00.383720+00:00",
+  "generated_at": "2026-03-07T05:38:22.360712+00:00",
   "params": {
     "wallet_limit": 30,
     "trades_limit": 80,
@@ -15,7 +15,7 @@
     "state_file": "tracker_state.json",
     "report_md": "tracker_report.md",
     "action_min_size": 100000.0,
-    "action_side": "sell"
+    "action_side": "all"
   },
   "suspects": [
     {
@@ -24,7 +24,7 @@
       "score": 91.0,
       "delta_score": 0.0,
       "tier": "core",
-      "high_streak": 4,
+      "high_streak": 5,
       "low_streak": 0,
       "reasons": [
         "12 large bets >= $15,000",
@@ -39,6 +39,8 @@
         "median_size": 402.18,
         "avg_size": 6774.71,
         "max_size": 95993.02,
+        "total_buy_size": 541977.17,
+        "total_sell_size": 0,
         "focus_ratio": 0.75,
         "timed_hits": 69,
         "timed_total": 80,
@@ -53,7 +55,7 @@
       "score": 83.0,
       "delta_score": 0.0,
       "tier": "core",
-      "high_streak": 4,
+      "high_streak": 5,
       "low_streak": 0,
       "reasons": [
         "11 large bets >= $15,000",
@@ -68,13 +70,25 @@
         "median_size": 2615.23,
         "avg_size": 8671.16,
         "max_size": 124763.99,
+        "total_buy_size": 550687.89,
+        "total_sell_size": 143004.73,
         "focus_ratio": 0.55,
         "timed_hits": 65,
         "timed_total": 70,
         "timing_ratio": 0.929,
         "fast_rounds": 11
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-03-06T20:56:19+00:00",
+          "side": "BUY",
+          "size": 124763.99,
+          "price": 0.47,
+          "outcome": "Nongshim RedForce",
+          "slug": "val-ns1-gm-2026-03-06",
+          "title": "Valorant: Nongshim RedForce vs Gentle Mates (BO3) - VCT Masters Santiago Playoffs"
+        }
+      ]
     },
     {
       "wallet": "0xC65cA4755436F82D8eb461E65781584B8CaDEa39",
@@ -82,7 +96,7 @@
       "score": 73.0,
       "delta_score": 0.0,
       "tier": "core",
-      "high_streak": 4,
+      "high_streak": 5,
       "low_streak": 0,
       "reasons": [
         "8 large bets >= $15,000",
@@ -96,6 +110,8 @@
         "median_size": 733.74,
         "avg_size": 4648.53,
         "max_size": 58420.43,
+        "total_buy_size": 371882.46,
+        "total_sell_size": 0,
         "focus_ratio": 0.487,
         "timed_hits": 69,
         "timed_total": 80,
@@ -110,7 +126,7 @@
       "score": 72.0,
       "delta_score": 0.0,
       "tier": "core",
-      "high_streak": 4,
+      "high_streak": 5,
       "low_streak": 0,
       "reasons": [
         "25 large bets >= $15,000",
@@ -125,6 +141,8 @@
         "median_size": 2809.89,
         "avg_size": 13250.71,
         "max_size": 80000.0,
+        "total_buy_size": 1060056.85,
+        "total_sell_size": 0,
         "focus_ratio": 0.65,
         "timed_hits": 37,
         "timed_total": 80,
@@ -153,13 +171,34 @@
         "median_size": 8036.33,
         "avg_size": 17845.01,
         "max_size": 200000.0,
+        "total_buy_size": 1350772.61,
+        "total_sell_size": 76828.34,
         "focus_ratio": 0.8,
         "timed_hits": 3,
         "timed_total": 64,
         "timing_ratio": 0.047,
         "fast_rounds": 17
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-03-06T00:19:35+00:00",
+          "side": "BUY",
+          "size": 200000.0,
+          "price": 0.87,
+          "outcome": "Heat",
+          "slug": "nba-bkn-mia-2026-03-05",
+          "title": "Nets vs. Heat"
+        },
+        {
+          "time": "2026-03-03T02:13:31+00:00",
+          "side": "BUY",
+          "size": 100000.0,
+          "price": 0.51,
+          "outcome": "Clippers",
+          "slug": "nba-lac-gsw-2026-03-02",
+          "title": "Clippers vs. Warriors"
+        }
+      ]
     },
     {
       "wallet": "0x492442EaB586F242B53bDa933fD5dE859c8A3782",
@@ -171,23 +210,71 @@
       "low_streak": 0,
       "reasons": [
         "44 large bets >= $15,000",
-        "high vertical focus (74%)",
+        "high vertical focus (70%)",
         "abnormal burst sizing (16 trades >= max(threshold,4x median))",
         "fast in/out across 18 markets"
       ],
       "metrics": {
         "trade_count": 80,
-        "unique_markets": 1077,
+        "unique_markets": 1078,
         "median_size": 20744.81,
-        "avg_size": 52637.18,
+        "avg_size": 53642.51,
         "max_size": 379594.0,
-        "focus_ratio": 0.738,
-        "timed_hits": 15,
+        "total_buy_size": 4291400.45,
+        "total_sell_size": 0,
+        "focus_ratio": 0.7,
+        "timed_hits": 18,
         "timed_total": 80,
-        "timing_ratio": 0.188,
+        "timing_ratio": 0.225,
         "fast_rounds": 18
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-03-07T05:31:39+00:00",
+          "side": "BUY",
+          "size": 150169.0,
+          "price": 0.47,
+          "outcome": "Under",
+          "slug": "bl2-fcn-dus-2026-03-07-total-2pt5",
+          "title": "1. FC Nürnberg vs. TSV Fortuna 95 Düsseldorf: O/U 2.5"
+        },
+        {
+          "time": "2026-03-07T01:43:15+00:00",
+          "side": "BUY",
+          "size": 101924.31,
+          "price": 0.48,
+          "outcome": "Knicks",
+          "slug": "nba-nyk-den-2026-03-06",
+          "title": "Knicks vs. Nuggets"
+        },
+        {
+          "time": "2026-03-07T01:34:19+00:00",
+          "side": "BUY",
+          "size": 379594.0,
+          "price": 0.51,
+          "outcome": "Under",
+          "slug": "nba-nyk-den-2026-03-06-total-229pt5",
+          "title": "Knicks vs. Nuggets: O/U 229.5"
+        },
+        {
+          "time": "2026-03-07T00:39:01+00:00",
+          "side": "BUY",
+          "size": 375934.09,
+          "price": 0.46,
+          "outcome": "Trail Blazers",
+          "slug": "nba-por-hou-2026-03-06-spread-home-5pt5",
+          "title": "Spread: Rockets (-5.5)"
+        },
+        {
+          "time": "2026-03-06T23:55:31+00:00",
+          "side": "BUY",
+          "size": 259436.98,
+          "price": 0.5,
+          "outcome": "Celtics",
+          "slug": "nba-dal-bos-2026-03-06-spread-home-15pt5",
+          "title": "Spread: Celtics (-15.5)"
+        }
+      ]
     },
     {
       "wallet": "0x6a57D263cD7c8EbA88b857eDEB7103851F012AFa",
@@ -209,19 +296,67 @@
         "median_size": 19681.6,
         "avg_size": 36849.77,
         "max_size": 410000.0,
+        "total_buy_size": 2947981.25,
+        "total_sell_size": 0,
         "focus_ratio": 0.963,
         "timed_hits": 12,
         "timed_total": 80,
         "timing_ratio": 0.15,
         "fast_rounds": 18
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-03-06T02:22:33+00:00",
+          "side": "BUY",
+          "size": 134274.19,
+          "price": 0.62,
+          "outcome": "Nuggets",
+          "slug": "nba-lal-den-2026-03-05",
+          "title": "Lakers vs. Nuggets"
+        },
+        {
+          "time": "2026-03-06T00:08:45+00:00",
+          "side": "BUY",
+          "size": 165000.0,
+          "price": 0.22,
+          "outcome": "Warriors",
+          "slug": "nba-gsw-hou-2026-03-05",
+          "title": "Warriors vs. Rockets"
+        },
+        {
+          "time": "2026-03-03T01:49:51+00:00",
+          "side": "BUY",
+          "size": 164472.05,
+          "price": 0.84,
+          "outcome": "Nuggets",
+          "slug": "nba-den-uta-2026-03-02",
+          "title": "Nuggets vs. Jazz"
+        },
+        {
+          "time": "2026-02-26T02:06:12+00:00",
+          "side": "BUY",
+          "size": 100000.0,
+          "price": 0.58,
+          "outcome": "Nuggets",
+          "slug": "nba-bos-den-2026-02-25",
+          "title": "Celtics vs. Nuggets"
+        },
+        {
+          "time": "2026-02-25T00:05:54+00:00",
+          "side": "BUY",
+          "size": 113167.94,
+          "price": 0.82,
+          "outcome": "76ers",
+          "slug": "nba-phi-ind-2026-02-24",
+          "title": "76ers vs. Pacers"
+        }
+      ]
     },
     {
       "wallet": "0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44",
       "username": "geniusCM",
       "score": 65.0,
-      "delta_score": -1.0,
+      "delta_score": 0.0,
       "tier": "candidate",
       "high_streak": 0,
       "low_streak": 0,
@@ -234,16 +369,28 @@
       "metrics": {
         "trade_count": 80,
         "unique_markets": 566,
-        "median_size": 191.12,
-        "avg_size": 6449.92,
+        "median_size": 174.28,
+        "avg_size": 6447.67,
         "max_size": 148715.83,
+        "total_buy_size": 449523.54,
+        "total_sell_size": 66290.43,
         "focus_ratio": 0.75,
         "timed_hits": 0,
         "timed_total": 42,
         "timing_ratio": 0.0,
         "fast_rounds": 7
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-03-06T20:16:17+00:00",
+          "side": "BUY",
+          "size": 148715.83,
+          "price": 0.9952,
+          "outcome": "No",
+          "slug": "will-athletic-bilbao-win-the-202526-la-liga",
+          "title": "Will Athletic Bilbao win the 2025–26 La Liga?"
+        }
+      ]
     },
     {
       "wallet": "0x9CB990F1862568A63d8601EfEebe0304225C32F2",
@@ -265,13 +412,52 @@
         "median_size": 3844.44,
         "avg_size": 17789.2,
         "max_size": 167300.0,
+        "total_buy_size": 1160551.06,
+        "total_sell_size": 262584.68,
         "focus_ratio": 0.212,
         "timed_hits": 27,
         "timed_total": 53,
         "timing_ratio": 0.509,
         "fast_rounds": 19
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-03-04T16:33:05+00:00",
+          "side": "BUY",
+          "size": 117621.5,
+          "price": 0.31,
+          "outcome": "No",
+          "slug": "epl-mac-not-2026-03-04-mac",
+          "title": "Will Manchester City FC win on 2026-03-04?"
+        },
+        {
+          "time": "2026-03-03T12:13:51+00:00",
+          "side": "BUY",
+          "size": 103837.54,
+          "price": 0.36,
+          "outcome": "No",
+          "slug": "epl-wol-liv-2026-03-03-liv",
+          "title": "Will Liverpool FC win on 2026-03-03?"
+        },
+        {
+          "time": "2026-02-28T15:06:31+00:00",
+          "side": "BUY",
+          "size": 108000.0,
+          "price": 0.29,
+          "outcome": "No",
+          "slug": "lal-bar-vil-2026-02-28-bar",
+          "title": "Will FC Barcelona win on 2026-02-28?"
+        },
+        {
+          "time": "2026-02-24T17:10:22+00:00",
+          "side": "BUY",
+          "size": 167300.0,
+          "price": 0.31,
+          "outcome": "No",
+          "slug": "ucl-atm1-bru-2026-02-24-atm1",
+          "title": "Will Club Atlético de Madrid win on 2026-02-24?"
+        }
+      ]
     },
     {
       "wallet": "0x83d22814af497297b3023897A6E3a25CFCf7d196",
@@ -293,6 +479,8 @@
         "median_size": 2124.03,
         "avg_size": 4837.14,
         "max_size": 50468.01,
+        "total_buy_size": 383728.7,
+        "total_sell_size": 3242.71,
         "focus_ratio": 0.3,
         "timed_hits": 33,
         "timed_total": 79,
@@ -322,19 +510,67 @@
         "median_size": 50000.0,
         "avg_size": 108065.97,
         "max_size": 1500000.0,
+        "total_buy_size": 6483958.14,
+        "total_sell_size": 0,
         "focus_ratio": 0.617,
         "timed_hits": 0,
         "timed_total": 60,
         "timing_ratio": 0.0,
         "fast_rounds": 3
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-03-01T16:29:57+00:00",
+          "side": "BUY",
+          "size": 250000.0,
+          "price": 0.6546,
+          "outcome": "Yes",
+          "slug": "epl-ars-che-2026-03-01-ars",
+          "title": "Will Arsenal FC win on 2026-03-01?"
+        },
+        {
+          "time": "2026-03-01T16:29:33+00:00",
+          "side": "BUY",
+          "size": 1500000.0,
+          "price": 0.66,
+          "outcome": "Yes",
+          "slug": "epl-ars-che-2026-03-01-ars",
+          "title": "Will Arsenal FC win on 2026-03-01?"
+        },
+        {
+          "time": "2026-03-01T16:28:33+00:00",
+          "side": "BUY",
+          "size": 186152.25,
+          "price": 0.65,
+          "outcome": "Yes",
+          "slug": "epl-ars-che-2026-03-01-ars",
+          "title": "Will Arsenal FC win on 2026-03-01?"
+        },
+        {
+          "time": "2026-03-01T16:25:27+00:00",
+          "side": "BUY",
+          "size": 317650.79,
+          "price": 0.65,
+          "outcome": "Yes",
+          "slug": "epl-ars-che-2026-03-01-ars",
+          "title": "Will Arsenal FC win on 2026-03-01?"
+        },
+        {
+          "time": "2026-03-01T16:24:25+00:00",
+          "side": "BUY",
+          "size": 200000.0,
+          "price": 0.65,
+          "outcome": "Yes",
+          "slug": "epl-ars-che-2026-03-01-ars",
+          "title": "Will Arsenal FC win on 2026-03-01?"
+        }
+      ]
     },
     {
       "wallet": "0x12d6ccCfC7470a3f4bafc53599a4779Cbf2cf2a8",
       "username": "classified",
       "score": 61.0,
-      "delta_score": 61.0,
+      "delta_score": 0.0,
       "tier": "candidate",
       "high_streak": 0,
       "low_streak": 0,
@@ -350,13 +586,52 @@
         "median_size": 1714.16,
         "avg_size": 12631.73,
         "max_size": 105000.0,
+        "total_buy_size": 780165.39,
+        "total_sell_size": 230373.35,
         "focus_ratio": 0.988,
         "timed_hits": 0,
         "timed_total": 45,
         "timing_ratio": 0.0,
         "fast_rounds": 5
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-03-04T18:55:19+00:00",
+          "side": "BUY",
+          "size": 102465.77,
+          "price": 0.001,
+          "outcome": "No",
+          "slug": "will-trump-nominate-kevin-warsh-as-the-next-fed-chair",
+          "title": "Will Trump nominate Kevin Warsh as the next Fed chair?"
+        },
+        {
+          "time": "2026-03-04T18:26:37+00:00",
+          "side": "BUY",
+          "size": 105000.0,
+          "price": 0.999,
+          "outcome": "No",
+          "slug": "will-trump-nominate-judy-shelton-as-the-next-fed-chair",
+          "title": "Will Trump nominate Judy Shelton as the next Fed chair?"
+        },
+        {
+          "time": "2026-03-04T18:25:25+00:00",
+          "side": "BUY",
+          "size": 100000.0,
+          "price": 0.999,
+          "outcome": "No",
+          "slug": "will-trump-nominate-judy-shelton-as-the-next-fed-chair",
+          "title": "Will Trump nominate Judy Shelton as the next Fed chair?"
+        },
+        {
+          "time": "2026-03-04T18:24:33+00:00",
+          "side": "BUY",
+          "size": 100000.0,
+          "price": 0.999,
+          "outcome": "No",
+          "slug": "will-trump-nominate-judy-shelton-as-the-next-fed-chair",
+          "title": "Will Trump nominate Judy Shelton as the next Fed chair?"
+        }
+      ]
     },
     {
       "wallet": "0x93ABBC022ce98d6F45D4444b594791CC4B7a9723",
@@ -378,13 +653,34 @@
         "median_size": 8093.82,
         "avg_size": 20073.36,
         "max_size": 350000.0,
+        "total_buy_size": 1605868.58,
+        "total_sell_size": 0,
         "focus_ratio": 0.588,
         "timed_hits": 10,
         "timed_total": 80,
         "timing_ratio": 0.125,
         "fast_rounds": 14
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-03-04T02:23:45+00:00",
+          "side": "BUY",
+          "size": 150000.0,
+          "price": 0.48,
+          "outcome": "Over",
+          "slug": "nhl-tb-min-2026-03-03-total-6pt5",
+          "title": "Lightning vs. Wild: O/U 6.5"
+        },
+        {
+          "time": "2026-02-28T23:26:07+00:00",
+          "side": "BUY",
+          "size": 350000.0,
+          "price": 0.4998,
+          "outcome": "Over",
+          "slug": "nhl-buf-tb-2026-02-28-total-6pt5",
+          "title": "Sabres vs. Lightning: O/U 6.5"
+        }
+      ]
     },
     {
       "wallet": "0xEd107a85a4585A381E48C7F7Ca4144909e7Dd2E5",
@@ -406,19 +702,67 @@
         "median_size": 12653.42,
         "avg_size": 56220.42,
         "max_size": 547812.3,
+        "total_buy_size": 4347786.36,
+        "total_sell_size": 149847.05,
         "focus_ratio": 0.625,
         "timed_hits": 8,
         "timed_total": 70,
         "timing_ratio": 0.114,
         "fast_rounds": 7
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-03-05T15:43:27+00:00",
+          "side": "BUY",
+          "size": 190379.0,
+          "price": 0.99,
+          "outcome": "Yes",
+          "slug": "will-there-be-no-change-in-fed-interest-rates-after-the-march-2026-meeting",
+          "title": "Will there be no change in Fed interest rates after the March 2026 meeting?"
+        },
+        {
+          "time": "2026-03-05T15:42:35+00:00",
+          "side": "BUY",
+          "size": 424037.47,
+          "price": 0.989,
+          "outcome": "Yes",
+          "slug": "will-there-be-no-change-in-fed-interest-rates-after-the-march-2026-meeting",
+          "title": "Will there be no change in Fed interest rates after the March 2026 meeting?"
+        },
+        {
+          "time": "2026-03-04T18:40:13+00:00",
+          "side": "BUY",
+          "size": 547812.3,
+          "price": 0.999,
+          "outcome": "Yes",
+          "slug": "us-strikes-iraq-by-february-28",
+          "title": "US strikes Iraq by February 28?"
+        },
+        {
+          "time": "2026-03-04T18:36:29+00:00",
+          "side": "BUY",
+          "size": 162793.39,
+          "price": 0.981,
+          "outcome": "Yes",
+          "slug": "will-there-be-no-change-in-fed-interest-rates-after-the-march-2026-meeting",
+          "title": "Will there be no change in Fed interest rates after the March 2026 meeting?"
+        },
+        {
+          "time": "2026-03-04T18:35:11+00:00",
+          "side": "BUY",
+          "size": 309950.87,
+          "price": 0.98,
+          "outcome": "Yes",
+          "slug": "will-there-be-no-change-in-fed-interest-rates-after-the-march-2026-meeting",
+          "title": "Will there be no change in Fed interest rates after the March 2026 meeting?"
+        }
+      ]
     },
     {
       "wallet": "0x6ac5BB06A9Eb05641fD5e82640268b92f3Ab4B6E",
       "username": "0p0jogggg",
       "score": 55.0,
-      "delta_score": 55.0,
+      "delta_score": 0.0,
       "tier": "watch",
       "high_streak": 0,
       "low_streak": 0,
@@ -430,10 +774,12 @@
       ],
       "metrics": {
         "trade_count": 80,
-        "unique_markets": 12478,
+        "unique_markets": 12489,
         "median_size": 240.76,
         "avg_size": 4874.61,
         "max_size": 234860.07,
+        "total_buy_size": 35362.94,
+        "total_sell_size": 354606.08,
         "focus_ratio": 0.225,
         "timed_hits": 32,
         "timed_total": 56,
@@ -456,10 +802,10 @@
       "wallet": "0xDc876E6873772D38716Fda7f2452a78D426d7AB6",
       "username": "432614799197",
       "score": 50.0,
-      "delta_score": 17.0,
+      "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 5,
+      "low_streak": 6,
       "reasons": [
         "1 large bets >= $15,000",
         "high vertical focus (98%)",
@@ -472,6 +818,8 @@
         "median_size": 504.23,
         "avg_size": 1794.3,
         "max_size": 38000.0,
+        "total_buy_size": 143543.83,
+        "total_sell_size": 0,
         "focus_ratio": 0.975,
         "timed_hits": 0,
         "timed_total": 80,
@@ -484,28 +832,76 @@
       "wallet": "0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1",
       "username": "0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461",
       "score": 48.0,
-      "delta_score": -10.0,
+      "delta_score": 0.0,
       "tier": "watch",
       "high_streak": 0,
-      "low_streak": 1,
+      "low_streak": 2,
       "reasons": [
-        "32 large bets >= $15,000",
-        "abnormal burst sizing (27 trades >= max(threshold,4x median))",
-        "fast in/out across 13 markets"
+        "31 large bets >= $15,000",
+        "abnormal burst sizing (26 trades >= max(threshold,4x median))",
+        "fast in/out across 12 markets"
       ],
       "metrics": {
         "trade_count": 80,
         "unique_markets": 213,
-        "median_size": 5554.7,
-        "avg_size": 30899.36,
+        "median_size": 5141.86,
+        "avg_size": 30270.33,
         "max_size": 295442.83,
-        "focus_ratio": 0.525,
+        "total_buy_size": 2421626.17,
+        "total_sell_size": 0,
+        "focus_ratio": 0.512,
         "timed_hits": 15,
         "timed_total": 80,
         "timing_ratio": 0.188,
-        "fast_rounds": 13
+        "fast_rounds": 12
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-03-07T01:30:59+00:00",
+          "side": "BUY",
+          "size": 208215.89,
+          "price": 0.5,
+          "outcome": "Under",
+          "slug": "nba-nyk-den-2026-03-06-total-229pt5",
+          "title": "Knicks vs. Nuggets: O/U 229.5"
+        },
+        {
+          "time": "2026-03-07T00:39:27+00:00",
+          "side": "BUY",
+          "size": 120800.0,
+          "price": 0.5,
+          "outcome": "Trail Blazers",
+          "slug": "nba-por-hou-2026-03-06-spread-home-6pt5",
+          "title": "Spread: Rockets (-6.5)"
+        },
+        {
+          "time": "2026-03-06T23:36:59+00:00",
+          "side": "BUY",
+          "size": 204321.37,
+          "price": 0.43,
+          "outcome": "Under",
+          "slug": "nhl-fla-det-2026-03-06-total-5pt5",
+          "title": "Panthers vs. Red Wings: O/U 5.5"
+        },
+        {
+          "time": "2026-03-06T19:25:57+00:00",
+          "side": "BUY",
+          "size": 100811.98,
+          "price": 0.4,
+          "outcome": "Yes",
+          "slug": "lal-cel-rea-2026-03-07-rea",
+          "title": "Will Real Madrid CF win on 2026-03-07?"
+        },
+        {
+          "time": "2026-03-06T17:08:27+00:00",
+          "side": "BUY",
+          "size": 131204.02,
+          "price": 0.48,
+          "outcome": "Central Arkansas Bears",
+          "slug": "cbb-bella-cark-2026-03-06-spread-home-7pt5",
+          "title": "Spread: Central Arkansas Bears (-7.5)"
+        }
+      ]
     },
     {
       "wallet": "0xc2e7800b5Af46e6093872b177b7a5e7f0563be51",
@@ -514,7 +910,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 4,
+      "low_streak": 5,
       "reasons": [
         "61 large bets >= $15,000",
         "abnormal burst sizing (12 trades >= max(threshold,4x median))",
@@ -526,13 +922,61 @@
         "median_size": 67376.95,
         "avg_size": 144223.92,
         "max_size": 1719739.37,
+        "total_buy_size": 11537913.47,
+        "total_sell_size": 0,
         "focus_ratio": 0.45,
         "timed_hits": 16,
         "timed_total": 80,
         "timing_ratio": 0.2,
         "fast_rounds": 9
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-03-06T19:53:43+00:00",
+          "side": "BUY",
+          "size": 200000.0,
+          "price": 0.64,
+          "outcome": "Yes",
+          "slug": "efa-wol-liv-2026-03-07-liv",
+          "title": "Will Liverpool FC win on 2026-03-07?"
+        },
+        {
+          "time": "2026-03-06T19:50:19+00:00",
+          "side": "BUY",
+          "size": 312500.15,
+          "price": 0.64,
+          "outcome": "Yes",
+          "slug": "efa-wol-liv-2026-03-07-liv",
+          "title": "Will Liverpool FC win on 2026-03-07?"
+        },
+        {
+          "time": "2026-03-06T19:41:15+00:00",
+          "side": "BUY",
+          "size": 781287.76,
+          "price": 0.64,
+          "outcome": "Yes",
+          "slug": "sea-nap-tor-2026-03-06-nap",
+          "title": "Will SSC Napoli win on 2026-03-06?"
+        },
+        {
+          "time": "2026-03-06T19:37:59+00:00",
+          "side": "BUY",
+          "size": 396825.4,
+          "price": 0.63,
+          "outcome": "Yes",
+          "slug": "sea-nap-tor-2026-03-06-nap",
+          "title": "Will SSC Napoli win on 2026-03-06?"
+        },
+        {
+          "time": "2026-03-06T19:37:27+00:00",
+          "side": "BUY",
+          "size": 317460.47,
+          "price": 0.63,
+          "outcome": "Yes",
+          "slug": "sea-nap-tor-2026-03-06-nap",
+          "title": "Will SSC Napoli win on 2026-03-06?"
+        }
+      ]
     },
     {
       "wallet": "0x02227B8f5a9636e895607EDD3185ED6ee5598fF7",
@@ -541,7 +985,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 5,
+      "low_streak": 6,
       "reasons": [
         "49 large bets >= $15,000",
         "abnormal burst sizing (7 trades >= max(threshold,4x median))",
@@ -553,13 +997,61 @@
         "median_size": 41239.95,
         "avg_size": 68096.18,
         "max_size": 422309.82,
+        "total_buy_size": 5447694.21,
+        "total_sell_size": 0,
         "focus_ratio": 0.537,
         "timed_hits": 0,
         "timed_total": 80,
         "timing_ratio": 0.0,
         "fast_rounds": 11
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-03-04T19:29:53+00:00",
+          "side": "BUY",
+          "size": 250000.0,
+          "price": 0.34,
+          "outcome": "No",
+          "slug": "epl-mac-not-2026-03-04-mac",
+          "title": "Will Manchester City FC win on 2026-03-04?"
+        },
+        {
+          "time": "2026-03-04T19:29:43+00:00",
+          "side": "BUY",
+          "size": 250000.0,
+          "price": 0.34,
+          "outcome": "No",
+          "slug": "epl-mac-not-2026-03-04-mac",
+          "title": "Will Manchester City FC win on 2026-03-04?"
+        },
+        {
+          "time": "2026-03-04T19:29:35+00:00",
+          "side": "BUY",
+          "size": 150000.0,
+          "price": 0.34,
+          "outcome": "No",
+          "slug": "epl-mac-not-2026-03-04-mac",
+          "title": "Will Manchester City FC win on 2026-03-04?"
+        },
+        {
+          "time": "2026-03-04T19:29:27+00:00",
+          "side": "BUY",
+          "size": 150000.0,
+          "price": 0.34,
+          "outcome": "No",
+          "slug": "epl-mac-not-2026-03-04-mac",
+          "title": "Will Manchester City FC win on 2026-03-04?"
+        },
+        {
+          "time": "2026-03-04T19:29:17+00:00",
+          "side": "BUY",
+          "size": 150000.0,
+          "price": 0.34,
+          "outcome": "No",
+          "slug": "epl-mac-not-2026-03-04-mac",
+          "title": "Will Manchester City FC win on 2026-03-04?"
+        }
+      ]
     },
     {
       "wallet": "0xB90494d9a5D8f71f1930b2aa4B599F95c344c255",
@@ -568,7 +1060,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 5,
+      "low_streak": 6,
       "reasons": [
         "20 large bets >= $15,000",
         "abnormal burst sizing (20 trades >= max(threshold,4x median))",
@@ -580,6 +1072,8 @@
         "median_size": 5.0,
         "avg_size": 15920.49,
         "max_size": 220000.0,
+        "total_buy_size": 1009362.41,
+        "total_sell_size": 264276.85,
         "focus_ratio": 0.25,
         "timed_hits": 17,
         "timed_total": 72,
@@ -588,6 +1082,15 @@
       },
       "recent_actions": [
         {
+          "time": "2026-03-06T19:45:33+00:00",
+          "side": "BUY",
+          "size": 220000.0,
+          "price": 0.28,
+          "outcome": "No",
+          "slug": "fl1-psg-asm-2026-03-06-psg",
+          "title": "Will Paris Saint-Germain FC win on 2026-03-06?"
+        },
+        {
           "time": "2026-03-06T19:37:17+00:00",
           "side": "SELL",
           "size": 200932.03,
@@ -595,6 +1098,24 @@
           "outcome": "Yes",
           "slug": "lal-cel-rea-2026-03-07-rea",
           "title": "Will Real Madrid CF win on 2026-03-07?"
+        },
+        {
+          "time": "2026-03-01T16:13:39+00:00",
+          "side": "BUY",
+          "size": 150000.0,
+          "price": 0.63,
+          "outcome": "Yes",
+          "slug": "fl1-lil-nan-2026-03-01-lil",
+          "title": "Will Lille OSC win on 2026-03-01?"
+        },
+        {
+          "time": "2026-02-28T15:00:37+00:00",
+          "side": "BUY",
+          "size": 110000.0,
+          "price": 0.45,
+          "outcome": "No",
+          "slug": "epl-new-eve-2026-02-28-new",
+          "title": "Will Newcastle United FC win on 2026-02-28?"
         }
       ]
     },
@@ -605,7 +1126,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 4,
+      "low_streak": 5,
       "reasons": [
         "37 large bets >= $15,000",
         "abnormal burst sizing (19 trades >= max(threshold,4x median))",
@@ -617,6 +1138,8 @@
         "median_size": 11514.72,
         "avg_size": 46922.98,
         "max_size": 1372668.87,
+        "total_buy_size": 2381169.31,
+        "total_sell_size": 1372668.87,
         "focus_ratio": 0.4,
         "timed_hits": 20,
         "timed_total": 79,
@@ -625,6 +1148,15 @@
       },
       "recent_actions": [
         {
+          "time": "2026-03-02T07:01:47+00:00",
+          "side": "BUY",
+          "size": 128874.15,
+          "price": 0.87,
+          "outcome": "3DMAX",
+          "slug": "cs2-3dmax-sfe-2026-03-02",
+          "title": "Counter-Strike: 3DMAX vs SemperFi Esports (BO3) - ESL Pro League Stage 1"
+        },
+        {
           "time": "2026-03-02T06:57:31+00:00",
           "side": "SELL",
           "size": 1372668.87,
@@ -632,6 +1164,33 @@
           "outcome": "Yes",
           "slug": "khamenei-out-as-supreme-leader-of-iran-by-march-31",
           "title": "Khamenei out as Supreme Leader of Iran by March 31?"
+        },
+        {
+          "time": "2026-03-02T06:27:09+00:00",
+          "side": "BUY",
+          "size": 133463.75,
+          "price": 0.48,
+          "outcome": "Under",
+          "slug": "cs2-nip-m80-2026-03-02-total-games-2pt5",
+          "title": "Games Total: O/U 2.5"
+        },
+        {
+          "time": "2026-03-02T01:57:49+00:00",
+          "side": "BUY",
+          "size": 126290.78,
+          "price": 0.99,
+          "outcome": "Over",
+          "slug": "mls-orl-mia-2026-03-01-total-4pt5",
+          "title": "Orlando City SC vs. Inter Miami CF: O/U 4.5"
+        },
+        {
+          "time": "2026-03-01T22:50:41+00:00",
+          "side": "BUY",
+          "size": 188260.11,
+          "price": 0.67,
+          "outcome": "Hawks",
+          "slug": "nba-por-atl-2026-03-01",
+          "title": "Trail Blazers vs. Hawks"
         }
       ]
     },
@@ -642,7 +1201,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 4,
+      "low_streak": 5,
       "reasons": [
         "17 large bets >= $15,000",
         "abnormal burst sizing (16 trades >= max(threshold,4x median))",
@@ -654,6 +1213,8 @@
         "median_size": 4984.2,
         "avg_size": 8918.49,
         "max_size": 54670.59,
+        "total_buy_size": 712818.03,
+        "total_sell_size": 661.01,
         "focus_ratio": 0.45,
         "timed_hits": 3,
         "timed_total": 79,
@@ -669,7 +1230,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 4,
+      "low_streak": 5,
       "reasons": [
         "7 large bets >= $15,000",
         "abnormal burst sizing (7 trades >= max(threshold,4x median))",
@@ -681,6 +1242,8 @@
         "median_size": 2783.77,
         "avg_size": 5492.33,
         "max_size": 48888.94,
+        "total_buy_size": 439386.25,
+        "total_sell_size": 0,
         "focus_ratio": 0.362,
         "timed_hits": 19,
         "timed_total": 80,
@@ -696,7 +1259,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 4,
+      "low_streak": 5,
       "reasons": [
         "11 large bets >= $15,000",
         "abnormal burst sizing (11 trades >= max(threshold,4x median))",
@@ -708,13 +1271,25 @@
         "median_size": 2415.94,
         "avg_size": 11184.12,
         "max_size": 300000.0,
+        "total_buy_size": 894729.55,
+        "total_sell_size": 0,
         "focus_ratio": 0.362,
         "timed_hits": 8,
         "timed_total": 80,
         "timing_ratio": 0.1,
         "fast_rounds": 16
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-03-04T19:29:55+00:00",
+          "side": "BUY",
+          "size": 300000.0,
+          "price": 0.34,
+          "outcome": "No",
+          "slug": "epl-mac-not-2026-03-04-mac",
+          "title": "Will Manchester City FC win on 2026-03-04?"
+        }
+      ]
     },
     {
       "wallet": "0x57cd939930FD119067ca9dc42b22B3e15708A0Fb",
@@ -723,7 +1298,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 4,
+      "low_streak": 5,
       "reasons": [
         "20 large bets >= $15,000",
         "abnormal burst sizing (14 trades >= max(threshold,4x median))",
@@ -735,13 +1310,25 @@
         "median_size": 5857.18,
         "avg_size": 14526.97,
         "max_size": 129415.0,
+        "total_buy_size": 1142157.64,
+        "total_sell_size": 20000.0,
         "focus_ratio": 0.212,
         "timed_hits": 25,
         "timed_total": 79,
         "timing_ratio": 0.316,
         "fast_rounds": 15
       },
-      "recent_actions": []
+      "recent_actions": [
+        {
+          "time": "2026-02-16T19:50:33+00:00",
+          "side": "BUY",
+          "size": 129415.0,
+          "price": 0.27,
+          "outcome": "No",
+          "slug": "lal-gir-bar-2026-02-16-bar",
+          "title": "Will FC Barcelona win on 2026-02-16?"
+        }
+      ]
     },
     {
       "wallet": "0xa8e089ADe142C95538e06196E09C85681112AD50",
@@ -750,7 +1337,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 4,
+      "low_streak": 5,
       "reasons": [
         "34 large bets >= $15,000",
         "abnormal burst sizing (16 trades >= max(threshold,4x median))",
@@ -762,6 +1349,8 @@
         "median_size": 9772.14,
         "avg_size": 24813.54,
         "max_size": 149999.76,
+        "total_buy_size": 1230537.96,
+        "total_sell_size": 754545.02,
         "focus_ratio": 0.512,
         "timed_hits": 3,
         "timed_total": 72,
@@ -797,6 +1386,15 @@
           "title": "Will Fulham FC win on 2026-03-01?"
         },
         {
+          "time": "2026-02-27T23:37:33+00:00",
+          "side": "BUY",
+          "size": 130000.0,
+          "price": 0.72,
+          "outcome": "Knicks",
+          "slug": "nba-nyk-mil-2026-02-27",
+          "title": "Knicks vs. Bucks"
+        },
+        {
           "time": "2026-02-25T23:37:38+00:00",
           "side": "SELL",
           "size": 149999.76,
@@ -808,53 +1406,58 @@
       ]
     },
     {
+      "wallet": "0x204f72f35326db932158CBA6AdfF0B9A1DA95e14",
+      "username": "swisstony",
+      "score": 40.0,
+      "delta_score": 25.0,
+      "tier": "remove",
+      "high_streak": 0,
+      "low_streak": 5,
+      "reasons": [
+        "precise pre-resolution timing (59/80)",
+        "fast in/out across 12 markets"
+      ],
+      "metrics": {
+        "trade_count": 80,
+        "unique_markets": 52556,
+        "median_size": 14.0,
+        "avg_size": 109.56,
+        "max_size": 3810.0,
+        "total_buy_size": 8764.62,
+        "total_sell_size": 0,
+        "focus_ratio": 0.375,
+        "timed_hits": 59,
+        "timed_total": 80,
+        "timing_ratio": 0.738,
+        "fast_rounds": 12
+      },
+      "recent_actions": []
+    },
+    {
       "wallet": "0x4133Bcbad1d9c41de776646696F41c34D0a65E70",
       "username": "EF203F2IPFC2ICP20W-CP3",
       "score": 40.0,
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 4,
+      "low_streak": 5,
       "reasons": [
-        "precise pre-resolution timing (56/80)",
-        "fast in/out across 16 markets"
+        "precise pre-resolution timing (58/80)",
+        "fast in/out across 15 markets"
       ],
       "metrics": {
         "trade_count": 80,
-        "unique_markets": 11323,
-        "median_size": 147.5,
-        "avg_size": 377.22,
-        "max_size": 4382.35,
-        "focus_ratio": 0.175,
-        "timed_hits": 56,
-        "timed_total": 80,
-        "timing_ratio": 0.7,
-        "fast_rounds": 16
-      },
-      "recent_actions": []
-    },
-    {
-      "wallet": "0x204f72f35326db932158CBA6AdfF0B9A1DA95e14",
-      "username": "swisstony",
-      "score": 15.0,
-      "delta_score": 0.0,
-      "tier": "remove",
-      "high_streak": 0,
-      "low_streak": 4,
-      "reasons": [
-        "fast in/out across 16 markets"
-      ],
-      "metrics": {
-        "trade_count": 80,
-        "unique_markets": 52539,
-        "median_size": 30.0,
-        "avg_size": 121.68,
-        "max_size": 3589.0,
+        "unique_markets": 11328,
+        "median_size": 90.0,
+        "avg_size": 347.93,
+        "max_size": 4115.52,
+        "total_buy_size": 27834.76,
+        "total_sell_size": 0,
         "focus_ratio": 0.225,
-        "timed_hits": 29,
+        "timed_hits": 58,
         "timed_total": 80,
-        "timing_ratio": 0.362,
-        "fast_rounds": 16
+        "timing_ratio": 0.725,
+        "fast_rounds": 15
       },
       "recent_actions": []
     },
@@ -862,20 +1465,22 @@
       "wallet": "0x507E52ef684CA2dD91F90a9d26D149Dd3288BEae",
       "username": "GamblingIsAllYouNeed",
       "score": 15.0,
-      "delta_score": 15.0,
+      "delta_score": 0.0,
       "tier": "watch",
       "high_streak": 0,
-      "low_streak": 1,
+      "low_streak": 2,
       "reasons": [
         "fast in/out across 17 markets"
       ],
       "metrics": {
         "trade_count": 80,
-        "unique_markets": 37066,
-        "median_size": 139.93,
-        "avg_size": 418.86,
-        "max_size": 2500.0,
-        "focus_ratio": 0.225,
+        "unique_markets": 37068,
+        "median_size": 113.61,
+        "avg_size": 427.7,
+        "max_size": 2509.82,
+        "total_buy_size": 34216.23,
+        "total_sell_size": 0,
+        "focus_ratio": 0.263,
         "timed_hits": 0,
         "timed_total": 80,
         "timing_ratio": 0.0,
@@ -887,23 +1492,25 @@
       "wallet": "0xee613B3FC183ee44F9Da9c05F53e2Da107E3DeBf",
       "username": "sovereign2013",
       "score": 15.0,
-      "delta_score": -10.0,
+      "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 4,
+      "low_streak": 5,
       "reasons": [
         "fast in/out across 16 markets"
       ],
       "metrics": {
         "trade_count": 80,
-        "unique_markets": 31986,
-        "median_size": 65.34,
-        "avg_size": 272.92,
+        "unique_markets": 31989,
+        "median_size": 60.0,
+        "avg_size": 246.11,
         "max_size": 5177.42,
-        "focus_ratio": 0.512,
-        "timed_hits": 4,
+        "total_buy_size": 19689.14,
+        "total_sell_size": 0,
+        "focus_ratio": 0.475,
+        "timed_hits": 3,
         "timed_total": 80,
-        "timing_ratio": 0.05,
+        "timing_ratio": 0.037,
         "fast_rounds": 16
       },
       "recent_actions": []
