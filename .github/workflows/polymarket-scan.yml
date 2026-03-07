@@ -144,7 +144,12 @@ jobs:
                   side = a.get('side', '')
                   size = float(a.get('size', 0))
                   title = a.get('title') or a.get('slug', '')
-                  lines.append(f"   最近大单: {side} ${size:,.0f} · {title}")
+                  outcome = a.get('outcome', '')
+                  price = float(a.get('price', 0))
+                  lines.append(f"   标的: {title}")
+                  lines.append(f"   最近大单: {side} ${size:,.0f} @ {price:.3f} · {outcome}")
+              else:
+                  lines.append("   标的: 近1小时无>=100k动作")
 
           lines.append("\n(仅显示前5，完整名单见仓库 report)")
           msg = "\n".join(lines)
