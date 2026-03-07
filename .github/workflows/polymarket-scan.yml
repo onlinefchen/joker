@@ -1,0 +1,104 @@
+name: polymarket-scan
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-cargo-polymarket-0.1.4
+
+      - name: Install Polymarket CLI
+        run: |
+          if ! command -v polymarket >/dev/null 2>&1; then
+            cargo install polymarket --version 0.1.4
+          fi
+          polymarket --version
+
+      - name: Configure Polymarket key
+        env:
+          POLYMARKET_PRIVATE_KEY: ${{ secrets.POLYMARKET_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.config/polymarket
+          cat > ~/.config/polymarket/config.json <<EOF
+          {
+            "private_key": "${POLYMARKET_PRIVATE_KEY}",
+            "chain_id": 137,
+            "signature_type": "gnosis-safe"
+          }
+          EOF
+          chmod 600 ~/.config/polymarket/config.json
+
+      - name: Run tracker
+        run: |
+          python polymarket_insider_tracker.py \
+            --wallet-limit 30 \
+            --trades-limit 80 \
+            --min-score 60 \
+            --top 20 \
+            --sleep-ms 0 \
+            --action-min-size 100000 \
+            --action-side sell \
+            --state-file tracker_state.json \
+            --out suspects.json \
+            --report-md tracker_report.md
+
+      - name: Commit state + outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tracker_state.json suspects.json tracker_report.md || true
+          git commit -m "chore: update tracker outputs" || echo "No changes"
+          git push
+
+      - name: Telegram notify (new core wallets)
+        if: ${{ secrets.TELEGRAM_BOT_TOKEN != '' && secrets.TELEGRAM_CHAT_ID != '' }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python - <<'PY'
+          import json, os, urllib.parse, urllib.request
+
+          with open('suspects.json','r',encoding='utf-8') as f:
+              data = json.load(f)
+          rows = data.get('suspects', [])
+          cores = [r for r in rows if r.get('tier') == 'core']
+          if not cores:
+              raise SystemExit(0)
+
+          text = ["Polymarket 扫描：检测到 Core 地址"]
+          for r in cores[:8]:
+              text.append(f"- {r['wallet']} | score={r['score']} | Δ={r['delta_score']:+}")
+          msg = "\n".join(text)
+
+          token = os.environ['TELEGRAM_BOT_TOKEN']
+          chat_id = os.environ['TELEGRAM_CHAT_ID']
+          url = f"https://api.telegram.org/bot{token}/sendMessage"
+          payload = urllib.parse.urlencode({"chat_id": chat_id, "text": msg}).encode()
+          urllib.request.urlopen(url, data=payload, timeout=20).read()
+          PY
