@@ -1,26 +1,26 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-07T04:27:20.828822+00:00
+Generated: 2026-03-07T04:32:57.323547+00:00
 
 | Rank | Wallet | User | Score | ΔScore | Tier | HighStreak | LowStreak |
 |---:|---|---|---:|---:|---|---:|---:|
-| 1 | `0x39932ca2B7A1B8AB6Cbf0B8F7419261B950cCdeD` | Andromeda1 | 91.0 | +91.0 | candidate | 1 | 0 |
-| 2 | `0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A` | bossoskil1 | 83.0 | +83.0 | candidate | 1 | 0 |
-| 3 | `0x1BC0D88cA86b9049cf05D642E634836d5DdF4429` | 212121212121212121212 | 78.0 | +78.0 | candidate | 1 | 0 |
-| 4 | `0xC65cA4755436F82D8eb461E65781584B8CaDEa39` | UAEVALORANTFAN | 73.0 | +73.0 | candidate | 1 | 0 |
-| 5 | `0xF19D7D88Cf362110027DcD64750FDd209A04276f` | huhaoli | 72.0 | +72.0 | candidate | 1 | 0 |
-| 6 | `0x07b8E44b90cC3e91B8D5fe60eA810D2534638e25` | joosangyoo | 66.0 | +66.0 | candidate | 0 | 0 |
-| 7 | `0x492442EaB586F242B53bDa933fD5dE859c8A3782` | 0x492442EaB586F242B53bDa933fD5dE859c8A3782-1766317541188 | 66.0 | +66.0 | candidate | 0 | 0 |
-| 8 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusCM | 66.0 | +66.0 | candidate | 0 | 0 |
-| 9 | `0x6a57D263cD7c8EbA88b857eDEB7103851F012AFa` | 0x6a57D263cD7c8EbA88b857eDEB7103851F012AFa-1771530065496 | 66.0 | +66.0 | candidate | 0 | 0 |
-| 10 | `0x6aDE597C0e2B43C0Bf3542CadA8A5e330D73f5b0` | TheOnlyHuman | 66.0 | +66.0 | candidate | 0 | 0 |
-| 11 | `0x9CB990F1862568A63d8601EfEebe0304225C32F2` | jtwyslljy | 62.0 | +62.0 | candidate | 0 | 0 |
-| 12 | `0x83d22814af497297b3023897A6E3a25CFCf7d196` | NorthBalticMan9 | 62.0 | +62.0 | candidate | 0 | 0 |
-| 13 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | -2.0 | candidate | 0 | 0 |
-| 14 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 58.0 | +27.0 | watch | 0 | 0 |
-| 15 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 58.0 | +58.0 | watch | 0 | 0 |
-| 16 | `0xb6Aee7F281e13b23Bd959127F6e2B3DCcB4E4dF8` | hugesportswhale | 58.0 | +58.0 | watch | 0 | 0 |
-| 17 | `0xEd107a85a4585A381E48C7F7Ca4144909e7Dd2E5` | bobe2 | 57.0 | +57.0 | watch | 0 | 0 |
-| 18 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | -28.0 | watch | 0 | 1 |
-| 19 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | +11.0 | watch | 0 | 2 |
-| 20 | `0xB90494d9a5D8f71f1930b2aa4B599F95c344c255` | MinorKey4 | 48.0 | -5.0 | watch | 0 | 2 |
+| 1 | `0x39932ca2B7A1B8AB6Cbf0B8F7419261B950cCdeD` | Andromeda1 | 91.0 | +0.0 | candidate | 2 | 0 |
+| 2 | `0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A` | bossoskil1 | 83.0 | +0.0 | candidate | 2 | 0 |
+| 3 | `0x1BC0D88cA86b9049cf05D642E634836d5DdF4429` | 212121212121212121212 | 78.0 | +0.0 | candidate | 2 | 0 |
+| 4 | `0xC65cA4755436F82D8eb461E65781584B8CaDEa39` | UAEVALORANTFAN | 73.0 | +0.0 | candidate | 2 | 0 |
+| 5 | `0xF19D7D88Cf362110027DcD64750FDd209A04276f` | huhaoli | 72.0 | +0.0 | candidate | 2 | 0 |
+| 6 | `0x07b8E44b90cC3e91B8D5fe60eA810D2534638e25` | joosangyoo | 66.0 | +0.0 | candidate | 0 | 0 |
+| 7 | `0x492442EaB586F242B53bDa933fD5dE859c8A3782` | 0x492442EaB586F242B53bDa933fD5dE859c8A3782-1766317541188 | 66.0 | +0.0 | candidate | 0 | 0 |
+| 8 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusCM | 66.0 | +0.0 | candidate | 0 | 0 |
+| 9 | `0x6a57D263cD7c8EbA88b857eDEB7103851F012AFa` | 0x6a57D263cD7c8EbA88b857eDEB7103851F012AFa-1771530065496 | 66.0 | +0.0 | candidate | 0 | 0 |
+| 10 | `0x6aDE597C0e2B43C0Bf3542CadA8A5e330D73f5b0` | TheOnlyHuman | 66.0 | +0.0 | candidate | 0 | 0 |
+| 11 | `0x9CB990F1862568A63d8601EfEebe0304225C32F2` | jtwyslljy | 62.0 | +0.0 | candidate | 0 | 0 |
+| 12 | `0x83d22814af497297b3023897A6E3a25CFCf7d196` | NorthBalticMan9 | 62.0 | +0.0 | candidate | 0 | 0 |
+| 13 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | +0.0 | candidate | 0 | 0 |
+| 14 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 58.0 | +0.0 | watch | 0 | 0 |
+| 15 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 58.0 | +0.0 | watch | 0 | 0 |
+| 16 | `0xb6Aee7F281e13b23Bd959127F6e2B3DCcB4E4dF8` | hugesportswhale | 58.0 | +0.0 | watch | 0 | 0 |
+| 17 | `0xEd107a85a4585A381E48C7F7Ca4144909e7Dd2E5` | bobe2 | 57.0 | +0.0 | watch | 0 | 0 |
+| 18 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | +0.0 | watch | 0 | 2 |
+| 19 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | +0.0 | remove | 0 | 3 |
+| 20 | `0xB90494d9a5D8f71f1930b2aa4B599F95c344c255` | MinorKey4 | 48.0 | +0.0 | remove | 0 | 3 |
