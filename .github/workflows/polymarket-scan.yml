@@ -105,6 +105,10 @@ jobs:
         run: |
           python - <<'PY'
           import json, os, urllib.parse, urllib.request
+          from datetime import datetime, timezone
+
+          def short_addr(a: str) -> str:
+              return f"{a[:6]}...{a[-4:]}" if isinstance(a, str) and len(a) > 12 else str(a)
 
           token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
           chat_id = os.environ.get('TELEGRAM_CHAT_ID', '').strip()
@@ -113,15 +117,32 @@ jobs:
 
           with open('suspects.json','r',encoding='utf-8') as f:
               data = json.load(f)
+
           rows = data.get('suspects', [])
           cores = [r for r in rows if r.get('tier') == 'core']
           if not cores:
               raise SystemExit(0)
 
-          text = ["Polymarket 扫描：检测到 Core 地址"]
-          for r in cores[:8]:
-              text.append(f"- {r['wallet']} | score={r['score']} | Δ={r['delta_score']:+}")
-          msg = "\n".join(text)
+          ts = datetime.now(timezone.utc).strftime('%m-%d %H:%M UTC')
+          lines = [f"📡 Polymarket Core 监控 ({ts})", f"共 {len(cores)} 个 Core 地址"]
+
+          for i, r in enumerate(cores[:5], 1):
+              addr = short_addr(r.get('wallet', ''))
+              score = float(r.get('score', 0))
+              delta = float(r.get('delta_score', 0))
+              arrow = "🔺" if delta > 0 else ("🔻" if delta < 0 else "⏸")
+              lines.append(f"{i}) {addr}  分数 {score:.0f} ({arrow}{delta:+.0f})")
+
+              acts = r.get('recent_actions') or []
+              if acts:
+                  a = acts[0]
+                  side = a.get('side', '')
+                  size = float(a.get('size', 0))
+                  slug = a.get('slug', '')
+                  lines.append(f"   最近大单: {side} ${size:,.0f} · {slug}")
+
+          lines.append("\n(仅显示前5，完整名单见仓库 report)")
+          msg = "\n".join(lines)
 
           url = f"https://api.telegram.org/bot{token}/sendMessage"
           payload = urllib.parse.urlencode({"chat_id": chat_id, "text": msg}).encode()
