@@ -35,7 +35,7 @@ jobs:
       - name: Install Polymarket CLI
         run: |
           if ! command -v polymarket >/dev/null 2>&1; then
-            cargo install polymarket --version 0.1.4
+            cargo install --git https://github.com/Polymarket/polymarket-cli.git --locked --force
           fi
           polymarket --version
 
