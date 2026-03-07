@@ -76,13 +76,17 @@ jobs:
           git push
 
       - name: Telegram notify (new core wallets)
-        if: ${{ secrets.TELEGRAM_BOT_TOKEN != '' && secrets.TELEGRAM_CHAT_ID != '' }}
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           python - <<'PY'
           import json, os, urllib.parse, urllib.request
+
+          token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
+          chat_id = os.environ.get('TELEGRAM_CHAT_ID', '').strip()
+          if not token or not chat_id:
+              raise SystemExit(0)
 
           with open('suspects.json','r',encoding='utf-8') as f:
               data = json.load(f)
@@ -96,8 +100,6 @@ jobs:
               text.append(f"- {r['wallet']} | score={r['score']} | Δ={r['delta_score']:+}")
           msg = "\n".join(text)
 
-          token = os.environ['TELEGRAM_BOT_TOKEN']
-          chat_id = os.environ['TELEGRAM_CHAT_ID']
           url = f"https://api.telegram.org/bot{token}/sendMessage"
           payload = urllib.parse.urlencode({"chat_id": chat_id, "text": msg}).encode()
           urllib.request.urlopen(url, data=payload, timeout=20).read()
