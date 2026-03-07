@@ -126,22 +126,10 @@ jobs:
               raise SystemExit(0)
 
           ts = datetime.now(timezone.utc).strftime('%m-%d %H:%M UTC')
-          lines = [f"📡 Polymarket 监控 ({ts})"]
+          lines = [f"📡 Polymarket 大单监控 ({ts})", "仅推送：近1小时、单笔≥$100k"]
 
-          # Part 1: 地址池 + 胜率
-          lines.append("\n【1/2 地址池（含胜率）】")
-          lines.append(f"Core 地址数: {len(cores)}")
-          for i, r in enumerate(cores[:5], 1):
-              addr = short_addr(r.get('wallet', ''))
-              score = float(r.get('score', 0))
-              delta = float(r.get('delta_score', 0))
-              wr = float(r.get('win_rate', 0)) * 100
-              cc = int(r.get('closed_count', 0))
-              arrow = "🔺" if delta > 0 else ("🔻" if delta < 0 else "⏸")
-              lines.append(f"{i}) {addr} 分数{score:.0f}({arrow}{delta:+.0f}) 胜率{wr:.0f}% (样本{cc})")
-
-          # Part 2: 近1小时 >=100k 大单
-          lines.append("\n【2/2 近1小时大单（单笔≥$100k）】")
+          # 近1小时 >=100k 大单
+          lines.append("\n【近1小时大单】")
           big = []
           for r in cores:
               for a in (r.get('recent_actions') or []):
@@ -150,18 +138,18 @@ jobs:
                   big.append(a2)
 
           if not big:
-              lines.append("无")
-          else:
-              big.sort(key=lambda x: float(x.get('size', 0)), reverse=True)
-              for j, a in enumerate(big[:8], 1):
-                  addr = short_addr(a.get('wallet', ''))
-                  side = a.get('side', '')
-                  size = float(a.get('size', 0))
-                  title = a.get('title') or a.get('slug', '')
-                  outcome = a.get('outcome', '')
-                  price = float(a.get('price', 0))
-                  lines.append(f"{j}) {addr} {side} ${size:,.0f} @ {price:.3f} · {outcome}")
-                  lines.append(f"   标的: {title}")
+              raise SystemExit(0)
+
+          big.sort(key=lambda x: float(x.get('size', 0)), reverse=True)
+          for j, a in enumerate(big[:8], 1):
+              addr = short_addr(a.get('wallet', ''))
+              side = a.get('side', '')
+              size = float(a.get('size', 0))
+              title = a.get('title') or a.get('slug', '')
+              outcome = a.get('outcome', '')
+              price = float(a.get('price', 0))
+              lines.append(f"{j}) {addr} {side} ${size:,.0f} @ {price:.3f} · {outcome}")
+              lines.append(f"   标的: {title}")
 
           msg = "\n".join(lines)
 
