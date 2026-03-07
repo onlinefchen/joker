@@ -63,12 +63,13 @@ jobs:
           python polymarket_insider_tracker.py \
             --wallet-limit 30 \
             --trades-limit 200 \
-            --lookback-hours 1 \
+            --lookback-hours 0 \
             --min-score 60 \
             --top 20 \
             --sleep-ms 0 \
             --action-min-size 100000 \
             --action-side all \
+            --action-lookback-hours 1 \
             --state-file tracker_state.json \
             --out suspects.json \
             --report-md tracker_report.md
@@ -125,33 +126,43 @@ jobs:
               raise SystemExit(0)
 
           ts = datetime.now(timezone.utc).strftime('%m-%d %H:%M UTC')
-          lines = [f"📡 Polymarket Core 监控 ({ts})", "窗口: 最近1小时｜仅看单笔≥$100k", f"共 {len(cores)} 个 Core 地址"]
+          lines = [f"📡 Polymarket 监控 ({ts})"]
 
+          # Part 1: 地址池 + 胜率
+          lines.append("\n【1/2 地址池（含胜率）】")
+          lines.append(f"Core 地址数: {len(cores)}")
           for i, r in enumerate(cores[:5], 1):
               addr = short_addr(r.get('wallet', ''))
               score = float(r.get('score', 0))
               delta = float(r.get('delta_score', 0))
+              wr = float(r.get('win_rate', 0)) * 100
+              cc = int(r.get('closed_count', 0))
               arrow = "🔺" if delta > 0 else ("🔻" if delta < 0 else "⏸")
-              m = r.get('metrics') or {}
-              total_buy = float(m.get('total_buy_size', 0))
-              total_sell = float(m.get('total_sell_size', 0))
-              lines.append(f"{i}) {addr}  分数 {score:.0f} ({arrow}{delta:+.0f})")
-              lines.append(f"   样本买入: ${total_buy:,.0f} / 卖出: ${total_sell:,.0f}")
+              lines.append(f"{i}) {addr} 分数{score:.0f}({arrow}{delta:+.0f}) 胜率{wr:.0f}% (样本{cc})")
 
-              acts = r.get('recent_actions') or []
-              if acts:
-                  a = acts[0]
+          # Part 2: 近1小时 >=100k 大单
+          lines.append("\n【2/2 近1小时大单（单笔≥$100k）】")
+          big = []
+          for r in cores:
+              for a in (r.get('recent_actions') or []):
+                  a2 = dict(a)
+                  a2['wallet'] = r.get('wallet', '')
+                  big.append(a2)
+
+          if not big:
+              lines.append("无")
+          else:
+              big.sort(key=lambda x: float(x.get('size', 0)), reverse=True)
+              for j, a in enumerate(big[:8], 1):
+                  addr = short_addr(a.get('wallet', ''))
                   side = a.get('side', '')
                   size = float(a.get('size', 0))
                   title = a.get('title') or a.get('slug', '')
                   outcome = a.get('outcome', '')
                   price = float(a.get('price', 0))
+                  lines.append(f"{j}) {addr} {side} ${size:,.0f} @ {price:.3f} · {outcome}")
                   lines.append(f"   标的: {title}")
-                  lines.append(f"   最近大单: {side} ${size:,.0f} @ {price:.3f} · {outcome}")
-              else:
-                  lines.append("   标的: 近1小时无>=100k动作")
 
-          lines.append("\n(仅显示前5，完整名单见仓库 report)")
           msg = "\n".join(lines)
 
           url = f"https://api.telegram.org/bot{token}/sendMessage"

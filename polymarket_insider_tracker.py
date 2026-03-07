@@ -107,9 +107,11 @@ def summarize_recent_actions(
     limit: int = 5,
     min_size: float = 100000,
     side_filter: str = "all",
+    lookback_hours: float = 0,
 ) -> List[Dict[str, Any]]:
     items: List[Dict[str, Any]] = []
     side_filter = (side_filter or "all").lower()
+    trades = filter_trades_by_lookback_hours(trades, lookback_hours)
 
     for t in trades:
         side = (t.get("side") or "").upper()
@@ -259,6 +261,22 @@ def wallet_score(
     return WalletReport(wallet, username, round(score, 2), reasons, metrics)
 
 
+def fetch_wallet_winrate(wallet: str, closed_limit: int = 100) -> Dict[str, Any]:
+    try:
+        closed = run_cli(["data", "closed-positions", wallet, "--limit", str(closed_limit)])
+        if not isinstance(closed, list) or not closed:
+            return {"win_rate": 0.0, "closed_count": 0, "wins": 0}
+        wins = 0
+        for p in closed:
+            pnl = to_float(p.get("realized_pnl"))
+            if pnl > 0:
+                wins += 1
+        n = len(closed)
+        return {"win_rate": round(wins / n, 3), "closed_count": n, "wins": wins}
+    except Exception:
+        return {"win_rate": 0.0, "closed_count": 0, "wins": 0}
+
+
 def load_state(path: str) -> Dict[str, Any]:
     if not path:
         return {}
@@ -321,6 +339,8 @@ def main() -> int:
     ap.add_argument("--report-md", default="")
     ap.add_argument("--action-min-size", type=float, default=100000, help="Only keep recent actions >= this size")
     ap.add_argument("--action-side", default="all", choices=["all", "buy", "sell"], help="Filter recent actions by side")
+    ap.add_argument("--action-lookback-hours", type=float, default=0, help="Recent actions lookback window in hours; 0=disabled")
+    ap.add_argument("--closed-limit", type=int, default=100, help="Closed positions sample size for win rate")
     args = ap.parse_args()
 
     board = run_cli([
@@ -404,7 +424,9 @@ def main() -> int:
             limit=5,
             min_size=args.action_min_size,
             side_filter=args.action_side,
+            lookback_hours=args.action_lookback_hours,
         )
+        wr = fetch_wallet_winrate(r.wallet, closed_limit=args.closed_limit)
         row = {
             "wallet": r.wallet,
             "username": r.username,
@@ -415,6 +437,8 @@ def main() -> int:
             "low_streak": low_streak,
             "reasons": r.reasons,
             "metrics": r.metrics,
+            "win_rate": wr.get("win_rate", 0.0),
+            "closed_count": wr.get("closed_count", 0),
             "recent_actions": recent_actions,
         }
         rows.append(row)
