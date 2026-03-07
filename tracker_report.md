@@ -1,14 +1,14 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-07T13:50:27.266670+00:00
+Generated: 2026-03-07T14:04:14.688758+00:00
 
 | Rank | Wallet | User | Score | ΔScore | Tier | HighStreak | LowStreak |
 |---:|---|---|---:|---:|---|---:|---:|
-| 1 | `0x39932ca2B7A1B8AB6Cbf0B8F7419261B950cCdeD` | Andromeda1 | 91.0 | +0.0 | core | 32 | 0 |
-| 2 | `0xC65cA4755436F82D8eb461E65781584B8CaDEa39` | UAEVALORANTFAN | 83.0 | +0.0 | core | 32 | 0 |
-| 3 | `0x1BC0D88cA86b9049cf05D642E634836d5DdF4429` | 212121212121212121212 | 80.0 | +0.0 | core | 24 | 0 |
-| 4 | `0x6ac5BB06A9Eb05641fD5e82640268b92f3Ab4B6E` | 0p0jogggg | 73.0 | +0.0 | core | 27 | 0 |
-| 5 | `0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A` | bossoskil1 | 73.0 | +0.0 | core | 32 | 0 |
+| 1 | `0x39932ca2B7A1B8AB6Cbf0B8F7419261B950cCdeD` | Andromeda1 | 91.0 | +0.0 | core | 33 | 0 |
+| 2 | `0xC65cA4755436F82D8eb461E65781584B8CaDEa39` | UAEVALORANTFAN | 83.0 | +0.0 | core | 33 | 0 |
+| 3 | `0x1BC0D88cA86b9049cf05D642E634836d5DdF4429` | 212121212121212121212 | 80.0 | +0.0 | core | 25 | 0 |
+| 4 | `0x6ac5BB06A9Eb05641fD5e82640268b92f3Ab4B6E` | 0p0jogggg | 73.0 | +0.0 | core | 28 | 0 |
+| 5 | `0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A` | bossoskil1 | 73.0 | +0.0 | core | 33 | 0 |
 | 6 | `0x07b8E44b90cC3e91B8D5fe60eA810D2534638e25` | joosangyoo | 66.0 | +0.0 | candidate | 0 | 0 |
 | 7 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | +0.0 | candidate | 0 | 0 |
 | 8 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 66.0 | +0.0 | candidate | 0 | 0 |
@@ -21,6 +21,6 @@ Generated: 2026-03-07T13:50:27.266670+00:00
 | 15 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 58.0 | +0.0 | watch | 0 | 0 |
 | 16 | `0x492442EaB586F242B53bDa933fD5dE859c8A3782` | 0x492442EaB586F242B53bDa933fD5dE859c8A3782-1766317541188 | 58.0 | +0.0 | watch | 0 | 0 |
 | 17 | `0xa8e089ADe142C95538e06196E09C85681112AD50` | Wannac | 58.0 | +0.0 | watch | 0 | 0 |
-| 18 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 48.0 | +0.0 | remove | 0 | 29 |
-| 19 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | +0.0 | remove | 0 | 32 |
-| 20 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | +0.0 | remove | 0 | 33 |
+| 18 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 48.0 | +0.0 | remove | 0 | 30 |
+| 19 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | +0.0 | remove | 0 | 33 |
+| 20 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | +0.0 | remove | 0 | 34 |
