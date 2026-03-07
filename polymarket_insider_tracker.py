@@ -71,6 +71,21 @@ def parse_iso(s: str) -> Optional[datetime]:
         return None
 
 
+def filter_trades_by_lookback_hours(trades: List[Dict[str, Any]], lookback_hours: float) -> List[Dict[str, Any]]:
+    if not lookback_hours or lookback_hours <= 0:
+        return trades
+    cutoff = datetime.now(timezone.utc).timestamp() - lookback_hours * 3600
+    out: List[Dict[str, Any]] = []
+    for t in trades:
+        try:
+            ts = int(t.get("timestamp", 0))
+        except Exception:
+            ts = 0
+        if ts >= cutoff:
+            out.append(t)
+    return out
+
+
 class MarketCache:
     def __init__(self):
         self.by_slug: Dict[str, Dict[str, Any]] = {}
@@ -292,6 +307,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="Polymarket insider-style tracker")
     ap.add_argument("--wallet-limit", type=int, default=80)
     ap.add_argument("--trades-limit", type=int, default=160)
+    ap.add_argument("--lookback-hours", type=float, default=0, help="Only use trades in recent N hours; 0=disabled")
     ap.add_argument("--period", default="month", choices=["day", "week", "month", "all"])
     ap.add_argument("--order-by", default="pnl", choices=["pnl", "vol"])
     ap.add_argument("--big-bet", type=float, default=15000)
@@ -346,6 +362,8 @@ def main() -> int:
                 trades = []
         except Exception:
             trades = []
+
+        trades = filter_trades_by_lookback_hours(trades, args.lookback_hours)
 
         rep = wallet_score(
             wallet=wallet,

@@ -62,7 +62,8 @@ jobs:
         run: |
           python polymarket_insider_tracker.py \
             --wallet-limit 30 \
-            --trades-limit 80 \
+            --trades-limit 200 \
+            --lookback-hours 1 \
             --min-score 60 \
             --top 20 \
             --sleep-ms 0 \
@@ -124,7 +125,7 @@ jobs:
               raise SystemExit(0)
 
           ts = datetime.now(timezone.utc).strftime('%m-%d %H:%M UTC')
-          lines = [f"📡 Polymarket Core 监控 ({ts})", f"共 {len(cores)} 个 Core 地址"]
+          lines = [f"📡 Polymarket Core 监控 ({ts})", "窗口: 最近1小时｜仅看单笔≥$100k", f"共 {len(cores)} 个 Core 地址"]
 
           for i, r in enumerate(cores[:5], 1):
               addr = short_addr(r.get('wallet', ''))
