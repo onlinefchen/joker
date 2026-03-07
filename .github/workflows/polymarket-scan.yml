@@ -67,7 +67,7 @@ jobs:
             --top 20 \
             --sleep-ms 0 \
             --action-min-size 100000 \
-            --action-side sell \
+            --action-side all \
             --state-file tracker_state.json \
             --out suspects.json \
             --report-md tracker_report.md
@@ -131,15 +131,19 @@ jobs:
               score = float(r.get('score', 0))
               delta = float(r.get('delta_score', 0))
               arrow = "🔺" if delta > 0 else ("🔻" if delta < 0 else "⏸")
+              m = r.get('metrics') or {}
+              total_buy = float(m.get('total_buy_size', 0))
+              total_sell = float(m.get('total_sell_size', 0))
               lines.append(f"{i}) {addr}  分数 {score:.0f} ({arrow}{delta:+.0f})")
+              lines.append(f"   样本买入: ${total_buy:,.0f} / 卖出: ${total_sell:,.0f}")
 
               acts = r.get('recent_actions') or []
               if acts:
                   a = acts[0]
                   side = a.get('side', '')
                   size = float(a.get('size', 0))
-                  slug = a.get('slug', '')
-                  lines.append(f"   最近大单: {side} ${size:,.0f} · {slug}")
+                  title = a.get('title') or a.get('slug', '')
+                  lines.append(f"   最近大单: {side} ${size:,.0f} · {title}")
 
           lines.append("\n(仅显示前5，完整名单见仓库 report)")
           msg = "\n".join(lines)

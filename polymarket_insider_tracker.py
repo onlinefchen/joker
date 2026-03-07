@@ -140,6 +140,8 @@ def wallet_score(
     median_size = statistics.median(sizes) if sizes else 0.0
     avg_size = statistics.mean(sizes) if sizes else 0.0
     max_size = max(sizes) if sizes else 0.0
+    total_buy_size = sum(to_float(t.get("size")) for t in trades if (t.get("side") or "").upper() == "BUY")
+    total_sell_size = sum(to_float(t.get("size")) for t in trades if (t.get("side") or "").upper() == "SELL")
 
     score_new_big = 0.0
     if unique_markets_traded <= 5:
@@ -230,6 +232,8 @@ def wallet_score(
         "median_size": round(median_size, 2),
         "avg_size": round(avg_size, 2),
         "max_size": round(max_size, 2),
+        "total_buy_size": round(total_buy_size, 2),
+        "total_sell_size": round(total_sell_size, 2),
         "focus_ratio": round(focus_ratio, 3),
         "timed_hits": timed_hits,
         "timed_total": timed_total,
