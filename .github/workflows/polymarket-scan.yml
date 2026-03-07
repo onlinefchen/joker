@@ -2,6 +2,11 @@ name: polymarket-scan
 
 on:
   workflow_dispatch:
+    inputs:
+      test_ping:
+        description: "Send test telegram ping"
+        required: false
+        default: "true"
   schedule:
     - cron: '*/15 * * * *'
 
@@ -74,6 +79,24 @@ jobs:
           git add tracker_state.json suspects.json tracker_report.md || true
           git commit -m "chore: update tracker outputs" || echo "No changes"
           git push
+
+      - name: Telegram test ping (manual dispatch)
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.test_ping == 'true' }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python - <<'PY'
+          import os, urllib.parse, urllib.request
+          token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
+          chat_id = os.environ.get('TELEGRAM_CHAT_ID', '').strip()
+          if not token or not chat_id:
+              raise SystemExit(0)
+          text = "✅ GitHub Actions 测试通知成功（polymarket-scan）"
+          url = f"https://api.telegram.org/bot{token}/sendMessage"
+          payload = urllib.parse.urlencode({"chat_id": chat_id, "text": text}).encode()
+          urllib.request.urlopen(url, data=payload, timeout=20).read()
+          PY
 
       - name: Telegram notify (new core wallets)
         env:
