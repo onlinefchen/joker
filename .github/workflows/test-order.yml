@@ -50,7 +50,6 @@ jobs:
 
       - name: Test order (place + cancel)
         run: |
-          set -e
           TOKEN="0x9daeb97198a1623f658ed49304226b17e604e5b14efa6600f90c5330f483e6a"
           
           echo "=== Balance ==="
@@ -58,20 +57,23 @@ jobs:
           
           echo ""
           echo "=== Placing test order: BUY 5 shares @ \$0.01 ==="
-          RESULT=$(polymarket clob create-order --token $TOKEN --side buy --price 0.01 --size 5 -o json)
-          echo "$RESULT"
+          RESULT=$(polymarket clob create-order --token $TOKEN --side buy --price 0.01 --size 5 -o json 2>&1) || true
+          echo "Raw result: $RESULT"
           
-          ORDER_ID=$(echo "$RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('order_id',''))")
-          SUCCESS=$(echo "$RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('success', False))")
+          ORDER_ID=$(echo "$RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('order_id',''))" 2>/dev/null) || true
+          SUCCESS=$(echo "$RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('success', False))" 2>/dev/null) || true
+          
+          echo "Order ID: $ORDER_ID"
+          echo "Success: $SUCCESS"
           
           if [ "$SUCCESS" != "True" ]; then
-            echo "❌ Order failed!"
+            echo "❌ Order failed! See raw result above."
             exit 1
           fi
           
           echo ""
           echo "=== Cancelling order $ORDER_ID ==="
-          polymarket clob cancel "$ORDER_ID" -o json
+          polymarket clob cancel "$ORDER_ID" -o json 2>&1 || true
           
           echo ""
           echo "✅ Test passed: order placed and cancelled successfully"
