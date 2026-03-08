@@ -59,7 +59,14 @@ jobs:
           echo "$PROXY_SSH_KEY" > ~/.ssh/proxy_key
           chmod 600 ~/.ssh/proxy_key
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/proxy_key -D 1080 -fN root@$PROXY_SSH_HOST
-          echo "SOCKS proxy on 127.0.0.1:1080"
+          sudo apt-get install -y -qq proxychains4 > /dev/null 2>&1
+          sudo tee /etc/proxychains4.conf > /dev/null << 'EOF'
+          strict_chain
+          proxy_dns
+          [ProxyList]
+          socks5 127.0.0.1 1080
+          EOF
+          echo "proxychains4 ready"
 
       - name: Restore copy trader state
         uses: actions/cache/restore@v4
@@ -73,5 +80,5 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          SOCKS_PROXY: 'socks5://127.0.0.1:1080'
+          USE_PROXYCHAINS: 'true'
         run: python copy_trader.py --daily-report

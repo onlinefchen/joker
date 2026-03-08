@@ -57,7 +57,15 @@ jobs:
           echo "$PROXY_SSH_KEY" > ~/.ssh/proxy_key
           chmod 600 ~/.ssh/proxy_key
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/proxy_key -D 1080 -fN root@$PROXY_SSH_HOST
-          echo "SOCKS proxy on 127.0.0.1:1080"
+          # Install and configure proxychains for SOCKS5
+          sudo apt-get install -y -qq proxychains4 > /dev/null 2>&1
+          sudo tee /etc/proxychains4.conf > /dev/null << 'EOF'
+          strict_chain
+          proxy_dns
+          [ProxyList]
+          socks5 127.0.0.1 1080
+          EOF
+          echo "proxychains4 ready via SOCKS5 127.0.0.1:1080"
 
       - name: Test order (place + cancel)
         run: |
@@ -68,9 +76,7 @@ jobs:
           
           echo ""
           echo "=== Placing test order: BUY 5 shares @ \$0.01 ==="
-          export HTTPS_PROXY=socks5://127.0.0.1:1080
-          export ALL_PROXY=socks5://127.0.0.1:1080
-          RESULT=$(polymarket clob create-order --token $TOKEN --side buy --price 0.01 --size 5 -o json 2>&1) || true
+          RESULT=$(proxychains4 -q polymarket clob create-order --token $TOKEN --side buy --price 0.01 --size 5 -o json 2>&1) || true
           echo "Raw result: $RESULT"
           
           ORDER_ID=$(echo "$RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('order_id',''))" 2>/dev/null) || true
@@ -86,9 +92,7 @@ jobs:
           
           echo ""
           echo "=== Cancelling order $ORDER_ID ==="
-          export HTTPS_PROXY=socks5://127.0.0.1:1080
-          export ALL_PROXY=socks5://127.0.0.1:1080
-          polymarket clob cancel "$ORDER_ID" -o json 2>&1 || true
+          proxychains4 -q polymarket clob cancel "$ORDER_ID" -o json 2>&1 || true
           
           echo ""
           echo "✅ Test passed: order placed and cancelled successfully"

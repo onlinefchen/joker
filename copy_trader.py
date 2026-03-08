@@ -65,15 +65,18 @@ def tg_send(text: str):
         log(f"TG send failed: {e}")
 
 
+USE_PROXYCHAINS = os.environ.get("USE_PROXYCHAINS", "false").lower() == "true"
+
+
 def run_cli(args: List[str], timeout: int = 30, use_proxy: bool = False) -> Any:
-    cmd = ["polymarket", *args, "-o", "json"]
-    env = dict(os.environ)
-    # Use SOCKS proxy for trading operations (geoblock bypass)
-    if use_proxy and os.environ.get("SOCKS_PROXY"):
-        env["HTTPS_PROXY"] = os.environ["SOCKS_PROXY"]
-        env["ALL_PROXY"] = os.environ["SOCKS_PROXY"]
+    base_cmd = ["polymarket", *args, "-o", "json"]
+    # Wrap with proxychains for trading operations (geoblock bypass)
+    if use_proxy and USE_PROXYCHAINS:
+        cmd = ["proxychains4", "-q"] + base_cmd
+    else:
+        cmd = base_cmd
     log(f"CLI: {' '.join(cmd)}")
-    p = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
+    p = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
     if p.returncode != 0:
         raise RuntimeError(f"CLI failed ({p.returncode}): {p.stderr.strip()}")
     out = p.stdout.strip()
@@ -485,18 +488,16 @@ def auto_redeem() -> List[Dict]:
             # Try to redeem
             try:
                 if neg_risk:
-                    # For neg-risk markets, we need amounts per outcome
-                    # Use "1,1" as placeholder - CLI will figure out actual amounts
                     result = run_cli([
                         "ctf", "redeem-neg-risk",
                         "--condition", condition_id,
                         "--amounts", "1,1",
-                    ])
+                    ], use_proxy=True)
                 else:
                     result = run_cli([
                         "ctf", "redeem",
                         "--condition", condition_id,
-                    ])
+                    ], use_proxy=True)
 
                 redeemed.append({
                     "slug": slug,
