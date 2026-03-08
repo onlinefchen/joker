@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-03-08T10:00:40.725293+00:00",
+  "last_run": "2026-03-08T22:46:19.849515+00:00",
   "copied_positions": {
     "cs2-lgc-ast10-2026-03-08:LEGACY:BUY": {
       "wallet": "0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A",
@@ -9,6 +9,15 @@
       "slug": "cs2-lgc-ast10-2026-03-08",
       "outcome": "LEGACY",
       "side": "BUY"
+    },
+    "nba-was-nop-2026-03-08-spread-home-11pt5:WIZARDS:SELL": {
+      "wallet": "0x1BC0D88cA86b9049cf05D642E634836d5DdF4429",
+      "username": "212121212121212121212",
+      "settled": false,
+      "trade_time": "2026-03-08T22:46:19.686719+00:00",
+      "slug": "nba-was-nop-2026-03-08-spread-home-11pt5",
+      "outcome": "WIZARDS",
+      "side": "SELL"
     }
   },
   "trades": [
@@ -55,6 +64,35 @@
           "trade_ids": [],
           "transaction_hashes": [
             "0x05fc4f1630baa037b2fe85052d8ccdae231d0ebe284bea5800ba862e3c1e00c3"
+          ]
+        }
+      }
+    },
+    {
+      "time": "2026-03-08T22:46:19.686688+00:00",
+      "slug": "nba-was-nop-2026-03-08-spread-home-11pt5",
+      "title": "Spread: Pelicans (-11.5)",
+      "outcome": "WIZARDS",
+      "token_id": "0x3b2b346ea4fd8d2f9b647cae7f753e94a39f1193effbe5507209fa228253d600",
+      "price": 0.5,
+      "shares": 5,
+      "amount_usd": 2.5,
+      "whale_wallet": "0x1BC0D88cA86b9049cf05D642E634836d5DdF4429",
+      "whale_username": "212121212121212121212",
+      "whale_score": 80.0,
+      "whale_size": 140000.0,
+      "result": {
+        "success": true,
+        "result": {
+          "error_msg": "",
+          "making_amount": "2.499999",
+          "order_id": "0xa58ce658c73cbd64c79b23f3f329d7ebe304c9b84f7dcb0fb11796e92d134f61",
+          "status": "MATCHED",
+          "success": true,
+          "taking_amount": "4.807691",
+          "trade_ids": [],
+          "transaction_hashes": [
+            "0x07736dc9023beadfa78ad512bbf1e3f01daeac4013e32c6f599b95a1ebc92916"
           ]
         }
       }
