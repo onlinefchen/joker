@@ -1,0 +1,99 @@
+name: test-order
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-cargo-polymarket-0.1.4
+
+      - name: Install Polymarket CLI
+        run: |
+          if ! command -v polymarket >/dev/null 2>&1; then
+            cargo install --git https://github.com/Polymarket/polymarket-cli.git --locked --force
+          fi
+          polymarket --version
+
+      - name: Configure Polymarket key
+        env:
+          POLYMARKET_PRIVATE_KEY: ${{ secrets.POLYMARKET_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.config/polymarket
+          cat > ~/.config/polymarket/config.json <<EOF
+          {
+            "private_key": "${POLYMARKET_PRIVATE_KEY}",
+            "chain_id": 137,
+            "signature_type": "gnosis-safe"
+          }
+          EOF
+          chmod 600 ~/.config/polymarket/config.json
+
+      - name: Test order (place + cancel)
+        run: |
+          set -e
+          TOKEN="0x9daeb97198a1623f658ed49304226b17e604e5b14efa6600f90c5330f483e6a"
+          
+          echo "=== Balance ==="
+          polymarket clob balance --asset-type collateral -o json
+          
+          echo ""
+          echo "=== Placing test order: BUY 5 shares @ \$0.01 ==="
+          RESULT=$(polymarket clob create-order --token $TOKEN --side buy --price 0.01 --size 5 -o json)
+          echo "$RESULT"
+          
+          ORDER_ID=$(echo "$RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('order_id',''))")
+          SUCCESS=$(echo "$RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('success', False))")
+          
+          if [ "$SUCCESS" != "True" ]; then
+            echo "❌ Order failed!"
+            exit 1
+          fi
+          
+          echo ""
+          echo "=== Cancelling order $ORDER_ID ==="
+          polymarket clob cancel "$ORDER_ID" -o json
+          
+          echo ""
+          echo "✅ Test passed: order placed and cancelled successfully"
+
+      - name: Notify Telegram
+        if: always()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          STATUS="${{ job.status }}"
+          if [ "$STATUS" = "success" ]; then
+            MSG="✅ Polymarket 下单测试通过（GitHub Actions 环境正常）"
+          else
+            MSG="❌ Polymarket 下单测试失败，请检查 Actions 日志"
+          fi
+          python3 -c "
+          import os, urllib.parse, urllib.request
+          token = os.environ.get('TELEGRAM_BOT_TOKEN','').strip()
+          chat = os.environ.get('TELEGRAM_CHAT_ID','').strip()
+          if token and chat:
+              url = f'https://api.telegram.org/bot{token}/sendMessage'
+              data = urllib.parse.urlencode({'chat_id': chat, 'text': '$MSG'}).encode()
+              urllib.request.urlopen(url, data=data, timeout=20)
+          "
