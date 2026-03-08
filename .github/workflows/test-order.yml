@@ -48,6 +48,17 @@ jobs:
           EOF
           chmod 600 ~/.config/polymarket/config.json
 
+      - name: Setup SSH proxy (Japan)
+        env:
+          PROXY_SSH_KEY: ${{ secrets.PROXY_SSH_KEY }}
+          PROXY_SSH_HOST: ${{ secrets.PROXY_SSH_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$PROXY_SSH_KEY" > ~/.ssh/proxy_key
+          chmod 600 ~/.ssh/proxy_key
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/proxy_key -D 1080 -fN root@$PROXY_SSH_HOST
+          echo "SOCKS proxy on 127.0.0.1:1080"
+
       - name: Test order (place + cancel)
         run: |
           TOKEN="0x9daeb97198a1623f658ed49304226b17e604e5b14efa6600f90c5330f483e6a"
@@ -57,6 +68,8 @@ jobs:
           
           echo ""
           echo "=== Placing test order: BUY 5 shares @ \$0.01 ==="
+          export HTTPS_PROXY=socks5://127.0.0.1:1080
+          export ALL_PROXY=socks5://127.0.0.1:1080
           RESULT=$(polymarket clob create-order --token $TOKEN --side buy --price 0.01 --size 5 -o json 2>&1) || true
           echo "Raw result: $RESULT"
           
@@ -73,6 +86,8 @@ jobs:
           
           echo ""
           echo "=== Cancelling order $ORDER_ID ==="
+          export HTTPS_PROXY=socks5://127.0.0.1:1080
+          export ALL_PROXY=socks5://127.0.0.1:1080
           polymarket clob cancel "$ORDER_ID" -o json 2>&1 || true
           
           echo ""

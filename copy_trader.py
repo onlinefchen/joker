@@ -65,10 +65,15 @@ def tg_send(text: str):
         log(f"TG send failed: {e}")
 
 
-def run_cli(args: List[str], timeout: int = 30) -> Any:
+def run_cli(args: List[str], timeout: int = 30, use_proxy: bool = False) -> Any:
     cmd = ["polymarket", *args, "-o", "json"]
+    env = dict(os.environ)
+    # Use SOCKS proxy for trading operations (geoblock bypass)
+    if use_proxy and os.environ.get("SOCKS_PROXY"):
+        env["HTTPS_PROXY"] = os.environ["SOCKS_PROXY"]
+        env["ALL_PROXY"] = os.environ["SOCKS_PROXY"]
     log(f"CLI: {' '.join(cmd)}")
-    p = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+    p = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
     if p.returncode != 0:
         raise RuntimeError(f"CLI failed ({p.returncode}): {p.stderr.strip()}")
     out = p.stdout.strip()
@@ -148,7 +153,7 @@ def calc_trade_size(available_balance: float) -> float:
 
 
 def place_order(token_id: str, side: str, price: float, size: float) -> Dict[str, Any]:
-    """Place a limit order. Returns result dict."""
+    """Place a limit order via proxy. Returns result dict."""
     if DRY_RUN:
         log(f"DRY RUN: would place {side} {size} shares @ ${price:.3f} (token: {token_id})")
         return {"dry_run": True, "success": True}
@@ -161,7 +166,7 @@ def place_order(token_id: str, side: str, price: float, size: float) -> Dict[str
             "--price", f"{price:.3f}",
             "--size", f"{size:.1f}",
             "--order-type", "GTC",
-        ])
+        ], use_proxy=True)
         return {"success": True, "result": result}
     except Exception as e:
         log(f"Order failed: {e}")

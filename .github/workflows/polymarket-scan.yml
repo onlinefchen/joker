@@ -100,6 +100,17 @@ jobs:
           urllib.request.urlopen(url, data=payload, timeout=20).read()
           PY
 
+      - name: Setup SSH proxy (Japan)
+        env:
+          PROXY_SSH_KEY: ${{ secrets.PROXY_SSH_KEY }}
+          PROXY_SSH_HOST: ${{ secrets.PROXY_SSH_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$PROXY_SSH_KEY" > ~/.ssh/proxy_key
+          chmod 600 ~/.ssh/proxy_key
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/proxy_key -D 1080 -fN root@$PROXY_SSH_HOST
+          echo "SOCKS proxy on 127.0.0.1:1080 via $PROXY_SSH_HOST"
+
       - name: Restore copy trader state
         uses: actions/cache/restore@v4
         with:
@@ -116,6 +127,7 @@ jobs:
           COPY_MAX_PER_TRADE: '0'
           COPY_MAX_EXPOSURE: '0'
           COPY_BALANCE_PERCENT: '0.20'
+          SOCKS_PROXY: 'socks5://127.0.0.1:1080'
         run: python copy_trader.py
 
       - name: Save copy trader state
