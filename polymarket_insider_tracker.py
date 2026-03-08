@@ -23,6 +23,7 @@ import sys
 import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 
@@ -294,7 +295,33 @@ def save_state(path: str, state: Dict[str, Any]) -> None:
         json.dump(state, f, ensure_ascii=False, indent=2)
 
 
-def classify_tier(streak_high: int, score: float, streak_low: int) -> str:
+def load_protected_wallets() -> set:
+    """Load wallets with unsettled copy trades - these cannot be demoted."""
+    try:
+        copy_state_file = Path(__file__).parent / "copy_state.json"
+        if not copy_state_file.exists():
+            return set()
+        data = json.loads(copy_state_file.read_text())
+        protected = set()
+        for key, pos in data.get("copied_positions", {}).items():
+            if not pos.get("settled") and pos.get("wallet"):
+                protected.add(pos["wallet"])
+        return protected
+    except Exception:
+        return set()
+
+
+# Global: loaded once per run
+_PROTECTED_WALLETS = load_protected_wallets()
+
+
+def classify_tier(streak_high: int, score: float, streak_low: int, wallet: str = "") -> str:
+    # Never demote wallets with unsettled copy positions
+    if wallet in _PROTECTED_WALLETS:
+        if streak_high >= 3 and score >= 70:
+            return "core"
+        return "core-protected"  # keep as core even if score drops
+
     if streak_high >= 3 and score >= 70:
         return "core"
     if score >= 60:
@@ -417,7 +444,7 @@ def main() -> int:
         prev_low = int(prev.get("low_streak", 0))
         high_streak = (prev_high + 1) if r.score >= 70 else 0
         low_streak = (prev_low + 1) if r.score < 55 else 0
-        tier = classify_tier(high_streak, r.score, low_streak)
+        tier = classify_tier(high_streak, r.score, low_streak, wallet=r.wallet)
 
         recent_actions = summarize_recent_actions(
             wallet_trades.get(r.wallet, []),

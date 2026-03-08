@@ -261,7 +261,12 @@ def main() -> int:
         return 0
 
     copy_state = load_json(COPY_STATE_FILE)
-    copied_markets = set(copy_state.get("copied_markets", []))
+    # New format: copied_positions tracks {market_key: {wallet, settled, trade_time}}
+    copied_positions = copy_state.get("copied_positions", {})
+    # Migrate old format
+    for old_key in copy_state.get("copied_markets", []):
+        if old_key not in copied_positions:
+            copied_positions[old_key] = {"wallet": "unknown", "settled": False}
     trade_log = copy_state.get("trades", [])
 
     actionable = find_actionable_trades(suspects_data)
@@ -282,11 +287,13 @@ def main() -> int:
     for trade in actionable:
         slug = trade["slug"]
         outcome = trade["outcome"]
-        market_key = f"{slug}:{outcome}"
+        wallet = trade["wallet"]
+        whale_side = trade["side"]
+        market_key = f"{slug}:{outcome}:{whale_side}"
 
-        # Skip if already copied this market+outcome
-        if market_key in copied_markets:
-            log(f"Already copied {market_key}, skipping")
+        # Skip if already copied this exact trade (same market+outcome+direction)
+        if market_key in copied_positions and not copied_positions[market_key].get("settled"):
+            log(f"Already copied {market_key} (unsettled), skipping")
             continue
 
         # Recalculate trade size from current balance (refreshed each trade)
@@ -365,8 +372,16 @@ def main() -> int:
         }
 
         if result.get("success"):
-            copied_markets.add(market_key)
-            available -= trade_size  # deduct from available
+            copied_positions[market_key] = {
+                "wallet": wallet,
+                "username": trade["username"],
+                "settled": False,
+                "trade_time": datetime.now(timezone.utc).isoformat(),
+                "slug": slug,
+                "outcome": outcome,
+                "side": whale_side,
+            }
+            available -= trade_size
             executed.append(record)
             trade_log.append(record)
             log(f"✅ Order placed: {slug} {outcome}")
@@ -374,11 +389,24 @@ def main() -> int:
             log(f"❌ Order failed: {slug} {outcome}")
             trade_log.append(record)
 
+    # Mark settled positions (check market resolution status)
+    for key, pos in copied_positions.items():
+        if pos.get("settled"):
+            continue
+        pos_slug = pos.get("slug") or key.split(":")[0]
+        try:
+            market = run_cli(["markets", "get", pos_slug])
+            if isinstance(market, dict) and (market.get("resolved") or (market.get("closed") and not market.get("active"))):
+                pos["settled"] = True
+                log(f"Marked settled: {pos_slug}")
+        except Exception:
+            pass
+
     # Save state
     copy_state = {
         "last_run": datetime.now(timezone.utc).isoformat(),
-        "copied_markets": list(copied_markets),
-        "trades": trade_log[-200:],  # keep last 200
+        "copied_positions": copied_positions,
+        "trades": trade_log[-200:],
     }
     save_json(COPY_STATE_FILE, copy_state)
 
@@ -474,9 +502,15 @@ def daily_report() -> int:
             lines.append(f"  ✅ {r['title']}")
         lines.append("")
 
-    # Copied markets count
-    copied = len(copy_state.get("copied_markets", []))
-    lines.append(f"🔒 已跟单市场: {copied} 个（不会重复）")
+    # Copied positions summary
+    positions = copy_state.get("copied_positions", {})
+    open_count = sum(1 for p in positions.values() if not p.get("settled"))
+    settled_count = sum(1 for p in positions.values() if p.get("settled"))
+    # Protected wallets (have unsettled positions)
+    protected_wallets = set(p.get("wallet") for p in positions.values() if not p.get("settled") and p.get("wallet"))
+    lines.append(f"🔒 跟单仓位: {open_count} 个未结算, {settled_count} 个已结算")
+    if protected_wallets:
+        lines.append(f"🛡️ 保护地址: {len(protected_wallets)} 个（有未结算仓位，不会被降级）")
 
     tg_send("\n".join(lines))
     log("Daily report sent")
