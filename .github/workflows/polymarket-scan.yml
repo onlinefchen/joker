@@ -10,12 +10,17 @@ on:
   schedule:
     - cron: '*/15 * * * *'
 
+concurrency:
+  group: polymarket-scan
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
 jobs:
   scan:
     runs-on: ubuntu-latest
+    timeout-minutes: 12
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -59,6 +64,7 @@ jobs:
           chmod 600 ~/.config/polymarket/config.json
 
       - name: Run tracker
+        timeout-minutes: 8
         run: |
           python polymarket_insider_tracker.py \
             --wallet-limit 30 \
