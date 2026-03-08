@@ -34,6 +34,7 @@ _MAX_PER_TRADE_ENV = float(os.environ.get("COPY_MAX_PER_TRADE", "0"))
 _MAX_EXPOSURE_ENV = float(os.environ.get("COPY_MAX_EXPOSURE", "0"))
 BALANCE_PERCENT = float(os.environ.get("COPY_BALANCE_PERCENT", "0.20"))  # 20% of available balance
 MIN_TRADE_SIZE = float(os.environ.get("COPY_MIN_TRADE_SIZE", "0.50"))    # don't trade below $0.50
+MIN_SHARES = 5  # Polymarket minimum order size is 5 shares
 MIN_WHALE_SIZE = float(os.environ.get("COPY_MIN_WHALE_SIZE", "100000"))  # only copy ≥$100K trades
 MIN_PRICE = float(os.environ.get("COPY_MIN_PRICE", "0.05"))             # don't buy below 5¢
 MAX_PRICE = float(os.environ.get("COPY_MAX_PRICE", "0.92"))             # don't buy above 92¢
@@ -285,8 +286,11 @@ def main() -> int:
             log(f"No token found for outcome {outcome} in {slug}")
             continue
 
-        # Calculate shares
+        # Calculate shares (minimum 5)
         shares = trade_size / trade["price"]
+        if shares < MIN_SHARES:
+            shares = MIN_SHARES
+            trade_size = shares * trade["price"]  # adjust actual cost
 
         log(f"Placing order: {slug} {outcome} {shares:.1f} shares @ ${trade['price']:.3f} (${trade_size:.2f})")
         result = place_order(token_id, "buy", trade["price"], shares)
