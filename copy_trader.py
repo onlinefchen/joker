@@ -104,10 +104,32 @@ def get_market_tokens(slug: str) -> Optional[Dict[str, str]]:
         market = run_cli(["markets", "get", slug])
         if not market:
             return None
-        # Market may have tokens directly or nested
         tokens = {}
         if isinstance(market, dict):
-            # Try different structures
+            # Parse outcomes and clobTokenIds (may be JSON strings)
+            outcomes_raw = market.get("outcomes", [])
+            if isinstance(outcomes_raw, str):
+                try:
+                    outcomes_raw = json.loads(outcomes_raw)
+                except Exception:
+                    outcomes_raw = []
+
+            clob_ids_raw = market.get("clobTokenIds", market.get("clob_token_ids", []))
+            if isinstance(clob_ids_raw, str):
+                try:
+                    clob_ids_raw = json.loads(clob_ids_raw)
+                except Exception:
+                    clob_ids_raw = []
+
+            # Map outcomes to token IDs by position
+            if outcomes_raw and clob_ids_raw and len(outcomes_raw) == len(clob_ids_raw):
+                for outcome, token_id in zip(outcomes_raw, clob_ids_raw):
+                    tokens[outcome.upper()] = token_id
+                if tokens:
+                    log(f"Tokens for {slug}: {list(tokens.keys())}")
+                    return tokens
+
+            # Fallback: try different structures
             for key in ("tokens", "clobTokenIds", "clob_token_ids"):
                 if key in market and market[key]:
                     tok_data = market[key]
@@ -319,9 +341,15 @@ def main() -> int:
 
         if whale_side == "BUY":
             # Whale buys outcome → we buy same outcome
-            token_id = tokens.get(outcome) or tokens.get("YES")
+            token_id = tokens.get(outcome) or tokens.get(outcome.upper()) or tokens.get("YES")
             if not token_id:
-                log(f"No token found for outcome {outcome} in {slug}")
+                # Try case-insensitive match
+                for k, v in tokens.items():
+                    if k.upper() == outcome.upper():
+                        token_id = v
+                        break
+            if not token_id:
+                log(f"No token found for outcome {outcome} in {slug}, available: {list(tokens.keys())}")
                 continue
 
             # Calculate shares (minimum 5)
@@ -335,9 +363,19 @@ def main() -> int:
 
         else:
             # Whale sells outcome → we buy the opposite side
-            # e.g., whale sells YES → we buy NO (betting against YES)
-            opposite = "NO" if outcome == "YES" else "YES"
-            token_id = tokens.get(opposite)
+            # For YES/NO markets: sell YES → buy NO
+            # For named outcomes (e.g. Legacy/Astralis): sell Legacy → buy the other
+            all_outcomes = list(tokens.keys())
+            if outcome.upper() in ("YES", "NO"):
+                opposite = "NO" if outcome.upper() == "YES" else "YES"
+            else:
+                # Named outcome: pick the other one
+                others = [k for k in all_outcomes if k.upper() != outcome.upper()]
+                opposite = others[0] if others else None
+            if not opposite:
+                log(f"Cannot determine opposite of {outcome} in {slug}")
+                continue
+            token_id = tokens.get(opposite) or tokens.get(opposite.upper())
             if not token_id:
                 log(f"No token found for opposite {opposite} in {slug}")
                 continue
