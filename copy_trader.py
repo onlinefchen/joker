@@ -38,7 +38,7 @@ MIN_SHARES = 5  # Polymarket minimum order size is 5 shares
 MIN_WHALE_SIZE = float(os.environ.get("COPY_MIN_WHALE_SIZE", "100000"))  # only copy ≥$100K trades
 MIN_PRICE = float(os.environ.get("COPY_MIN_PRICE", "0.05"))             # don't buy below 5¢
 MAX_PRICE = float(os.environ.get("COPY_MAX_PRICE", "0.92"))             # don't buy above 92¢
-ONLY_BUY = os.environ.get("COPY_ONLY_BUY", "true").lower() == "true"
+ONLY_BUY = os.environ.get("COPY_ONLY_BUY", "false").lower() == "true"  # follow both BUY and SELL
 DRY_RUN = os.environ.get("COPY_DRY_RUN", "false").lower() == "true"
 
 TG_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
@@ -153,6 +153,25 @@ def calc_trade_size(available_balance: float) -> float:
         return _MAX_PER_TRADE_ENV
     size = available_balance * BALANCE_PERCENT
     return round(size, 2)
+
+
+def place_market_order(token_id: str, side: str, amount: float) -> Dict[str, Any]:
+    """Place a market order via proxy. amount = USDC for buys, shares for sells."""
+    if DRY_RUN:
+        log(f"DRY RUN: would market {side} ${amount:.2f} (token: {token_id})")
+        return {"dry_run": True, "success": True}
+
+    try:
+        result = run_cli([
+            "clob", "market-order",
+            "--token", token_id,
+            "--side", side,
+            "--amount", f"{amount:.2f}",
+        ], use_proxy=True)
+        return {"success": True, "result": result}
+    except Exception as e:
+        log(f"Market order failed: {e}")
+        return {"success": False, "error": str(e)}
 
 
 def place_order(token_id: str, side: str, price: float, size: float) -> Dict[str, Any]:
@@ -289,19 +308,45 @@ def main() -> int:
             log(f"Could not get tokens for {slug}")
             continue
 
-        token_id = tokens.get(outcome) or tokens.get("YES")
-        if not token_id:
-            log(f"No token found for outcome {outcome} in {slug}")
-            continue
+        whale_side = trade["side"]  # BUY or SELL
 
-        # Calculate shares (minimum 5)
-        shares = trade_size / trade["price"]
-        if shares < MIN_SHARES:
-            shares = MIN_SHARES
-            trade_size = shares * trade["price"]  # adjust actual cost
+        if whale_side == "BUY":
+            # Whale buys outcome → we buy same outcome
+            token_id = tokens.get(outcome) or tokens.get("YES")
+            if not token_id:
+                log(f"No token found for outcome {outcome} in {slug}")
+                continue
 
-        log(f"Placing order: {slug} {outcome} {shares:.1f} shares @ ${trade['price']:.3f} (${trade_size:.2f})")
-        result = place_order(token_id, "buy", trade["price"], shares)
+            # Calculate shares (minimum 5)
+            shares = trade_size / trade["price"]
+            if shares < MIN_SHARES:
+                shares = MIN_SHARES
+                trade_size = shares * trade["price"]
+
+            log(f"Following BUY: {slug} {outcome} {shares:.1f} shares @ ${trade['price']:.3f} (${trade_size:.2f})")
+            result = place_order(token_id, "buy", trade["price"], shares)
+
+        else:
+            # Whale sells outcome → we buy the opposite side
+            # e.g., whale sells YES → we buy NO (betting against YES)
+            opposite = "NO" if outcome == "YES" else "YES"
+            token_id = tokens.get(opposite)
+            if not token_id:
+                log(f"No token found for opposite {opposite} in {slug}")
+                continue
+
+            opposite_price = 1.0 - trade["price"]  # complement price
+            if opposite_price < MIN_PRICE or opposite_price > MAX_PRICE:
+                log(f"Opposite price ${opposite_price:.3f} out of range")
+                continue
+
+            shares = trade_size / opposite_price
+            if shares < MIN_SHARES:
+                shares = MIN_SHARES
+                trade_size = shares * opposite_price
+
+            log(f"Following SELL: {slug} buying {opposite} {shares:.1f} shares @ ${opposite_price:.3f} (${trade_size:.2f})")
+            result = place_order(token_id, "buy", opposite_price, shares)
 
         record = {
             "time": datetime.now(timezone.utc).isoformat(),
