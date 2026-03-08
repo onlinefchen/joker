@@ -333,5 +333,86 @@ def main() -> int:
     return 0
 
 
+def daily_report() -> int:
+    """Generate daily summary: open positions, settled, P&L, balance."""
+    log("Generating daily report...")
+
+    # 1. Balance
+    available = get_available_balance()
+
+    # 2. Open positions
+    try:
+        positions = run_cli(["data", "positions", WALLET_ADDRESS]) if WALLET_ADDRESS else []
+        if not isinstance(positions, list):
+            positions = []
+    except Exception as e:
+        log(f"Failed to get positions: {e}")
+        positions = []
+
+    # 3. Copy trade history
+    copy_state = load_json(COPY_STATE_FILE)
+    trades = copy_state.get("trades", [])
+    successful = [t for t in trades if t.get("result", {}).get("success")]
+    total_invested = sum(t.get("amount_usd", 0) for t in successful)
+
+    # 4. Build message
+    ts = datetime.now(timezone.utc).strftime("%m-%d %H:%M UTC")
+    lines = [
+        f"📊 <b>Polymarket 每日报告</b> ({ts})",
+        f"━━━━━━━━━━━━━━━",
+        f"💰 可用余额: <b>${available:.2f}</b>",
+        f"📈 累计跟单: ${total_invested:.2f} ({len(successful)} 笔)",
+        "",
+    ]
+
+    # Open positions
+    if positions:
+        lines.append("📂 <b>当前持仓:</b>")
+        for pos in positions[:10]:
+            title = pos.get("title") or pos.get("market", {}).get("question", "?")
+            outcome = pos.get("outcome", "?")
+            size = float(pos.get("size", 0))
+            avg_price = float(pos.get("avgPrice", pos.get("avg_price", 0)))
+            cur_price = float(pos.get("curPrice", pos.get("cur_price", 0)))
+            pnl = (cur_price - avg_price) * size if avg_price > 0 else 0
+            pnl_pct = ((cur_price / avg_price) - 1) * 100 if avg_price > 0 else 0
+            emoji = "🟢" if pnl >= 0 else "🔴"
+
+            lines.append(
+                f"  {emoji} <b>{title}</b>\n"
+                f"    {outcome} | {size:.1f}股 @ ${avg_price:.3f} → ${cur_price:.3f}\n"
+                f"    盈亏: ${pnl:.2f} ({pnl_pct:+.1f}%)"
+            )
+        lines.append("")
+    else:
+        lines.append("📂 当前无持仓\n")
+
+    # Recent copy trades (last 5)
+    if successful:
+        lines.append("🤖 <b>近期跟单:</b>")
+        for t in successful[-5:]:
+            time_str = t.get("time", "")[:10]
+            lines.append(
+                f"  • {t.get('title', t.get('slug', '?'))}\n"
+                f"    {t.get('outcome')} ${t.get('amount_usd', 0):.2f} @ {t.get('price', 0):.3f} ({time_str})"
+            )
+        lines.append("")
+
+    # Copied markets count
+    copied = len(copy_state.get("copied_markets", []))
+    lines.append(f"🔒 已跟单市场: {copied} 个（不会重复）")
+
+    tg_send("\n".join(lines))
+    log("Daily report sent")
+    return 0
+
+
+# Wallet address for position queries
+WALLET_ADDRESS = os.environ.get("POLYMARKET_WALLET", "0x76Ce440a449475bDA2aB33780F21F6eB8200C1d9")
+
+
 if __name__ == "__main__":
+    import sys as _sys
+    if "--daily-report" in _sys.argv:
+        raise SystemExit(daily_report())
     raise SystemExit(main())

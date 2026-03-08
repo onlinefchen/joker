@@ -1,0 +1,65 @@
+name: daily-report
+
+on:
+  schedule:
+    # 每天 00:00 UTC = 08:00 CST
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-cargo-polymarket-0.1.4
+
+      - name: Install Polymarket CLI
+        run: |
+          if ! command -v polymarket >/dev/null 2>&1; then
+            cargo install --git https://github.com/Polymarket/polymarket-cli.git --locked --force
+          fi
+
+      - name: Configure Polymarket key
+        env:
+          POLYMARKET_PRIVATE_KEY: ${{ secrets.POLYMARKET_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.config/polymarket
+          cat > ~/.config/polymarket/config.json <<EOF
+          {
+            "private_key": "${POLYMARKET_PRIVATE_KEY}",
+            "chain_id": 137,
+            "signature_type": "gnosis-safe"
+          }
+          EOF
+          chmod 600 ~/.config/polymarket/config.json
+
+      - name: Restore copy trader state
+        uses: actions/cache/restore@v4
+        with:
+          path: copy_state.json
+          key: copy-state-${{ github.run_id }}
+          restore-keys: |
+            copy-state-
+
+      - name: Send daily report
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python copy_trader.py --daily-report
