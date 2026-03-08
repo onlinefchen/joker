@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-08T19:14:20.455131+00:00",
+  "generated_at": "2026-03-08T19:33:21.339134+00:00",
   "params": {
     "wallet_limit": 30,
     "trades_limit": 200,
@@ -27,7 +27,7 @@
       "score": 91.0,
       "delta_score": 0.0,
       "tier": "core",
-      "high_streak": 125,
+      "high_streak": 126,
       "low_streak": 0,
       "reasons": [
         "18 large bets >= $15,000",
@@ -60,7 +60,7 @@
       "score": 83.0,
       "delta_score": 0.0,
       "tier": "core",
-      "high_streak": 125,
+      "high_streak": 126,
       "low_streak": 0,
       "reasons": [
         "17 large bets >= $15,000",
@@ -71,7 +71,7 @@
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 749,
+        "unique_markets": 751,
         "median_size": 500.0,
         "avg_size": 4413.66,
         "max_size": 70000.0,
@@ -93,7 +93,7 @@
       "score": 80.0,
       "delta_score": 0.0,
       "tier": "core",
-      "high_streak": 117,
+      "high_streak": 118,
       "low_streak": 0,
       "reasons": [
         "106 large bets >= $15,000",
@@ -126,7 +126,7 @@
       "score": 73.0,
       "delta_score": 0.0,
       "tier": "core",
-      "high_streak": 125,
+      "high_streak": 126,
       "low_streak": 0,
       "reasons": [
         "33 large bets >= $15,000",
@@ -352,7 +352,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 122,
+      "low_streak": 123,
       "reasons": [
         "86 large bets >= $15,000",
         "abnormal burst sizing (55 trades >= max(threshold,4x median))",
@@ -360,13 +360,13 @@
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 302,
+        "unique_markets": 304,
         "median_size": 10143.05,
-        "avg_size": 37096.34,
+        "avg_size": 37079.42,
         "max_size": 276588.36,
-        "total_buy_size": 7419267.48,
+        "total_buy_size": 7415884.14,
         "total_sell_size": 0,
-        "focus_ratio": 0.405,
+        "focus_ratio": 0.4,
         "timed_hits": 43,
         "timed_total": 200,
         "timing_ratio": 0.215,
@@ -402,7 +402,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 125,
+      "low_streak": 126,
       "reasons": [
         "164 large bets >= $15,000",
         "abnormal burst sizing (31 trades >= max(threshold,4x median))",
@@ -433,7 +433,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 126,
+      "low_streak": 127,
       "reasons": [
         "131 large bets >= $15,000",
         "abnormal burst sizing (14 trades >= max(threshold,4x median))",
@@ -464,7 +464,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 3,
+      "low_streak": 4,
       "reasons": [
         "97 large bets >= $15,000",
         "abnormal burst sizing (45 trades >= max(threshold,4x median))",
@@ -495,7 +495,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 126,
+      "low_streak": 127,
       "reasons": [
         "31 large bets >= $15,000",
         "abnormal burst sizing (31 trades >= max(threshold,4x median))",
@@ -526,19 +526,19 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 29,
+      "low_streak": 30,
       "reasons": [
-        "27 large bets >= $15,000",
-        "abnormal burst sizing (27 trades >= max(threshold,4x median))",
+        "28 large bets >= $15,000",
+        "abnormal burst sizing (28 trades >= max(threshold,4x median))",
         "fast in/out across 22 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 4468,
-        "median_size": 675.12,
-        "avg_size": 6714.85,
+        "unique_markets": 4471,
+        "median_size": 1182.32,
+        "avg_size": 7436.14,
         "max_size": 104918.03,
-        "total_buy_size": 1342969.55,
+        "total_buy_size": 1487227.92,
         "total_sell_size": 0,
         "focus_ratio": 0.325,
         "timed_hits": 19,
@@ -557,7 +557,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 60,
+      "low_streak": 61,
       "reasons": [
         "33 large bets >= $15,000",
         "abnormal burst sizing (33 trades >= max(threshold,4x median))",
@@ -588,7 +588,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 125,
+      "low_streak": 126,
       "reasons": [
         "90 large bets >= $15,000",
         "abnormal burst sizing (58 trades >= max(threshold,4x median))",
@@ -619,7 +619,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 125,
+      "low_streak": 126,
       "reasons": [
         "45 large bets >= $15,000",
         "abnormal burst sizing (33 trades >= max(threshold,4x median))",
@@ -650,7 +650,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 46,
+      "low_streak": 47,
       "reasons": [
         "62 large bets >= $15,000",
         "abnormal burst sizing (24 trades >= max(threshold,4x median))",
@@ -681,7 +681,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 14,
+      "low_streak": 15,
       "reasons": [
         "57 large bets >= $15,000",
         "abnormal burst sizing (25 trades >= max(threshold,4x median))",
@@ -712,15 +712,6 @@
           "outcome": "Knicks",
           "slug": "nba-nyk-lal-2026-03-08",
           "title": "Knicks vs. Lakers"
-        },
-        {
-          "time": "2026-03-08T18:27:23+00:00",
-          "side": "BUY",
-          "size": 118753.42,
-          "price": 0.6,
-          "outcome": "Knicks",
-          "slug": "nba-nyk-lal-2026-03-08",
-          "title": "Knicks vs. Lakers"
         }
       ]
     },
@@ -731,7 +722,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 125,
+      "low_streak": 126,
       "reasons": [
         "35 large bets >= $15,000",
         "abnormal burst sizing (35 trades >= max(threshold,4x median))",
@@ -762,7 +753,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 125,
+      "low_streak": 126,
       "reasons": [
         "32 large bets >= $15,000",
         "abnormal burst sizing (26 trades >= max(threshold,4x median))",
@@ -793,25 +784,25 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 90,
+      "low_streak": 91,
       "reasons": [
-        "80 large bets >= $15,000",
-        "abnormal burst sizing (44 trades >= max(threshold,4x median))",
-        "fast in/out across 39 markets"
+        "81 large bets >= $15,000",
+        "abnormal burst sizing (47 trades >= max(threshold,4x median))",
+        "fast in/out across 40 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 306,
+        "unique_markets": 307,
         "median_size": 8091.22,
-        "avg_size": 23073.81,
+        "avg_size": 23508.39,
         "max_size": 149999.76,
-        "total_buy_size": 3420203.01,
-        "total_sell_size": 1194558.54,
-        "focus_ratio": 0.43,
-        "timed_hits": 24,
-        "timed_total": 178,
-        "timing_ratio": 0.135,
-        "fast_rounds": 39
+        "total_buy_size": 3458175.79,
+        "total_sell_size": 1243502.0,
+        "focus_ratio": 0.44,
+        "timed_hits": 22,
+        "timed_total": 177,
+        "timing_ratio": 0.124,
+        "fast_rounds": 40
       },
       "win_rate": 0.0,
       "closed_count": 0,
@@ -824,7 +815,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 18,
+      "low_streak": 19,
       "reasons": [
         "73 large bets >= $15,000",
         "abnormal burst sizing (63 trades >= max(threshold,4x median))",
@@ -855,7 +846,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 44,
+      "low_streak": 45,
       "reasons": [
         "5 large bets >= $15,000",
         "abnormal burst sizing (5 trades >= max(threshold,4x median))",
@@ -863,7 +854,7 @@
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 4457,
+        "unique_markets": 4458,
         "median_size": 500.0,
         "avg_size": 2236.56,
         "max_size": 48175.0,
@@ -886,7 +877,7 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 49,
+      "low_streak": 50,
       "reasons": [
         "new-ish wallet (unique markets=1)",
         "7 large bets >= $15,000",
@@ -917,25 +908,25 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 125,
+      "low_streak": 126,
       "reasons": [
         "moderate vertical focus (60%)",
-        "some pre-resolution timing edge (96/200)",
-        "fast in/out across 39 markets"
+        "some pre-resolution timing edge (93/200)",
+        "fast in/out across 37 markets"
       ],
       "metrics": {
         "trade_count": 200,
         "unique_markets": 32568,
-        "median_size": 472.0,
-        "avg_size": 1314.02,
+        "median_size": 473.05,
+        "avg_size": 1324.18,
         "max_size": 5282.0,
-        "total_buy_size": 262803.45,
+        "total_buy_size": 264836.24,
         "total_sell_size": 0,
-        "focus_ratio": 0.6,
-        "timed_hits": 96,
+        "focus_ratio": 0.595,
+        "timed_hits": 93,
         "timed_total": 200,
-        "timing_ratio": 0.48,
-        "fast_rounds": 39
+        "timing_ratio": 0.465,
+        "fast_rounds": 37
       },
       "win_rate": 0.0,
       "closed_count": 0,
@@ -944,29 +935,29 @@
     {
       "wallet": "0xeAd152b855EfFa6B5B5837F53B24c0756830C76A",
       "username": "elkmonkey",
-      "score": 32.0,
-      "delta_score": 0.0,
+      "score": 36.0,
+      "delta_score": 4.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 4,
+      "low_streak": 5,
       "reasons": [
-        "1 large bets >= $15,000",
-        "abnormal burst sizing (1 trades >= max(threshold,4x median))",
-        "fast in/out across 18 markets"
+        "2 large bets >= $15,000",
+        "abnormal burst sizing (2 trades >= max(threshold,4x median))",
+        "fast in/out across 17 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 9534,
-        "median_size": 38.5,
-        "avg_size": 342.45,
-        "max_size": 21261.0,
-        "total_buy_size": 68490.95,
+        "unique_markets": 9535,
+        "median_size": 34.5,
+        "avg_size": 668.86,
+        "max_size": 35563.0,
+        "total_buy_size": 133771.99,
         "total_sell_size": 0,
-        "focus_ratio": 0.355,
-        "timed_hits": 26,
+        "focus_ratio": 0.39,
+        "timed_hits": 33,
         "timed_total": 200,
-        "timing_ratio": 0.13,
-        "fast_rounds": 18
+        "timing_ratio": 0.165,
+        "fast_rounds": 17
       },
       "win_rate": 0.0,
       "closed_count": 0,
@@ -979,23 +970,23 @@
       "delta_score": 0.0,
       "tier": "remove",
       "high_streak": 0,
-      "low_streak": 110,
+      "low_streak": 111,
       "reasons": [
-        "fast in/out across 40 markets"
+        "fast in/out across 36 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 53992,
-        "median_size": 44.71,
-        "avg_size": 347.03,
-        "max_size": 8699.61,
-        "total_buy_size": 69405.53,
+        "unique_markets": 53995,
+        "median_size": 48.0,
+        "avg_size": 369.41,
+        "max_size": 13314.0,
+        "total_buy_size": 73882.39,
         "total_sell_size": 0,
-        "focus_ratio": 0.25,
-        "timed_hits": 2,
+        "focus_ratio": 0.35,
+        "timed_hits": 0,
         "timed_total": 200,
-        "timing_ratio": 0.01,
-        "fast_rounds": 40
+        "timing_ratio": 0.0,
+        "fast_rounds": 36
       },
       "win_rate": 0.0,
       "closed_count": 0,
