@@ -80,7 +80,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add tracker_state.json suspects.json tracker_report.md || true
           git commit -m "chore: update tracker outputs" || echo "No changes"
-          git push
+          git pull --rebase || true
+          git push || echo "Nothing to push"
 
       - name: Telegram test ping (manual dispatch)
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.test_ping == 'true' }}
@@ -147,6 +148,7 @@ jobs:
         run: |
           git add copy_state.json || true
           git commit -m "chore: update copy trader state" || echo "No changes"
+          git pull --rebase || true
           git push || echo "Nothing to push"
 
       - name: Telegram notify (new core wallets)
