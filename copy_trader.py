@@ -218,6 +218,15 @@ def find_actionable_trades(suspects_data: Dict) -> List[Dict]:
 def main() -> int:
     log(f"Starting copy trader (dry_run={DRY_RUN}, balance_pct={BALANCE_PERCENT:.0%})")
 
+    # Auto-redeem resolved markets first
+    redeemed = auto_redeem()
+    if redeemed:
+        ts = datetime.now(timezone.utc).strftime("%m-%d %H:%M UTC")
+        lines = [f"💸 <b>自动领取收益</b> ({ts})", ""]
+        for r in redeemed:
+            lines.append(f"  ✅ {r['title']}")
+        tg_send("\n".join(lines))
+
     suspects_data = load_json(SUSPECTS_FILE)
     if not suspects_data:
         log("No suspects.json found or empty")
@@ -337,7 +346,10 @@ def daily_report() -> int:
     """Generate daily summary: open positions, settled, P&L, balance."""
     log("Generating daily report...")
 
-    # 1. Balance
+    # 0. Auto-redeem first
+    redeemed = auto_redeem()
+
+    # 1. Balance (after redeem)
     available = get_available_balance()
 
     # 2. Open positions
@@ -398,6 +410,13 @@ def daily_report() -> int:
             )
         lines.append("")
 
+    # Redeemed
+    if redeemed:
+        lines.append("💸 <b>本次自动领取:</b>")
+        for r in redeemed:
+            lines.append(f"  ✅ {r['title']}")
+        lines.append("")
+
     # Copied markets count
     copied = len(copy_state.get("copied_markets", []))
     lines.append(f"🔒 已跟单市场: {copied} 个（不会重复）")
@@ -409,6 +428,88 @@ def daily_report() -> int:
 
 # Wallet address for position queries
 WALLET_ADDRESS = os.environ.get("POLYMARKET_WALLET", "0x76Ce440a449475bDA2aB33780F21F6eB8200C1d9")
+
+
+def auto_redeem() -> List[Dict]:
+    """Check for resolved markets and redeem winning tokens."""
+    redeemed = []
+
+    # Get copy trade state to find markets we've traded
+    copy_state = load_json(COPY_STATE_FILE)
+    trades = copy_state.get("trades", [])
+    successful = [t for t in trades if t.get("result", {}).get("success")]
+
+    if not successful:
+        return redeemed
+
+    # Check each traded market
+    seen_slugs = set()
+    for trade in successful:
+        slug = trade.get("slug", "")
+        if not slug or slug in seen_slugs:
+            continue
+        seen_slugs.add(slug)
+
+        try:
+            market = run_cli(["markets", "get", slug])
+            if not isinstance(market, dict):
+                continue
+
+            # Check if market is resolved
+            resolved = market.get("resolved", False)
+            closed = market.get("closed", False)
+            active = market.get("active", True)
+
+            if not (resolved or (closed and not active)):
+                continue
+
+            # Get condition ID
+            condition_id = market.get("conditionId") or market.get("condition_id", "")
+            if not condition_id:
+                continue
+
+            # Check neg_risk flag
+            neg_risk = market.get("negRisk", market.get("neg_risk", False))
+
+            log(f"Found resolved market: {slug} (condition: {condition_id[:12]}..., neg_risk: {neg_risk})")
+
+            # Try to redeem
+            try:
+                if neg_risk:
+                    # For neg-risk markets, we need amounts per outcome
+                    # Use "1,1" as placeholder - CLI will figure out actual amounts
+                    result = run_cli([
+                        "ctf", "redeem-neg-risk",
+                        "--condition", condition_id,
+                        "--amounts", "1,1",
+                    ])
+                else:
+                    result = run_cli([
+                        "ctf", "redeem",
+                        "--condition", condition_id,
+                    ])
+
+                redeemed.append({
+                    "slug": slug,
+                    "title": market.get("question", slug),
+                    "condition_id": condition_id,
+                    "result": result,
+                })
+                log(f"✅ Redeemed: {slug}")
+
+            except RuntimeError as e:
+                err = str(e)
+                # "nothing to redeem" type errors are normal
+                if any(skip in err.lower() for skip in ["nothing", "no payout", "already", "zero", "revert"]):
+                    log(f"Nothing to redeem for {slug}: {err}")
+                else:
+                    log(f"Redeem failed for {slug}: {err}")
+
+        except Exception as e:
+            log(f"Error checking {slug}: {e}")
+            continue
+
+    return redeemed
 
 
 if __name__ == "__main__":
