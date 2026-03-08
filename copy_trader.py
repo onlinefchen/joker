@@ -175,10 +175,16 @@ def get_available_balance() -> float:
 
 
 def calc_trade_size(available_balance: float) -> float:
-    """Calculate trade size: 20% of available balance or fixed amount."""
+    """Calculate trade size: 20% of available balance, but at least MIN_TRADE_SIZE.
+
+    If 20% of balance < MIN_TRADE_SIZE but balance >= MIN_TRADE_SIZE,
+    use MIN_TRADE_SIZE instead of skipping the trade entirely.
+    """
     if _MAX_PER_TRADE_ENV > 0:
         return _MAX_PER_TRADE_ENV
     size = available_balance * BALANCE_PERCENT
+    if size < MIN_TRADE_SIZE and available_balance >= MIN_TRADE_SIZE:
+        size = MIN_TRADE_SIZE
     return round(size, 2)
 
 
