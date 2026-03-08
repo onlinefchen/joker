@@ -78,11 +78,16 @@ def run_cli(args: List[str], timeout: int = 30, use_proxy: bool = False) -> Any:
     log(f"CLI: {' '.join(cmd)}")
     p = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
     if p.returncode != 0:
-        raise RuntimeError(f"CLI failed ({p.returncode}): {p.stderr.strip()}")
+        err = p.stderr.strip() or p.stdout.strip() or "(no output)"
+        raise RuntimeError(f"CLI failed ({p.returncode}): {err}")
     out = p.stdout.strip()
     if not out:
         return None
-    return json.loads(out)
+    try:
+        return json.loads(out)
+    except json.JSONDecodeError:
+        log(f"CLI raw output: {out[:200]}")
+        return None
 
 
 def load_json(path: Path) -> Any:
@@ -358,8 +363,8 @@ def main() -> int:
                 shares = MIN_SHARES
                 trade_size = shares * trade["price"]
 
-            log(f"Following BUY: {slug} {outcome} {shares:.1f} shares @ ${trade['price']:.3f} (${trade_size:.2f})")
-            result = place_order(token_id, "buy", trade["price"], shares)
+            log(f"Following BUY: {slug} {outcome} ${trade_size:.2f} (market order)")
+            result = place_market_order(token_id, "buy", trade_size)
 
         else:
             # Whale sells outcome → we buy the opposite side
@@ -390,8 +395,8 @@ def main() -> int:
                 shares = MIN_SHARES
                 trade_size = shares * opposite_price
 
-            log(f"Following SELL: {slug} buying {opposite} {shares:.1f} shares @ ${opposite_price:.3f} (${trade_size:.2f})")
-            result = place_order(token_id, "buy", opposite_price, shares)
+            log(f"Following SELL: {slug} buying {opposite} ${trade_size:.2f} (market order)")
+            result = place_market_order(token_id, "buy", trade_size)
 
         record = {
             "time": datetime.now(timezone.utc).isoformat(),
