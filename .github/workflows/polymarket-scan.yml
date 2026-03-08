@@ -100,6 +100,35 @@ jobs:
           urllib.request.urlopen(url, data=payload, timeout=20).read()
           PY
 
+      - name: Restore copy trader state
+        uses: actions/cache/restore@v4
+        with:
+          path: copy_state.json
+          key: copy-state-${{ github.run_id }}
+          restore-keys: |
+            copy-state-
+
+      - name: Copy trade (auto follow)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          COPY_DRY_RUN: ${{ secrets.COPY_DRY_RUN || 'true' }}
+          COPY_MAX_PER_TRADE: ${{ secrets.COPY_MAX_PER_TRADE || '5' }}
+          COPY_MAX_EXPOSURE: ${{ secrets.COPY_MAX_EXPOSURE || '20' }}
+        run: python copy_trader.py
+
+      - name: Save copy trader state
+        uses: actions/cache/save@v4
+        with:
+          path: copy_state.json
+          key: copy-state-${{ github.run_id }}
+
+      - name: Commit copy state
+        run: |
+          git add copy_state.json || true
+          git commit -m "chore: update copy trader state" || echo "No changes"
+          git push || echo "Nothing to push"
+
       - name: Telegram notify (new core wallets)
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

@@ -46,6 +46,32 @@ python3 polymarket_insider_tracker.py \
 - `--min-score`：可疑阈值（默认 70）
 - `--out`：输出完整 JSON 结果
 
+## 自动跟单 (Copy Trader)
+
+`copy_trader.py` 在 tracker 扫描后自动跟单 core 级鲸鱼的大额买入。
+
+### 工作流程
+1. 读取 `suspects.json` 中 core 级钱包的近期大单
+2. 筛选：只跟 BUY、单笔 ≥$100K、价格在 5¢-92¢ 之间
+3. 通过 `polymarket clob create-order` 下限价单
+4. 同一市场+方向不重复跟单
+5. Telegram 通知执行结果
+
+### 风控参数（通过 GitHub Secrets 配置）
+
+| Secret | 默认值 | 说明 |
+|---|---|---|
+| `COPY_DRY_RUN` | `true` | **默认模拟模式**，改 `false` 开启真实下单 |
+| `COPY_MAX_PER_TRADE` | `5` | 单笔跟单金额（USD） |
+| `COPY_MAX_EXPOSURE` | `20` | 最大总仓位（USD） |
+
+### 开启真实跟单
+
+在 repo Settings → Secrets → Actions 添加：
+```
+COPY_DRY_RUN = false
+```
+
 ## 实战建议
 
 1. 先用高阈值（70+）做小样本，减少噪音。
