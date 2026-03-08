@@ -28,11 +28,15 @@ COPY_STATE_FILE = Path(__file__).parent / "copy_state.json"
 COPY_LOG_FILE = Path(__file__).parent / "copy_trades.json"
 
 # Risk parameters (overridable via env vars)
-MAX_PER_TRADE = float(os.environ.get("COPY_MAX_PER_TRADE", "5"))       # $5 per copy trade
-MAX_TOTAL_EXPOSURE = float(os.environ.get("COPY_MAX_EXPOSURE", "20"))  # $20 max total
+# MAX_PER_TRADE=0 means dynamic: 20% of available balance per trade
+_MAX_PER_TRADE_ENV = float(os.environ.get("COPY_MAX_PER_TRADE", "0"))
+# MAX_EXPOSURE=0 means no hard cap (rely on per-trade % limit)
+_MAX_EXPOSURE_ENV = float(os.environ.get("COPY_MAX_EXPOSURE", "0"))
+BALANCE_PERCENT = float(os.environ.get("COPY_BALANCE_PERCENT", "0.20"))  # 20% of available balance
+MIN_TRADE_SIZE = float(os.environ.get("COPY_MIN_TRADE_SIZE", "0.50"))    # don't trade below $0.50
 MIN_WHALE_SIZE = float(os.environ.get("COPY_MIN_WHALE_SIZE", "100000"))  # only copy ≥$100K trades
-MIN_PRICE = float(os.environ.get("COPY_MIN_PRICE", "0.05"))           # don't buy below 5¢
-MAX_PRICE = float(os.environ.get("COPY_MAX_PRICE", "0.92"))           # don't buy above 92¢
+MIN_PRICE = float(os.environ.get("COPY_MIN_PRICE", "0.05"))             # don't buy below 5¢
+MAX_PRICE = float(os.environ.get("COPY_MAX_PRICE", "0.92"))             # don't buy above 92¢
 ONLY_BUY = os.environ.get("COPY_ONLY_BUY", "true").lower() == "true"
 DRY_RUN = os.environ.get("COPY_DRY_RUN", "false").lower() == "true"
 
@@ -120,19 +124,26 @@ def get_market_tokens(slug: str) -> Optional[Dict[str, str]]:
         return None
 
 
-def get_current_exposure() -> float:
-    """Get current total position value."""
+def get_available_balance() -> float:
+    """Get available USDC balance (collateral)."""
     try:
-        result = run_cli(["clob", "balance"])
+        result = run_cli(["clob", "balance", "--asset-type", "collateral"])
         if isinstance(result, dict):
-            # Check various balance fields
-            for key in ("balance", "total_value", "totalValue"):
-                if key in result:
-                    return float(result[key])
+            bal = float(result.get("balance", 0))
+            log(f"Available balance: ${bal:.2f}")
+            return bal
         return 0.0
     except Exception as e:
         log(f"Failed to get balance: {e}")
         return 0.0
+
+
+def calc_trade_size(available_balance: float) -> float:
+    """Calculate trade size: 20% of available balance or fixed amount."""
+    if _MAX_PER_TRADE_ENV > 0:
+        return _MAX_PER_TRADE_ENV
+    size = available_balance * BALANCE_PERCENT
+    return round(size, 2)
 
 
 def place_order(token_id: str, side: str, price: float, size: float) -> Dict[str, Any]:
@@ -205,7 +216,7 @@ def find_actionable_trades(suspects_data: Dict) -> List[Dict]:
 
 
 def main() -> int:
-    log(f"Starting copy trader (dry_run={DRY_RUN}, max_per_trade=${MAX_PER_TRADE}, max_exposure=${MAX_TOTAL_EXPOSURE})")
+    log(f"Starting copy trader (dry_run={DRY_RUN}, balance_pct={BALANCE_PERCENT:.0%})")
 
     suspects_data = load_json(SUSPECTS_FILE)
     if not suspects_data:
@@ -214,7 +225,6 @@ def main() -> int:
 
     copy_state = load_json(COPY_STATE_FILE)
     copied_markets = set(copy_state.get("copied_markets", []))
-    total_invested = float(copy_state.get("total_invested", 0))
     trade_log = copy_state.get("trades", [])
 
     actionable = find_actionable_trades(suspects_data)
@@ -223,6 +233,13 @@ def main() -> int:
         return 0
 
     log(f"Found {len(actionable)} actionable trades")
+
+    # Get live balance
+    available = get_available_balance()
+    if available < MIN_TRADE_SIZE:
+        log(f"Balance too low (${available:.2f}), skipping")
+        return 0
+
     executed = []
 
     for trade in actionable:
@@ -235,10 +252,18 @@ def main() -> int:
             log(f"Already copied {market_key}, skipping")
             continue
 
-        # Check exposure limit
-        if total_invested + MAX_PER_TRADE > MAX_TOTAL_EXPOSURE:
-            log(f"Exposure limit reached (${total_invested:.2f} / ${MAX_TOTAL_EXPOSURE})")
+        # Recalculate trade size from current balance (refreshed each trade)
+        trade_size = calc_trade_size(available)
+        if trade_size < MIN_TRADE_SIZE:
+            log(f"Trade size too small (${trade_size:.2f}), stopping")
             break
+
+        # Check hard exposure cap if set
+        if _MAX_EXPOSURE_ENV > 0:
+            total_invested = sum(t.get("amount_usd", 0) for t in trade_log if t.get("result", {}).get("success"))
+            if total_invested + trade_size > _MAX_EXPOSURE_ENV:
+                log(f"Exposure limit reached (${total_invested:.2f} / ${_MAX_EXPOSURE_ENV})")
+                break
 
         # Get token ID
         tokens = get_market_tokens(slug)
@@ -251,10 +276,10 @@ def main() -> int:
             log(f"No token found for outcome {outcome} in {slug}")
             continue
 
-        # Calculate shares: $5 / price = shares
-        shares = MAX_PER_TRADE / trade["price"]
+        # Calculate shares
+        shares = trade_size / trade["price"]
 
-        log(f"Placing order: {slug} {outcome} {shares:.1f} shares @ ${trade['price']:.3f}")
+        log(f"Placing order: {slug} {outcome} {shares:.1f} shares @ ${trade['price']:.3f} (${trade_size:.2f})")
         result = place_order(token_id, "buy", trade["price"], shares)
 
         record = {
@@ -265,7 +290,7 @@ def main() -> int:
             "token_id": token_id,
             "price": trade["price"],
             "shares": round(shares, 1),
-            "amount_usd": MAX_PER_TRADE,
+            "amount_usd": trade_size,
             "whale_wallet": trade["wallet"],
             "whale_username": trade["username"],
             "whale_score": trade["score"],
@@ -275,7 +300,7 @@ def main() -> int:
 
         if result.get("success"):
             copied_markets.add(market_key)
-            total_invested += MAX_PER_TRADE
+            available -= trade_size  # deduct from available
             executed.append(record)
             trade_log.append(record)
             log(f"✅ Order placed: {slug} {outcome}")
@@ -287,8 +312,7 @@ def main() -> int:
     copy_state = {
         "last_run": datetime.now(timezone.utc).isoformat(),
         "copied_markets": list(copied_markets),
-        "total_invested": round(total_invested, 2),
-        "trades": trade_log[-100:],  # keep last 100
+        "trades": trade_log[-200:],  # keep last 200
     }
     save_json(COPY_STATE_FILE, copy_state)
 
@@ -297,16 +321,15 @@ def main() -> int:
         ts = datetime.now(timezone.utc).strftime("%m-%d %H:%M UTC")
         lines = [f"🤖 <b>自动跟单执行</b> ({ts})", ""]
         for i, t in enumerate(executed, 1):
-            dry = " [模拟]" if DRY_RUN else ""
             lines.append(
                 f"{i}) <b>{t['title']}</b>\n"
-                f"   {t['outcome']} ${t['amount_usd']:.0f} ({t['shares']:.1f}股) @ {t['price']:.3f}{dry}\n"
+                f"   {t['outcome']} ${t['amount_usd']:.2f} ({t['shares']:.1f}股) @ {t['price']:.3f}\n"
                 f"   跟随: {t['whale_username']} (分数{t['whale_score']}, 鲸鱼下注${t['whale_size']:,.0f})"
             )
-        lines.append(f"\n💰 累计投入: ${total_invested:.2f} / ${MAX_TOTAL_EXPOSURE}")
+        lines.append(f"\n💰 余额: ${available:.2f}")
         tg_send("\n".join(lines))
 
-    log(f"Done. Executed {len(executed)} trades, total invested: ${total_invested:.2f}")
+    log(f"Done. Executed {len(executed)} trades, remaining balance: ${available:.2f}")
     return 0
 
 

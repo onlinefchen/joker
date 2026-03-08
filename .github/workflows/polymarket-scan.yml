@@ -112,9 +112,10 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          COPY_DRY_RUN: ${{ secrets.COPY_DRY_RUN || 'true' }}
-          COPY_MAX_PER_TRADE: ${{ secrets.COPY_MAX_PER_TRADE || '5' }}
-          COPY_MAX_EXPOSURE: ${{ secrets.COPY_MAX_EXPOSURE || '20' }}
+          COPY_DRY_RUN: ${{ secrets.COPY_DRY_RUN || 'false' }}
+          COPY_MAX_PER_TRADE: '0'
+          COPY_MAX_EXPOSURE: '0'
+          COPY_BALANCE_PERCENT: '0.20'
         run: python copy_trader.py
 
       - name: Save copy trader state
