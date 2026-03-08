@@ -174,17 +174,29 @@ jobs:
           if not cores:
               raise SystemExit(0)
 
+          # Load previously notified trades
+          notified_file = 'notified_trades.json'
+          notified = set()
+          if os.path.exists(notified_file):
+              try:
+                  with open(notified_file, 'r') as nf:
+                      notified = set(json.load(nf).get('trades', []))
+              except Exception:
+                  pass
+
           ts = datetime.now(timezone.utc).strftime('%m-%d %H:%M UTC')
-          lines = [f"📡 Polymarket 大单监控 ({ts})", "仅推送：近1小时、单笔≥$100k"]
 
           # 近1小时 >=100k 大单
-          lines.append("\n【近1小时大单】")
           big = []
           for r in cores:
               for a in (r.get('recent_actions') or []):
                   a2 = dict(a)
                   a2['wallet'] = r.get('wallet', '')
-                  big.append(a2)
+                  # Unique key: wallet + slug + side + outcome + size
+                  trade_key = f"{a2['wallet']}:{a.get('slug','')}:{a.get('side','')}:{a.get('outcome','')}:{a.get('size','')}"
+                  a2['_key'] = trade_key
+                  if trade_key not in notified:
+                      big.append(a2)
 
           if not big:
               # Heartbeat every 4 hours (UTC) on the first quarter-hour run
@@ -196,7 +208,9 @@ jobs:
                   urllib.request.urlopen(url, data=payload, timeout=20).read()
               raise SystemExit(0)
 
+          lines = [f"📡 Polymarket 大单监控 ({ts})", "仅推送：近1小时、单笔≥$100k", "\n【新大单】"]
           big.sort(key=lambda x: float(x.get('size', 0)), reverse=True)
+          new_keys = []
           for j, a in enumerate(big[:8], 1):
               addr = short_addr(a.get('wallet', ''))
               side = a.get('side', '')
@@ -206,10 +220,25 @@ jobs:
               price = float(a.get('price', 0))
               lines.append(f"{j}) {addr} {side} ${size:,.0f} @ {price:.3f} · {outcome}")
               lines.append(f"   标的: {title}")
+              new_keys.append(a['_key'])
 
           msg = "\n".join(lines)
-
           url = f"https://api.telegram.org/bot{token}/sendMessage"
           payload = urllib.parse.urlencode({"chat_id": chat_id, "text": msg}).encode()
           urllib.request.urlopen(url, data=payload, timeout=20).read()
+
+          # Save notified trades (keep last 200)
+          notified.update(new_keys)
+          notified_list = list(notified)[-200:]
+          with open(notified_file, 'w') as nf:
+              json.dump({"trades": notified_list}, nf)
           PY
+
+      - name: Commit notified state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase || true
+          git add notified_trades.json || true
+          git commit -m "chore: update notified trades" || echo "No changes"
+          git push || echo "Nothing to push"
