@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-03-08T23:01:44.196764+00:00",
+  "last_run": "2026-03-08T23:31:28.676866+00:00",
   "copied_positions": {
     "cs2-lgc-ast10-2026-03-08:LEGACY:BUY": {
       "wallet": "0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A",
@@ -18,6 +18,15 @@
       "slug": "nba-was-nop-2026-03-08-spread-home-11pt5",
       "outcome": "WIZARDS",
       "side": "SELL"
+    },
+    "nba-orl-mil-2026-03-08:BUCKS:BUY": {
+      "wallet": "0x1BC0D88cA86b9049cf05D642E634836d5DdF4429",
+      "username": "212121212121212121212",
+      "settled": false,
+      "trade_time": "2026-03-08T23:31:28.382695+00:00",
+      "slug": "nba-orl-mil-2026-03-08",
+      "outcome": "BUCKS",
+      "side": "BUY"
     }
   },
   "trades": [
@@ -93,6 +102,53 @@
           "trade_ids": [],
           "transaction_hashes": [
             "0x07736dc9023beadfa78ad512bbf1e3f01daeac4013e32c6f599b95a1ebc92916"
+          ]
+        }
+      }
+    },
+    {
+      "time": "2026-03-08T23:31:24.753110+00:00",
+      "slug": "nba-cha-phx-2026-03-08",
+      "title": "Hornets vs. Suns",
+      "outcome": "HORNETS",
+      "token_id": "0xf7ab52e47bb35b88fe46efe62b152b41f2493b2e6e02b2e7d75ace53c19b294c",
+      "price": 0.63,
+      "shares": 5,
+      "amount_usd": 3.15,
+      "whale_wallet": "0x1BC0D88cA86b9049cf05D642E634836d5DdF4429",
+      "whale_username": "212121212121212121212",
+      "whale_score": 80.0,
+      "whale_size": 133718.73,
+      "result": {
+        "success": false,
+        "error": "CLI failed (1): {\"error\":\"Status: error(400 Bad Request) making POST call to /order with {\\\"error\\\":\\\"not enough balance / allowance\\\"}\\n\"}"
+      }
+    },
+    {
+      "time": "2026-03-08T23:31:28.382670+00:00",
+      "slug": "nba-orl-mil-2026-03-08",
+      "title": "Magic vs. Bucks",
+      "outcome": "BUCKS",
+      "token_id": "0xfae4c8b6e1156248d9bb5ffdf208d4351c0586da224b0482f65d706b2c4a792d",
+      "price": 0.36,
+      "shares": 5,
+      "amount_usd": 1.7999999999999998,
+      "whale_wallet": "0x1BC0D88cA86b9049cf05D642E634836d5DdF4429",
+      "whale_username": "212121212121212121212",
+      "whale_score": 80.0,
+      "whale_size": 133080.7,
+      "result": {
+        "success": true,
+        "result": {
+          "error_msg": "",
+          "making_amount": "1.799999",
+          "order_id": "0x434fd64ee51a9b6bb465274949966527de4dc990672d9bf72317e79b53f6a3a8",
+          "status": "MATCHED",
+          "success": true,
+          "taking_amount": "5.157587",
+          "trade_ids": [],
+          "transaction_hashes": [
+            "0x985cf3ad84890a64cf0bcc5b403c6f99b2e952fb86ba9b26824102efcba3f71c"
           ]
         }
       }
