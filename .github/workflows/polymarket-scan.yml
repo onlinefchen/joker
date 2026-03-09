@@ -8,7 +8,7 @@ on:
         required: false
         default: "true"
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '3,28,53 * * * *'
 
 concurrency:
   group: polymarket-scan
