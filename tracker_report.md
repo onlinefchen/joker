@@ -1,12 +1,12 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-09T21:49:17.225076+00:00
+Generated: 2026-03-09T22:11:58.256100+00:00
 
 | Rank | Wallet | User | Score | ΔScore | Tier | HighStreak | LowStreak |
 |---:|---|---|---:|---:|---|---:|---:|
-| 1 | `0x03E8a544e97eEff5753BC1E90D46e5EF22af1697` | weflyhigh | 91.0 | +0.0 | core | 27 | 0 |
-| 2 | `0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A` | bossoskil1 | 83.0 | +0.0 | core | 170 | 0 |
-| 3 | `0xBDDF61Af533fF524D27154e589d2D7A81510C684` | Countryside | 80.0 | +0.0 | core | 31 | 0 |
+| 1 | `0x03E8a544e97eEff5753BC1E90D46e5EF22af1697` | weflyhigh | 91.0 | +0.0 | core | 28 | 0 |
+| 2 | `0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A` | bossoskil1 | 83.0 | +0.0 | core | 171 | 0 |
+| 3 | `0xBDDF61Af533fF524D27154e589d2D7A81510C684` | Countryside | 80.0 | +0.0 | core | 32 | 0 |
 | 4 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 66.0 | +0.0 | candidate | 0 | 0 |
 | 5 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | +0.0 | candidate | 0 | 0 |
 | 6 | `0xDE7be6D489BcE070a959e0CB813128ae659b5f4b` | wan123 | 66.0 | +0.0 | candidate | 0 | 0 |
@@ -18,9 +18,9 @@ Generated: 2026-03-09T21:49:17.225076+00:00
 | 12 | `0x6ac5BB06A9Eb05641fD5e82640268b92f3Ab4B6E` | 0p0jogggg | 62.0 | +0.0 | candidate | 0 | 0 |
 | 13 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | +0.0 | candidate | 0 | 0 |
 | 14 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | +0.0 | candidate | 0 | 0 |
-| 15 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 48.0 | +0.0 | remove | 0 | 167 |
-| 16 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | +0.0 | remove | 0 | 170 |
-| 17 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | +0.0 | remove | 0 | 171 |
-| 18 | `0xB90494d9a5D8f71f1930b2aa4B599F95c344c255` | MinorKey4 | 48.0 | +0.0 | remove | 0 | 171 |
-| 19 | `0xB45a797faA52B0fd8aDc56D30382022B7b12192C` | bcda | 48.0 | +0.0 | remove | 0 | 105 |
-| 20 | `0xE90Bec87d9Ef430F27F9dCfe72C34b76967d5dA2` | gmanas | 48.0 | +0.0 | remove | 0 | 170 |
+| 15 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 48.0 | +0.0 | remove | 0 | 168 |
+| 16 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | +0.0 | remove | 0 | 171 |
+| 17 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | +0.0 | remove | 0 | 172 |
+| 18 | `0xB90494d9a5D8f71f1930b2aa4B599F95c344c255` | MinorKey4 | 48.0 | +0.0 | remove | 0 | 172 |
+| 19 | `0xB45a797faA52B0fd8aDc56D30382022B7b12192C` | bcda | 48.0 | +0.0 | remove | 0 | 106 |
+| 20 | `0xE90Bec87d9Ef430F27F9dCfe72C34b76967d5dA2` | gmanas | 48.0 | +0.0 | remove | 0 | 171 |
