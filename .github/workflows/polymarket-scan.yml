@@ -64,7 +64,6 @@ jobs:
           chmod 600 ~/.config/polymarket/config.json
 
       - name: Run tracker
-        timeout-minutes: 8
         run: |
           python polymarket_insider_tracker.py \
             --wallet-limit 30 \
