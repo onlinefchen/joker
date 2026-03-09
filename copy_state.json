@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-03-08T23:31:28.676866+00:00",
+  "last_run": "2026-03-09T22:51:31.339874+00:00",
   "copied_positions": {
     "cs2-lgc-ast10-2026-03-08:LEGACY:BUY": {
       "wallet": "0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A",
@@ -26,6 +26,15 @@
       "trade_time": "2026-03-08T23:31:28.382695+00:00",
       "slug": "nba-orl-mil-2026-03-08",
       "outcome": "BUCKS",
+      "side": "BUY"
+    },
+    "val-pr1-nrg-2026-03-09:NRG:BUY": {
+      "wallet": "0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A",
+      "username": "bossoskil1",
+      "settled": false,
+      "trade_time": "2026-03-09T22:51:30.400090+00:00",
+      "slug": "val-pr1-nrg-2026-03-09",
+      "outcome": "NRG",
       "side": "BUY"
     }
   },
@@ -150,6 +159,33 @@
           "transaction_hashes": [
             "0x985cf3ad84890a64cf0bcc5b403c6f99b2e952fb86ba9b26824102efcba3f71c"
           ]
+        }
+      }
+    },
+    {
+      "time": "2026-03-09T22:51:30.400064+00:00",
+      "slug": "val-pr1-nrg-2026-03-09",
+      "title": "Valorant: Paper Rex vs NRG (BO3) - VCT Masters Santiago Playoffs",
+      "outcome": "NRG",
+      "token_id": "0xaf213a23d8f0d464d657959eb9394b569edcfe06757edf70517c03a0adbabd45",
+      "price": 0.68,
+      "shares": 5,
+      "amount_usd": 3.4000000000000004,
+      "whale_wallet": "0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A",
+      "whale_username": "bossoskil1",
+      "whale_score": 83.0,
+      "whale_size": 128581.09,
+      "result": {
+        "success": true,
+        "result": {
+          "error_msg": "",
+          "making_amount": "0",
+          "order_id": "0x17a9147119f3493ac9f59d8b34a86ffddd2bee5f587d13ec33d23d552816322e",
+          "status": "DELAYED",
+          "success": true,
+          "taking_amount": "0",
+          "trade_ids": [],
+          "transaction_hashes": []
         }
       }
     }
