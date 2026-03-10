@@ -1,222 +1,222 @@
 {
-  "generated_at": "2026-03-10T01:30:28.182976+00:00",
+  "generated_at": "2026-03-10T02:28:19.302306+00:00",
   "wallets": {
     "0x03E8a544e97eEff5753BC1E90D46e5EF22af1697": {
       "username": "weflyhigh",
       "score": 91.0,
-      "high_streak": 36,
+      "high_streak": 37,
       "low_streak": 0,
-      "updated_at": "2026-03-10T01:30:27.942209+00:00"
+      "updated_at": "2026-03-10T02:28:19.053145+00:00"
     },
     "0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A": {
       "username": "bossoskil1",
       "score": 83.0,
-      "high_streak": 179,
+      "high_streak": 180,
       "low_streak": 0,
-      "updated_at": "2026-03-10T01:30:27.950619+00:00"
+      "updated_at": "2026-03-10T02:28:19.062143+00:00"
     },
     "0xBDDF61Af533fF524D27154e589d2D7A81510C684": {
       "username": "Countryside",
       "score": 80.0,
-      "high_streak": 40,
+      "high_streak": 41,
       "low_streak": 0,
-      "updated_at": "2026-03-10T01:30:27.958840+00:00"
+      "updated_at": "2026-03-10T02:28:19.071043+00:00"
     },
     "0xDc876E6873772D38716Fda7f2452a78D426d7AB6": {
       "username": "432614799197",
       "score": 66.0,
       "high_streak": 0,
       "low_streak": 0,
-      "updated_at": "2026-03-10T01:30:27.967077+00:00"
+      "updated_at": "2026-03-10T02:28:19.079794+00:00"
     },
     "0x93ABBC022ce98d6F45D4444b594791CC4B7a9723": {
       "username": "gatorr",
       "score": 66.0,
       "high_streak": 0,
       "low_streak": 0,
-      "updated_at": "2026-03-10T01:30:27.975338+00:00"
-    },
-    "0x6a57D263cD7c8EbA88b857eDEB7103851F012AFa": {
-      "username": "0x6a57D263cD7c8EbA88b857eDEB7103851F012AFa-1771530065496",
-      "score": 66.0,
-      "high_streak": 0,
-      "low_streak": 0,
-      "updated_at": "2026-03-10T01:30:27.983549+00:00"
+      "updated_at": "2026-03-10T02:28:19.090152+00:00"
     },
     "0xDE7be6D489BcE070a959e0CB813128ae659b5f4b": {
       "username": "wan123",
       "score": 66.0,
       "high_streak": 0,
       "low_streak": 0,
-      "updated_at": "2026-03-10T01:30:27.991841+00:00"
+      "updated_at": "2026-03-10T02:28:19.099218+00:00"
+    },
+    "0x6a57D263cD7c8EbA88b857eDEB7103851F012AFa": {
+      "username": "0x6a57D263cD7c8EbA88b857eDEB7103851F012AFa-1771530065496",
+      "score": 66.0,
+      "high_streak": 0,
+      "low_streak": 0,
+      "updated_at": "2026-03-10T02:28:19.107868+00:00"
     },
     "0xdb2223Cc5202A4718C3069f577eC971f71C96478": {
       "username": "FTWUTB",
       "score": 62.0,
       "high_streak": 0,
       "low_streak": 0,
-      "updated_at": "2026-03-10T01:30:28.000153+00:00"
+      "updated_at": "2026-03-10T02:28:19.116464+00:00"
     },
     "0xF19D7D88Cf362110027DcD64750FDd209A04276f": {
       "username": "huhaoli",
       "score": 62.0,
       "high_streak": 0,
       "low_streak": 0,
-      "updated_at": "2026-03-10T01:30:28.008457+00:00"
+      "updated_at": "2026-03-10T02:28:19.124950+00:00"
     },
     "0xee0d153C17fe82b8866b484753B56a700AB457ab": {
       "username": "BBPK",
       "score": 62.0,
       "high_streak": 0,
       "low_streak": 0,
-      "updated_at": "2026-03-10T01:30:28.016793+00:00"
+      "updated_at": "2026-03-10T02:28:19.133494+00:00"
     },
     "0x036C159D5a348058A81066a76B89f35926D4178D": {
       "username": "HedgeMaster88",
       "score": 62.0,
       "high_streak": 0,
       "low_streak": 0,
-      "updated_at": "2026-03-10T01:30:28.025103+00:00"
+      "updated_at": "2026-03-10T02:28:19.141935+00:00"
     },
     "0x9CB990F1862568A63d8601EfEebe0304225C32F2": {
       "username": "jtwyslljy",
       "score": 62.0,
       "high_streak": 0,
       "low_streak": 0,
-      "updated_at": "2026-03-10T01:30:28.033432+00:00"
+      "updated_at": "2026-03-10T02:28:19.150397+00:00"
+    },
+    "0x6ac5BB06A9Eb05641fD5e82640268b92f3Ab4B6E": {
+      "username": "0p0jogggg",
+      "score": 62.0,
+      "high_streak": 0,
+      "low_streak": 0,
+      "updated_at": "2026-03-10T02:28:19.158947+00:00"
     },
     "0x019782cAB5d844F02BAFB71F512758BE78579f3C": {
       "username": "majorexploiter",
       "score": 61.0,
       "high_streak": 0,
       "low_streak": 0,
-      "updated_at": "2026-03-10T01:30:28.041669+00:00"
+      "updated_at": "2026-03-10T02:28:19.167540+00:00"
     },
     "0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44": {
       "username": "geniusMC",
       "score": 59.0,
       "high_streak": 0,
       "low_streak": 0,
-      "updated_at": "2026-03-10T01:30:28.049922+00:00"
+      "updated_at": "2026-03-10T02:28:19.175986+00:00"
     },
     "0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1": {
       "username": "0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461",
       "score": 48.0,
       "high_streak": 0,
-      "low_streak": 176,
-      "updated_at": "2026-03-10T01:30:28.058218+00:00"
+      "low_streak": 177,
+      "updated_at": "2026-03-10T02:28:19.184292+00:00"
     },
     "0xc2e7800b5Af46e6093872b177b7a5e7f0563be51": {
       "username": "beachboy4",
       "score": 48.0,
       "high_streak": 0,
-      "low_streak": 179,
-      "updated_at": "2026-03-10T01:30:28.066464+00:00"
+      "low_streak": 180,
+      "updated_at": "2026-03-10T02:28:19.192511+00:00"
     },
     "0x02227B8f5a9636e895607EDD3185ED6ee5598fF7": {
       "username": "HorizonSplendidView",
       "score": 48.0,
       "high_streak": 0,
-      "low_streak": 180,
-      "updated_at": "2026-03-10T01:30:28.074669+00:00"
+      "low_streak": 181,
+      "updated_at": "2026-03-10T02:28:19.200767+00:00"
     },
     "0xB90494d9a5D8f71f1930b2aa4B599F95c344c255": {
       "username": "MinorKey4",
       "score": 48.0,
       "high_streak": 0,
-      "low_streak": 180,
-      "updated_at": "2026-03-10T01:30:28.082934+00:00"
+      "low_streak": 181,
+      "updated_at": "2026-03-10T02:28:19.209060+00:00"
     },
     "0xB45a797faA52B0fd8aDc56D30382022B7b12192C": {
       "username": "bcda",
       "score": 48.0,
       "high_streak": 0,
-      "low_streak": 114,
-      "updated_at": "2026-03-10T01:30:28.091374+00:00"
+      "low_streak": 115,
+      "updated_at": "2026-03-10T02:28:19.217447+00:00"
     },
     "0xE90Bec87d9Ef430F27F9dCfe72C34b76967d5dA2": {
       "username": "gmanas",
       "score": 48.0,
       "high_streak": 0,
-      "low_streak": 179,
-      "updated_at": "2026-03-10T01:30:28.099544+00:00"
+      "low_streak": 180,
+      "updated_at": "2026-03-10T02:28:19.225709+00:00"
     },
     "0x916f7165c2c836Aba22eDB6453cdbb5F3eA253Ba": {
       "username": "WoofMaster",
       "score": 48.0,
       "high_streak": 0,
-      "low_streak": 179,
-      "updated_at": "2026-03-10T01:30:28.107810+00:00"
+      "low_streak": 180,
+      "updated_at": "2026-03-10T02:28:19.233976+00:00"
     },
     "0x8c80d213c0CbaD777D06ee3f58F6cA4bc03102C3": {
       "username": "SecondWindCapital",
       "score": 48.0,
       "high_streak": 0,
-      "low_streak": 100,
-      "updated_at": "2026-03-10T01:30:28.116089+00:00"
-    },
-    "0x07b8E44b90cC3e91B8D5fe60eA810D2534638e25": {
-      "username": "joosangyoo",
-      "score": 48.0,
-      "high_streak": 0,
-      "low_streak": 68,
-      "updated_at": "2026-03-10T01:30:28.124277+00:00"
+      "low_streak": 101,
+      "updated_at": "2026-03-10T02:28:19.242340+00:00"
     },
     "0x37E053BEabEe77ACC15e641DFe8e395b2B2d024E": {
       "username": "ChinesePro",
       "score": 48.0,
       "high_streak": 0,
-      "low_streak": 179,
-      "updated_at": "2026-03-10T01:30:28.132528+00:00"
+      "low_streak": 180,
+      "updated_at": "2026-03-10T02:28:19.250797+00:00"
     },
     "0x57cd939930FD119067ca9dc42b22B3e15708A0Fb": {
       "username": "Supah9ga",
       "score": 48.0,
       "high_streak": 0,
-      "low_streak": 179,
-      "updated_at": "2026-03-10T01:30:28.140790+00:00"
+      "low_streak": 180,
+      "updated_at": "2026-03-10T02:28:19.259530+00:00"
     },
     "0x96489Abcb9f583D6835c8eF95FFc923D05A86825": {
       "username": "anoin123",
       "score": 48.0,
       "high_streak": 0,
-      "low_streak": 2,
-      "updated_at": "2026-03-10T01:30:28.149048+00:00"
-    },
-    "0xa49bEcB692927D455924583b5E3E5788246F4c40": {
-      "username": "sleepy-panda",
-      "score": 48.0,
-      "high_streak": 0,
-      "low_streak": 98,
-      "updated_at": "2026-03-10T01:30:28.157939+00:00"
+      "low_streak": 3,
+      "updated_at": "2026-03-10T02:28:19.268371+00:00"
     },
     "0x07921379f7b31eF93Da634B688b2FE36897DB778": {
       "username": "ewelmealt",
       "score": 48.0,
       "high_streak": 0,
-      "low_streak": 7,
-      "updated_at": "2026-03-10T01:30:28.166194+00:00"
+      "low_streak": 8,
+      "updated_at": "2026-03-10T02:28:19.277039+00:00"
     },
     "0x54AC09857C3e76d50a2E7da064b0293D9a9e7c14": {
       "username": "jackiechann",
       "score": 45.0,
       "high_streak": 0,
-      "low_streak": 103,
-      "updated_at": "2026-03-10T01:30:28.174470+00:00"
+      "low_streak": 104,
+      "updated_at": "2026-03-10T02:28:19.285566+00:00"
+    },
+    "0xee613B3FC183ee44F9Da9c05F53e2Da107E3DeBf": {
+      "username": "sovereign2013",
+      "score": 25.0,
+      "high_streak": 0,
+      "low_streak": 1,
+      "updated_at": "2026-03-10T02:28:19.293873+00:00"
     },
     "0x204f72f35326db932158CBA6AdfF0B9A1DA95e14": {
       "username": "swisstony",
-      "score": 33.0,
+      "score": 15.0,
       "high_streak": 0,
-      "low_streak": 164,
-      "updated_at": "2026-03-10T01:30:28.182869+00:00"
+      "low_streak": 165,
+      "updated_at": "2026-03-10T02:28:19.302191+00:00"
     }
   },
   "last_summary": {
     "total_scanned": 30,
-    "crossed_threshold": 13,
+    "crossed_threshold": 14,
     "core": 3,
-    "candidate": 10,
-    "remove": 15
+    "candidate": 11,
+    "remove": 14
   }
 }
