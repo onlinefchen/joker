@@ -17,7 +17,9 @@ import sys
 import time
 import urllib.parse
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+
+CST = timezone(timedelta(hours=8))
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -43,6 +45,8 @@ DRY_RUN = os.environ.get("COPY_DRY_RUN", "false").lower() == "true"
 
 TG_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
 TG_CHAT = os.environ.get("TELEGRAM_CHAT_ID", "").strip()
+
+PERFORMANCE_HISTORY_CAP = 500
 
 
 def log(msg: str):
@@ -163,7 +167,7 @@ def get_market_tokens(slug: str) -> Optional[Dict[str, str]]:
 def get_available_balance() -> float:
     """Get available USDC balance (collateral)."""
     try:
-        result = run_cli(["clob", "balance", "--asset-type", "collateral"])
+        result = run_cli(["clob", "balance", "--asset-type", "collateral"], use_proxy=True)
         if isinstance(result, dict):
             bal = float(result.get("balance", 0))
             log(f"Available balance: ${bal:.2f}")
@@ -186,6 +190,21 @@ def calc_trade_size(available_balance: float) -> float:
     if size < MIN_TRADE_SIZE and available_balance >= MIN_TRADE_SIZE:
         size = MIN_TRADE_SIZE
     return round(size, 2)
+
+
+def get_token_balance(token_id: str) -> float:
+    """Get our balance (shares held) for a conditional token."""
+    try:
+        result = run_cli([
+            "clob", "balance",
+            "--asset-type", "conditional",
+            "--token", token_id,
+        ], use_proxy=True)
+        if isinstance(result, dict):
+            return float(result.get("balance", 0))
+    except Exception as e:
+        log(f"Failed to get token balance: {e}")
+    return 0.0
 
 
 def place_market_order(token_id: str, side: str, amount: float) -> Dict[str, Any]:
@@ -276,17 +295,182 @@ def find_actionable_trades(suspects_data: Dict) -> List[Dict]:
     return trades
 
 
+# ─── Win Rate Tracking ────────────────────────────────────────────
+
+def _get_market_winner(slug: str) -> Optional[str]:
+    """Query a market and return the winning outcome (uppercase), or None if not resolved."""
+    try:
+        market = run_cli(["markets", "get", slug])
+        if not isinstance(market, dict):
+            return None
+
+        # Check tokens array for winner field
+        tokens = market.get("tokens", [])
+        if isinstance(tokens, list):
+            for t in tokens:
+                if isinstance(t, dict) and t.get("winner") is True:
+                    return str(t.get("outcome", "")).upper()
+
+        # Fallback: check outcomes + outcomePrices (resolved market has 1.0 for winner)
+        outcomes_raw = market.get("outcomes", [])
+        if isinstance(outcomes_raw, str):
+            try:
+                outcomes_raw = json.loads(outcomes_raw)
+            except Exception:
+                outcomes_raw = []
+        prices_raw = market.get("outcomePrices", [])
+        if isinstance(prices_raw, str):
+            try:
+                prices_raw = json.loads(prices_raw)
+            except Exception:
+                prices_raw = []
+        if outcomes_raw and prices_raw and len(outcomes_raw) == len(prices_raw):
+            for outcome, price in zip(outcomes_raw, prices_raw):
+                try:
+                    if float(price) >= 0.99:
+                        return str(outcome).upper()
+                except (ValueError, TypeError):
+                    pass
+
+        return None
+    except Exception as e:
+        log(f"Failed to get market winner for {slug}: {e}")
+        return None
+
+
+def _find_trade_for_position(trade_log: List[Dict], slug: str, outcome: str) -> Optional[Dict]:
+    """Find the most recent successful BUY trade matching this position."""
+    for t in reversed(trade_log):
+        if (t.get("slug") == slug
+                and (t.get("outcome") or "").upper() == outcome.upper()
+                and t.get("result", {}).get("success")):
+            return t
+    return None
+
+
+def _init_performance(copy_state: Dict) -> Dict:
+    """Ensure performance dict exists with correct structure."""
+    perf = copy_state.get("performance", {})
+    perf.setdefault("total_settled", 0)
+    perf.setdefault("wins", 0)
+    perf.setdefault("losses", 0)
+    perf.setdefault("total_pnl_usd", 0.0)
+    perf.setdefault("win_rate_pct", 0.0)
+    perf.setdefault("history", [])
+    return perf
+
+
+def _update_performance_counters(perf: Dict):
+    """Recalculate win_rate_pct from wins/total_settled."""
+    total = perf["total_settled"]
+    perf["win_rate_pct"] = round((perf["wins"] / total) * 100, 1) if total > 0 else 0.0
+    perf["total_pnl_usd"] = round(perf["total_pnl_usd"], 2)
+
+
+def check_settlement_results(
+    copied_positions: Dict[str, Dict],
+    trade_log: List[Dict],
+    performance: Dict,
+) -> List[Dict]:
+    """Check newly settled positions for win/loss and record performance.
+
+    Returns a list of settlement records for Telegram notification.
+    """
+    settlements = []
+
+    for key, pos in copied_positions.items():
+        if not pos.get("settled"):
+            continue
+        # Skip if already recorded in performance history
+        if pos.get("perf_recorded"):
+            continue
+
+        pos_slug = pos.get("slug") or key.split(":")[0]
+        pos_outcome = (pos.get("outcome") or key.split(":")[1] if ":" in key else "").upper()
+        pos_side = pos.get("side", "BUY")
+        whale_username = pos.get("username", "unknown")
+
+        # Only track BUY positions for win/loss (SELLs are exits)
+        if pos_side != "BUY":
+            pos["perf_recorded"] = True
+            continue
+
+        # Determine winner
+        winner = _get_market_winner(pos_slug)
+        if winner is None:
+            # Market data unavailable or not yet resolved — skip for now
+            # (settled flag may have been set prematurely; we'll retry next run)
+            log(f"Winner unknown for {pos_slug}, will retry")
+            continue
+
+        # Find our trade details
+        trade = _find_trade_for_position(trade_log, pos_slug, pos_outcome)
+        buy_price = float(trade.get("price", 0)) if trade else 0.0
+        shares = float(trade.get("shares", 0)) if trade else 0.0
+
+        won = pos_outcome.upper() == winner.upper()
+        if won:
+            pnl = (1.0 - buy_price) * shares
+        else:
+            pnl = -buy_price * shares
+        pnl = round(pnl, 2)
+
+        # Record
+        record = {
+            "slug": pos_slug,
+            "outcome": pos_outcome,
+            "side": pos_side,
+            "buy_price": buy_price,
+            "shares": shares,
+            "won": won,
+            "pnl_usd": pnl,
+            "winning_outcome": winner,
+            "settled_at": datetime.now(timezone.utc).isoformat(),
+            "whale_username": whale_username,
+        }
+
+        performance["history"].append(record)
+        performance["total_settled"] += 1
+        if won:
+            performance["wins"] += 1
+        else:
+            performance["losses"] += 1
+        performance["total_pnl_usd"] += pnl
+
+        _update_performance_counters(performance)
+
+        # Cap history
+        if len(performance["history"]) > PERFORMANCE_HISTORY_CAP:
+            performance["history"] = performance["history"][-PERFORMANCE_HISTORY_CAP:]
+
+        pos["perf_recorded"] = True
+        settlements.append(record)
+
+        emoji = "🏆" if won else "💀"
+        log(f"{emoji} Settlement: {pos_slug} {pos_outcome} → winner={winner}, pnl=${pnl:+.2f}")
+
+    return settlements
+
+
+def _format_performance_summary(performance: Dict) -> str:
+    """Format a short performance summary string."""
+    total = performance.get("total_settled", 0)
+    wins = performance.get("wins", 0)
+    losses = performance.get("losses", 0)
+    pnl = performance.get("total_pnl_usd", 0.0)
+    wr = performance.get("win_rate_pct", 0.0)
+    if total == 0:
+        return "📊 胜率: 暂无数据"
+    return f"📊 胜率: {wins}/{total} ({wr:.1f}%) | P&L: ${pnl:+.2f}"
+
+
 def main() -> int:
     log(f"Starting copy trader (dry_run={DRY_RUN}, balance_pct={BALANCE_PERCENT:.0%})")
 
     # Auto-redeem resolved markets first
     redeemed = auto_redeem()
     if redeemed:
-        ts = datetime.now(timezone.utc).strftime("%m-%d %H:%M UTC")
-        lines = [f"💸 <b>自动领取收益</b> ({ts})", ""]
-        for r in redeemed:
-            lines.append(f"  ✅ {r['title']}")
-        tg_send("\n".join(lines))
+        log(f"Auto-redeemed {len(redeemed)} markets")
 
     suspects_data = load_json(SUSPECTS_FILE)
     if not suspects_data:
@@ -301,6 +485,7 @@ def main() -> int:
         if old_key not in copied_positions:
             copied_positions[old_key] = {"wallet": "unknown", "settled": False}
     trade_log = copy_state.get("trades", [])
+    performance = _init_performance(copy_state)
 
     actionable = find_actionable_trades(suspects_data)
     if not actionable:
@@ -324,23 +509,31 @@ def main() -> int:
         whale_side = trade["side"]
         market_key = f"{slug}:{outcome}:{whale_side}"
 
-        # Skip if already copied this exact trade (same market+outcome+direction)
-        if market_key in copied_positions and not copied_positions[market_key].get("settled"):
-            log(f"Already copied {market_key} (unsettled), skipping")
-            continue
+        if whale_side == "BUY":
+            # Skip if already copied this BUY (same market+outcome)
+            if market_key in copied_positions and not copied_positions[market_key].get("settled"):
+                log(f"Already copied {market_key} (unsettled), skipping")
+                continue
+        else:
+            # SELL: only act if we have an open BUY position for this market+outcome
+            buy_key = f"{slug}:{outcome}:BUY"
+            if buy_key not in copied_positions or copied_positions[buy_key].get("settled"):
+                log(f"No open position for {slug} {outcome}, skipping SELL")
+                continue
 
-        # Recalculate trade size from current balance (refreshed each trade)
-        trade_size = calc_trade_size(available)
-        if trade_size < MIN_TRADE_SIZE:
-            log(f"Trade size too small (${trade_size:.2f}), stopping")
-            break
-
-        # Check hard exposure cap if set
-        if _MAX_EXPOSURE_ENV > 0:
-            total_invested = sum(t.get("amount_usd", 0) for t in trade_log if t.get("result", {}).get("success"))
-            if total_invested + trade_size > _MAX_EXPOSURE_ENV:
-                log(f"Exposure limit reached (${total_invested:.2f} / ${_MAX_EXPOSURE_ENV})")
+        # For BUY: check balance and exposure limits
+        # For SELL: skip these checks (we're closing a position, not spending)
+        if whale_side == "BUY":
+            trade_size = calc_trade_size(available)
+            if trade_size < MIN_TRADE_SIZE:
+                log(f"Trade size too small (${trade_size:.2f}), stopping")
                 break
+
+            if _MAX_EXPOSURE_ENV > 0:
+                total_invested = sum(t.get("amount_usd", 0) for t in trade_log if t.get("result", {}).get("success"))
+                if total_invested + trade_size > _MAX_EXPOSURE_ENV:
+                    log(f"Exposure limit reached (${total_invested:.2f} / ${_MAX_EXPOSURE_ENV})")
+                    break
 
         # Get token ID
         tokens = get_market_tokens(slug)
@@ -373,36 +566,30 @@ def main() -> int:
             result = place_market_order(token_id, "buy", trade_size)
 
         else:
-            # Whale sells outcome → we buy the opposite side
-            # For YES/NO markets: sell YES → buy NO
-            # For named outcomes (e.g. Legacy/Astralis): sell Legacy → buy the other
-            all_outcomes = list(tokens.keys())
-            if outcome.upper() in ("YES", "NO"):
-                opposite = "NO" if outcome.upper() == "YES" else "YES"
-            else:
-                # Named outcome: pick the other one
-                others = [k for k in all_outcomes if k.upper() != outcome.upper()]
-                opposite = others[0] if others else None
-            if not opposite:
-                log(f"Cannot determine opposite of {outcome} in {slug}")
-                continue
-            token_id = tokens.get(opposite) or tokens.get(opposite.upper())
+            # Whale sells outcome → we sell our position in the same outcome
+            # (close position, not buy opposite)
+            token_id = tokens.get(outcome) or tokens.get(outcome.upper())
             if not token_id:
-                log(f"No token found for opposite {opposite} in {slug}")
+                for k, v in tokens.items():
+                    if k.upper() == outcome.upper():
+                        token_id = v
+                        break
+            if not token_id:
+                log(f"No token found for outcome {outcome} in {slug}")
                 continue
 
-            opposite_price = 1.0 - trade["price"]  # complement price
-            if opposite_price < MIN_PRICE or opposite_price > MAX_PRICE:
-                log(f"Opposite price ${opposite_price:.3f} out of range")
+            # Check if we hold any shares of this token
+            our_shares = get_token_balance(token_id)
+            if our_shares < MIN_SHARES:
+                log(f"No position to sell for {slug} {outcome} (balance: {our_shares:.1f} shares), skipping")
                 continue
 
-            shares = trade_size / opposite_price
-            if shares < MIN_SHARES:
-                shares = MIN_SHARES
-                trade_size = shares * opposite_price
+            # Sell all our shares
+            shares = our_shares
+            trade_size = shares * trade["price"]
 
-            log(f"Following SELL: {slug} buying {opposite} ${trade_size:.2f} (market order)")
-            result = place_market_order(token_id, "buy", trade_size)
+            log(f"Following SELL: {slug} {outcome} selling {shares:.1f} shares (market order)")
+            result = place_market_order(token_id, "sell", shares)
 
         record = {
             "time": datetime.now(timezone.utc).isoformat(),
@@ -421,21 +608,29 @@ def main() -> int:
         }
 
         if result.get("success"):
-            copied_positions[market_key] = {
-                "wallet": wallet,
-                "username": trade["username"],
-                "settled": False,
-                "trade_time": datetime.now(timezone.utc).isoformat(),
-                "slug": slug,
-                "outcome": outcome,
-                "side": whale_side,
-            }
-            available -= trade_size
+            if whale_side == "BUY":
+                copied_positions[market_key] = {
+                    "wallet": wallet,
+                    "username": trade["username"],
+                    "settled": False,
+                    "trade_time": datetime.now(timezone.utc).isoformat(),
+                    "slug": slug,
+                    "outcome": outcome,
+                    "side": whale_side,
+                }
+                available -= trade_size
+            else:
+                # SELL: mark the original BUY position as settled
+                buy_key = f"{slug}:{outcome}:BUY"
+                if buy_key in copied_positions:
+                    copied_positions[buy_key]["settled"] = True
+                    log(f"Closed position: {buy_key}")
+                available += trade_size  # got USDC back from selling
             executed.append(record)
             trade_log.append(record)
-            log(f"✅ Order placed: {slug} {outcome}")
+            log(f"✅ Order placed: {whale_side} {slug} {outcome}")
         else:
-            log(f"❌ Order failed: {slug} {outcome}")
+            log(f"❌ Order failed: {whale_side} {slug} {outcome}")
             trade_log.append(record)
 
     # Mark settled positions (check market resolution status)
@@ -451,25 +646,49 @@ def main() -> int:
         except Exception:
             pass
 
+    # Check settlement results and record win/loss performance
+    settlements = check_settlement_results(copied_positions, trade_log, performance)
+
+    # Send Telegram notification for each settlement
+    if settlements:
+        ts = datetime.now(CST).strftime("%m-%d %H:%M CST")
+        lines = [f"🏁 <b>仓位结算通知</b> ({ts})", ""]
+        for s in settlements:
+            emoji = "🏆" if s["won"] else "💀"
+            lines.append(
+                f"{emoji} <b>{s['slug']}</b>\n"
+                f"   持仓: {s['outcome']} @ ${s['buy_price']:.3f} × {s['shares']:.1f}股\n"
+                f"   胜出: {s['winning_outcome']} | P&L: <b>${s['pnl_usd']:+.2f}</b>\n"
+                f"   跟随: {s['whale_username']}"
+            )
+        lines.append("")
+        lines.append(_format_performance_summary(performance))
+        tg_send("\n".join(lines))
+
     # Save state
     copy_state = {
         "last_run": datetime.now(timezone.utc).isoformat(),
         "copied_positions": copied_positions,
         "trades": trade_log[-200:],
+        "performance": performance,
     }
     save_json(COPY_STATE_FILE, copy_state)
 
-    # Telegram notification
+    # Telegram notification for executed trades
     if executed:
-        ts = datetime.now(timezone.utc).strftime("%m-%d %H:%M UTC")
+        ts = datetime.now(CST).strftime("%m-%d %H:%M CST")
         lines = [f"🤖 <b>自动跟单执行</b> ({ts})", ""]
         for i, t in enumerate(executed, 1):
+            side_emoji = "📗" if t.get("whale_side", "BUY") == "BUY" else "📕"
             lines.append(
-                f"{i}) <b>{t['title']}</b>\n"
+                f"{i}) {side_emoji} <b>{t['title']}</b>\n"
                 f"   {t['outcome']} ${t['amount_usd']:.2f} ({t['shares']:.1f}股) @ {t['price']:.3f}\n"
                 f"   跟随: {t['whale_username']} (分数{t['whale_score']}, 鲸鱼下注${t['whale_size']:,.0f})"
             )
         lines.append(f"\n💰 余额: ${available:.2f}")
+        # Append win rate stats
+        if performance["total_settled"] > 0:
+            lines.append(_format_performance_summary(performance))
         tg_send("\n".join(lines))
 
     log(f"Done. Executed {len(executed)} trades, remaining balance: ${available:.2f}")
@@ -500,9 +719,10 @@ def daily_report() -> int:
     trades = copy_state.get("trades", [])
     successful = [t for t in trades if t.get("result", {}).get("success")]
     total_invested = sum(t.get("amount_usd", 0) for t in successful)
+    performance = _init_performance(copy_state)
 
     # 4. Build message
-    ts = datetime.now(timezone.utc).strftime("%m-%d %H:%M UTC")
+    ts = datetime.now(CST).strftime("%m-%d %H:%M CST")
     lines = [
         f"📊 <b>Polymarket 每日报告</b> ({ts})",
         f"━━━━━━━━━━━━━━━",
@@ -510,6 +730,31 @@ def daily_report() -> int:
         f"📈 累计跟单: ${total_invested:.2f} ({len(successful)} 笔)",
         "",
     ]
+
+    # ── Performance / Win Rate Section ──
+    if performance["total_settled"] > 0:
+        lines.append("🎯 <b>跟单胜率:</b>")
+        lines.append(
+            f"  胜率: {performance['wins']}/{performance['total_settled']} "
+            f"({performance['win_rate_pct']:.1f}%)"
+        )
+        lines.append(f"  总盈亏: <b>${performance['total_pnl_usd']:+.2f}</b>")
+
+        history = performance.get("history", [])
+        if history:
+            best = max(history, key=lambda h: h.get("pnl_usd", 0))
+            worst = min(history, key=lambda h: h.get("pnl_usd", 0))
+            lines.append(
+                f"  最佳: {best['slug']} {best.get('outcome', '')} "
+                f"${best['pnl_usd']:+.2f}"
+            )
+            lines.append(
+                f"  最差: {worst['slug']} {worst.get('outcome', '')} "
+                f"${worst['pnl_usd']:+.2f}"
+            )
+        lines.append("")
+    else:
+        lines.append("🎯 跟单胜率: 暂无结算数据\n")
 
     # Open positions
     if positions:
@@ -548,7 +793,7 @@ def daily_report() -> int:
     if redeemed:
         lines.append("💸 <b>本次自动领取:</b>")
         for r in redeemed:
-            lines.append(f"  ✅ {r['title']}")
+            lines.append(f"  ✅ {r.get('title') or r.get('question', '?')}")
         lines.append("")
 
     # Copied positions summary
@@ -566,15 +811,126 @@ def daily_report() -> int:
     return 0
 
 
-# Wallet address for position queries
-WALLET_ADDRESS = os.environ.get("POLYMARKET_WALLET", "0x76Ce440a449475bDA2aB33780F21F6eB8200C1d9")
+# Wallet address for position queries / daily report.
+# Intentionally no default to avoid leaking a real operator wallet.
+WALLET_ADDRESS = os.environ.get("POLYMARKET_WALLET", "").strip()
 
 
 def auto_redeem() -> List[Dict]:
-    """Check for resolved markets and redeem winning tokens."""
+    """Check ALL traded markets (not just copy trades) and redeem resolved ones.
+
+    Uses the authenticated CLOB trades API to discover every market the wallet
+    has ever traded, then checks each for resolution and attempts redemption.
+    This covers both copy-traded and manually-placed positions.
+    """
     redeemed = []
 
-    # Get copy trade state to find markets we've traded
+    # --- 1. Discover all markets from CLOB trade history ---
+    try:
+        trades_data = run_cli(["clob", "trades"], use_proxy=True)
+    except RuntimeError as e:
+        log(f"Failed to fetch CLOB trades: {e}")
+        # Fallback: try copy_state.json for backwards compat
+        return _auto_redeem_from_copy_state()
+
+    if not trades_data:
+        log("No CLOB trades found")
+        return redeemed
+
+    # CLOB trades response may be {data: [...]} or [...]
+    trade_list = trades_data.get("data", trades_data) if isinstance(trades_data, dict) else trades_data
+    if not isinstance(trade_list, list):
+        log(f"Unexpected CLOB trades format: {type(trade_list)}")
+        return redeemed
+
+    # Unique condition IDs
+    condition_ids = {}
+    for t in trade_list:
+        cid = t.get("market", "")
+        if cid and cid not in condition_ids:
+            condition_ids[cid] = t.get("outcome", "")
+
+    log(f"Found {len(condition_ids)} unique markets in trade history")
+
+    # Track already-redeemed to avoid redundant on-chain calls
+    redeemed_file = Path("redeemed_markets.json")
+    already_redeemed: set = set()
+    if redeemed_file.exists():
+        try:
+            already_redeemed = set(json.loads(redeemed_file.read_text()).get("markets", []))
+        except Exception:
+            pass
+
+    # --- 2. Check each market and redeem if resolved ---
+    for cid in condition_ids:
+        if cid in already_redeemed:
+            continue
+
+        try:
+            market = run_cli(["clob", "market", cid])
+            if not isinstance(market, dict):
+                continue
+
+            closed = market.get("closed", False)
+            active = market.get("active", True)
+
+            if not closed:
+                continue
+
+            neg_risk = market.get("neg_risk", False)
+            question = market.get("question", cid[:20])
+
+            # Skip neg-risk markets: redeem-neg-risk requires exact token
+            # amounts which we can't reliably determine from trade history.
+            # These are best redeemed manually or via a dedicated script.
+            if neg_risk:
+                log(f"Skipping neg-risk market (manual redeem needed): {question[:50]}")
+                continue
+
+            log(f"Redeeming: {question[:50]} (condition: {cid[:16]}...)")
+
+            try:
+                result = run_cli([
+                    "ctf", "redeem",
+                    "--condition", cid,
+                ], use_proxy=True, timeout=60)
+
+                tx_hash = ""
+                if isinstance(result, dict):
+                    tx_hash = result.get("transaction_hash", "")
+
+                redeemed.append({
+                    "question": question,
+                    "condition_id": cid,
+                    "tx": tx_hash,
+                })
+                already_redeemed.add(cid)
+                log(f"✅ Redeemed: {question[:50]}")
+
+            except RuntimeError as e:
+                err = str(e).lower()
+                if any(skip in err for skip in ["nothing", "no payout", "already", "zero", "revert", "payout is zero"]):
+                    log(f"Nothing to redeem: {question[:50]}")
+                    already_redeemed.add(cid)  # Don't retry
+                else:
+                    log(f"Redeem failed: {question[:50]} - {e}")
+
+        except Exception as e:
+            log(f"Error checking market {cid[:16]}...: {e}")
+
+    # Persist redeemed set (keep last 500)
+    try:
+        redeemed_list = list(already_redeemed)[-500:]
+        redeemed_file.write_text(json.dumps({"markets": redeemed_list}))
+    except Exception:
+        pass
+
+    return redeemed
+
+
+def _auto_redeem_from_copy_state() -> List[Dict]:
+    """Fallback: redeem only from copy_state.json (old behavior)."""
+    redeemed = []
     copy_state = load_json(COPY_STATE_FILE)
     trades = copy_state.get("trades", [])
     successful = [t for t in trades if t.get("result", {}).get("success")]
@@ -582,8 +938,7 @@ def auto_redeem() -> List[Dict]:
     if not successful:
         return redeemed
 
-    # Check each traded market
-    seen_slugs = set()
+    seen_slugs: set = set()
     for trade in successful:
         slug = trade.get("slug", "")
         if not slug or slug in seen_slugs:
@@ -595,57 +950,29 @@ def auto_redeem() -> List[Dict]:
             if not isinstance(market, dict):
                 continue
 
-            # Check if market is resolved
-            resolved = market.get("resolved", False)
             closed = market.get("closed", False)
             active = market.get("active", True)
-
-            if not (resolved or (closed and not active)):
+            if not (closed and not active):
                 continue
 
-            # Get condition ID
             condition_id = market.get("conditionId") or market.get("condition_id", "")
             if not condition_id:
                 continue
 
-            # Check neg_risk flag
             neg_risk = market.get("negRisk", market.get("neg_risk", False))
+            if neg_risk:
+                continue
 
-            log(f"Found resolved market: {slug} (condition: {condition_id[:12]}..., neg_risk: {neg_risk})")
-
-            # Try to redeem
-            try:
-                if neg_risk:
-                    result = run_cli([
-                        "ctf", "redeem-neg-risk",
-                        "--condition", condition_id,
-                        "--amounts", "1,1",
-                    ], use_proxy=True)
-                else:
-                    result = run_cli([
-                        "ctf", "redeem",
-                        "--condition", condition_id,
-                    ], use_proxy=True)
-
-                redeemed.append({
-                    "slug": slug,
-                    "title": market.get("question", slug),
-                    "condition_id": condition_id,
-                    "result": result,
-                })
-                log(f"✅ Redeemed: {slug}")
-
-            except RuntimeError as e:
-                err = str(e)
-                # "nothing to redeem" type errors are normal
-                if any(skip in err.lower() for skip in ["nothing", "no payout", "already", "zero", "revert"]):
-                    log(f"Nothing to redeem for {slug}: {err}")
-                else:
-                    log(f"Redeem failed for {slug}: {err}")
+            result = run_cli(["ctf", "redeem", "--condition", condition_id], use_proxy=True, timeout=60)
+            redeemed.append({
+                "question": market.get("question", slug),
+                "condition_id": condition_id,
+                "tx": result.get("transaction_hash", "") if isinstance(result, dict) else "",
+            })
+            log(f"✅ Redeemed (fallback): {slug}")
 
         except Exception as e:
-            log(f"Error checking {slug}: {e}")
-            continue
+            log(f"Error in fallback redeem for {slug}: {e}")
 
     return redeemed
 
