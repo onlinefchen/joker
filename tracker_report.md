@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-12T21:09:09.470393+00:00
+Generated: 2026-03-12T21:21:40.012034+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -18,7 +18,7 @@ Generated: 2026-03-12T21:09:09.470393+00:00
 | 12 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 58.0 | watch |
 | 13 | `0xF19D7D88Cf362110027DcD64750FDd209A04276f` | huhaoli | 58.0 | watch |
 | 14 | `0x0C0E270CF879583d6a0142Fc817e05b768d0434e` | The Spirit of Ukraine>UMA | 58.0 | watch |
-| 15 | `0x39D3c773be30Fcc73161FC6768f46d563A779EF0` | matanovik | 52.0 | watch |
+| 15 | `0xD1Be0932c621CC31Edb32eAE5Cc7E8394fACCc57` | smoothmove | 55.0 | watch |
 | 16 | `0xEaC496091D7EEc31B2f9be820a142Da2DABfc1DD` | 0xeac496091d7eec31b2f9be820a142da2dabfc1dd | 51.0 | watch |
 | 17 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
 | 18 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | watch |
