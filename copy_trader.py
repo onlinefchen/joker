@@ -640,7 +640,7 @@ def main() -> int:
         pos_slug = pos.get("slug") or key.split(":")[0]
         try:
             market = run_cli(["markets", "get", pos_slug])
-            if isinstance(market, dict) and (market.get("resolved") or (market.get("closed") and not market.get("active"))):
+            if isinstance(market, dict) and (market.get("resolved") or market.get("closed")):
                 pos["settled"] = True
                 log(f"Marked settled: {pos_slug}")
         except Exception:
