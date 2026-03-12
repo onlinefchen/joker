@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-12T23:08:52.095011+00:00
+Generated: 2026-03-12T23:17:50.839436+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -12,11 +12,11 @@ Generated: 2026-03-12T23:08:52.095011+00:00
 | 6 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 66.0 | candidate |
 | 7 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
 | 8 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 66.0 | candidate |
-| 9 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 62.0 | candidate |
-| 10 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | candidate |
-| 11 | `0xdb2223Cc5202A4718C3069f577eC971f71C96478` | FTWUTB | 62.0 | candidate |
-| 12 | `0x9CB990F1862568A63d8601EfEebe0304225C32F2` | jtwyslljy | 62.0 | candidate |
-| 13 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | candidate |
+| 9 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | candidate |
+| 10 | `0xdb2223Cc5202A4718C3069f577eC971f71C96478` | FTWUTB | 62.0 | candidate |
+| 11 | `0x9CB990F1862568A63d8601EfEebe0304225C32F2` | jtwyslljy | 62.0 | candidate |
+| 12 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | candidate |
+| 13 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 58.0 | watch |
 | 14 | `0xF19D7D88Cf362110027DcD64750FDd209A04276f` | huhaoli | 58.0 | watch |
 | 15 | `0x0C0E270CF879583d6a0142Fc817e05b768d0434e` | The Spirit of Ukraine>UMA | 58.0 | watch |
 | 16 | `0xEd107a85a4585A381E48C7F7Ca4144909e7Dd2E5` | bobe2 | 58.0 | watch |
