@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-12T21:45:09.963039+00:00
+Generated: 2026-03-12T22:04:11.767437+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -15,12 +15,12 @@ Generated: 2026-03-12T21:45:09.963039+00:00
 | 9 | `0xdb2223Cc5202A4718C3069f577eC971f71C96478` | FTWUTB | 62.0 | candidate |
 | 10 | `0x9CB990F1862568A63d8601EfEebe0304225C32F2` | jtwyslljy | 62.0 | candidate |
 | 11 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | candidate |
-| 12 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 58.0 | watch |
-| 13 | `0xF19D7D88Cf362110027DcD64750FDd209A04276f` | huhaoli | 58.0 | watch |
-| 14 | `0x0C0E270CF879583d6a0142Fc817e05b768d0434e` | The Spirit of Ukraine>UMA | 58.0 | watch |
-| 15 | `0xD1Be0932c621CC31Edb32eAE5Cc7E8394fACCc57` | smoothmove | 55.0 | watch |
-| 16 | `0xEaC496091D7EEc31B2f9be820a142Da2DABfc1DD` | 0xeac496091d7eec31b2f9be820a142da2dabfc1dd | 51.0 | watch |
-| 17 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
-| 18 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | watch |
+| 12 | `0xF19D7D88Cf362110027DcD64750FDd209A04276f` | huhaoli | 58.0 | watch |
+| 13 | `0x0C0E270CF879583d6a0142Fc817e05b768d0434e` | The Spirit of Ukraine>UMA | 58.0 | watch |
+| 14 | `0xD1Be0932c621CC31Edb32eAE5Cc7E8394fACCc57` | smoothmove | 55.0 | watch |
+| 15 | `0xEaC496091D7EEc31B2f9be820a142Da2DABfc1DD` | 0xeac496091d7eec31b2f9be820a142da2dabfc1dd | 51.0 | watch |
+| 16 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
+| 17 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | watch |
+| 18 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 48.0 | watch |
 | 19 | `0xB90494d9a5D8f71f1930b2aa4B599F95c344c255` | Avonmore | 48.0 | watch |
 | 20 | `0xB45a797faA52B0fd8aDc56D30382022B7b12192C` | bcda | 48.0 | watch |

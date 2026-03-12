@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T21:45:09.963039+00:00",
+  "generated_at": "2026-03-12T22:04:11.767437+00:00",
   "params": {
     "wallet_limit": 30,
     "trades_limit": 200,
@@ -28,25 +28,25 @@
       "delta_score": 0,
       "tier": "core",
       "reasons": [
-        "107 large bets >= $15,000",
+        "106 large bets >= $15,000",
         "high vertical focus (91%)",
         "abnormal burst sizing (32 trades >= max(threshold,4x median))",
-        "some pre-resolution timing edge (91/190)",
-        "fast in/out across 42 markets"
+        "some pre-resolution timing edge (89/190)",
+        "fast in/out across 40 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 426,
+        "unique_markets": 429,
         "median_size": 15928.63,
-        "avg_size": 39222.6,
+        "avg_size": 39127.76,
         "max_size": 632228.68,
-        "total_buy_size": 7713291.45,
+        "total_buy_size": 7694324.21,
         "total_sell_size": 131228.07,
         "focus_ratio": 0.91,
-        "timed_hits": 91,
+        "timed_hits": 89,
         "timed_total": 190,
-        "timing_ratio": 0.479,
-        "fast_rounds": 42
+        "timing_ratio": 0.468,
+        "fast_rounds": 40
       },
       "win_rate": 0.0,
       "closed_count": 0,
@@ -356,36 +356,6 @@
       "recent_actions": []
     },
     {
-      "wallet": "0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1",
-      "username": "0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461",
-      "score": 58.0,
-      "delta_score": 0,
-      "tier": "watch",
-      "reasons": [
-        "88 large bets >= $15,000",
-        "moderate vertical focus (55%)",
-        "abnormal burst sizing (52 trades >= max(threshold,4x median))",
-        "fast in/out across 37 markets"
-      ],
-      "metrics": {
-        "trade_count": 200,
-        "unique_markets": 474,
-        "median_size": 9525.56,
-        "avg_size": 32428.42,
-        "max_size": 400000.0,
-        "total_buy_size": 6485683.65,
-        "total_sell_size": 0,
-        "focus_ratio": 0.55,
-        "timed_hits": 18,
-        "timed_total": 200,
-        "timing_ratio": 0.09,
-        "fast_rounds": 37
-      },
-      "win_rate": 0.0,
-      "closed_count": 0,
-      "recent_actions": []
-    },
-    {
       "wallet": "0xF19D7D88Cf362110027DcD64750FDd209A04276f",
       "username": "huhaoli",
       "score": 58.0,
@@ -562,6 +532,63 @@
       "win_rate": 0.0,
       "closed_count": 0,
       "recent_actions": []
+    },
+    {
+      "wallet": "0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1",
+      "username": "0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461",
+      "score": 48.0,
+      "delta_score": 0,
+      "tier": "watch",
+      "reasons": [
+        "89 large bets >= $15,000",
+        "abnormal burst sizing (54 trades >= max(threshold,4x median))",
+        "fast in/out across 38 markets"
+      ],
+      "metrics": {
+        "trade_count": 200,
+        "unique_markets": 475,
+        "median_size": 9713.05,
+        "avg_size": 33909.12,
+        "max_size": 400000.0,
+        "total_buy_size": 6781823.09,
+        "total_sell_size": 0,
+        "focus_ratio": 0.54,
+        "timed_hits": 18,
+        "timed_total": 200,
+        "timing_ratio": 0.09,
+        "fast_rounds": 38
+      },
+      "win_rate": 0.0,
+      "closed_count": 0,
+      "recent_actions": [
+        {
+          "time": "2026-03-12T21:57:39+00:00",
+          "side": "BUY",
+          "size": 150000.0,
+          "price": 0.23,
+          "outcome": "Pacers",
+          "slug": "nba-phx-ind-2026-03-12",
+          "title": "Suns vs. Pacers"
+        },
+        {
+          "time": "2026-03-12T21:49:25+00:00",
+          "side": "BUY",
+          "size": 100000.0,
+          "price": 0.71,
+          "outcome": "Hurricanes",
+          "slug": "nhl-stl-car-2026-03-12",
+          "title": "Blues vs. Hurricanes"
+        },
+        {
+          "time": "2026-03-12T21:49:23+00:00",
+          "side": "BUY",
+          "size": 100000.0,
+          "price": 0.71,
+          "outcome": "Hurricanes",
+          "slug": "nhl-stl-car-2026-03-12",
+          "title": "Blues vs. Hurricanes"
+        }
+      ]
     },
     {
       "wallet": "0xB90494d9a5D8f71f1930b2aa4B599F95c344c255",
@@ -779,7 +806,7 @@
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 340,
+        "unique_markets": 341,
         "median_size": 9687.94,
         "avg_size": 24758.69,
         "max_size": 149999.76,
