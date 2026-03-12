@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T20:48:42.980401+00:00",
+  "generated_at": "2026-03-12T21:09:09.470393+00:00",
   "params": {
     "wallet_limit": 30,
     "trades_limit": 200,
@@ -459,7 +459,7 @@
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 527,
+        "unique_markets": 528,
         "median_size": 4221.77,
         "avg_size": 4845.51,
         "max_size": 17400.0,
