@@ -40,7 +40,7 @@ MIN_SHARES = 5  # Polymarket minimum order size is 5 shares
 MIN_WHALE_SIZE = float(os.environ.get("COPY_MIN_WHALE_SIZE", "100000"))  # only copy ≥$100K trades
 MIN_PRICE = float(os.environ.get("COPY_MIN_PRICE", "0.05"))             # don't buy below 5¢
 MAX_PRICE = float(os.environ.get("COPY_MAX_PRICE", "0.92"))             # don't buy above 92¢
-ONLY_BUY = os.environ.get("COPY_ONLY_BUY", "false").lower() == "true"  # follow both BUY and SELL
+ONLY_BUY = os.environ.get("COPY_ONLY_BUY", "true").lower() == "true"  # only follow BUY
 DRY_RUN = os.environ.get("COPY_DRY_RUN", "false").lower() == "true"
 
 TG_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
@@ -269,8 +269,8 @@ def find_actionable_trades(suspects_data: Dict) -> List[Dict]:
             outcome = (action.get("outcome") or "").upper()
             title = action.get("title") or slug
 
-            # Filter
-            if ONLY_BUY and side != "BUY":
+            # Filter: skip all SELL actions (simplified)
+            if side != "BUY":
                 continue
             if size < MIN_WHALE_SIZE:
                 continue
@@ -509,31 +509,26 @@ def main() -> int:
         whale_side = trade["side"]
         market_key = f"{slug}:{outcome}:{whale_side}"
 
-        if whale_side == "BUY":
-            # Skip if already copied this BUY (same market+outcome)
-            if market_key in copied_positions and not copied_positions[market_key].get("settled"):
-                log(f"Already copied {market_key} (unsettled), skipping")
-                continue
-        else:
-            # SELL: only act if we have an open BUY position for this market+outcome
-            buy_key = f"{slug}:{outcome}:BUY"
-            if buy_key not in copied_positions or copied_positions[buy_key].get("settled"):
-                log(f"No open position for {slug} {outcome}, skipping SELL")
-                continue
+        # Only process BUY trades (SELL handling removed)
+        if whale_side != "BUY":
+            continue
+            
+        # Skip if already copied this BUY (same market+outcome)
+        if market_key in copied_positions and not copied_positions[market_key].get("settled"):
+            log(f"Already copied {market_key} (unsettled), skipping")
+            continue
 
-        # For BUY: check balance and exposure limits
-        # For SELL: skip these checks (we're closing a position, not spending)
-        if whale_side == "BUY":
-            trade_size = calc_trade_size(available)
-            if trade_size < MIN_TRADE_SIZE:
-                log(f"Trade size too small (${trade_size:.2f}), stopping")
+        # Check balance and exposure limits for BUY
+        trade_size = calc_trade_size(available)
+        if trade_size < MIN_TRADE_SIZE:
+            log(f"Trade size too small (${trade_size:.2f}), stopping")
+            break
+
+        if _MAX_EXPOSURE_ENV > 0:
+            total_invested = sum(t.get("amount_usd", 0) for t in trade_log if t.get("result", {}).get("success"))
+            if total_invested + trade_size > _MAX_EXPOSURE_ENV:
+                log(f"Exposure limit reached (${total_invested:.2f} / ${_MAX_EXPOSURE_ENV})")
                 break
-
-            if _MAX_EXPOSURE_ENV > 0:
-                total_invested = sum(t.get("amount_usd", 0) for t in trade_log if t.get("result", {}).get("success"))
-                if total_invested + trade_size > _MAX_EXPOSURE_ENV:
-                    log(f"Exposure limit reached (${total_invested:.2f} / ${_MAX_EXPOSURE_ENV})")
-                    break
 
         # Get token ID
         tokens = get_market_tokens(slug)
@@ -541,55 +536,26 @@ def main() -> int:
             log(f"Could not get tokens for {slug}")
             continue
 
-        whale_side = trade["side"]  # BUY or SELL
+        # Only handle BUY trades (whale sells outcome → we buy same outcome)
+        token_id = tokens.get(outcome) or tokens.get(outcome.upper()) or tokens.get("YES")
+        if not token_id:
+            # Try case-insensitive match
+            for k, v in tokens.items():
+                if k.upper() == outcome.upper():
+                    token_id = v
+                    break
+        if not token_id:
+            log(f"No token found for outcome {outcome} in {slug}, available: {list(tokens.keys())}")
+            continue
 
-        if whale_side == "BUY":
-            # Whale buys outcome → we buy same outcome
-            token_id = tokens.get(outcome) or tokens.get(outcome.upper()) or tokens.get("YES")
-            if not token_id:
-                # Try case-insensitive match
-                for k, v in tokens.items():
-                    if k.upper() == outcome.upper():
-                        token_id = v
-                        break
-            if not token_id:
-                log(f"No token found for outcome {outcome} in {slug}, available: {list(tokens.keys())}")
-                continue
-
-            # Calculate shares (minimum 5)
-            shares = trade_size / trade["price"]
-            if shares < MIN_SHARES:
-                shares = MIN_SHARES
-                trade_size = shares * trade["price"]
-
-            log(f"Following BUY: {slug} {outcome} ${trade_size:.2f} (market order)")
-            result = place_market_order(token_id, "buy", trade_size)
-
-        else:
-            # Whale sells outcome → we sell our position in the same outcome
-            # (close position, not buy opposite)
-            token_id = tokens.get(outcome) or tokens.get(outcome.upper())
-            if not token_id:
-                for k, v in tokens.items():
-                    if k.upper() == outcome.upper():
-                        token_id = v
-                        break
-            if not token_id:
-                log(f"No token found for outcome {outcome} in {slug}")
-                continue
-
-            # Check if we hold any shares of this token
-            our_shares = get_token_balance(token_id)
-            if our_shares < MIN_SHARES:
-                log(f"No position to sell for {slug} {outcome} (balance: {our_shares:.1f} shares), skipping")
-                continue
-
-            # Sell all our shares
-            shares = our_shares
+        # Calculate shares (minimum 5)
+        shares = trade_size / trade["price"]
+        if shares < MIN_SHARES:
+            shares = MIN_SHARES
             trade_size = shares * trade["price"]
 
-            log(f"Following SELL: {slug} {outcome} selling {shares:.1f} shares (market order)")
-            result = place_market_order(token_id, "sell", shares)
+        log(f"Following BUY: {slug} {outcome} ${trade_size:.2f} (market order)")
+        result = place_market_order(token_id, "buy", trade_size)
 
         record = {
             "time": datetime.now(timezone.utc).isoformat(),
@@ -608,29 +574,22 @@ def main() -> int:
         }
 
         if result.get("success"):
-            if whale_side == "BUY":
-                copied_positions[market_key] = {
-                    "wallet": wallet,
-                    "username": trade["username"],
-                    "settled": False,
-                    "trade_time": datetime.now(timezone.utc).isoformat(),
-                    "slug": slug,
-                    "outcome": outcome,
-                    "side": whale_side,
-                }
-                available -= trade_size
-            else:
-                # SELL: mark the original BUY position as settled
-                buy_key = f"{slug}:{outcome}:BUY"
-                if buy_key in copied_positions:
-                    copied_positions[buy_key]["settled"] = True
-                    log(f"Closed position: {buy_key}")
-                available += trade_size  # got USDC back from selling
+            # Record the BUY position
+            copied_positions[market_key] = {
+                "wallet": wallet,
+                "username": trade["username"],
+                "settled": False,
+                "trade_time": datetime.now(timezone.utc).isoformat(),
+                "slug": slug,
+                "outcome": outcome,
+                "side": whale_side,
+            }
+            available -= trade_size
             executed.append(record)
             trade_log.append(record)
-            log(f"✅ Order placed: {whale_side} {slug} {outcome}")
+            log(f"✅ Order placed: BUY {slug} {outcome}")
         else:
-            log(f"❌ Order failed: {whale_side} {slug} {outcome}")
+            log(f"❌ Order failed: BUY {slug} {outcome}")
             trade_log.append(record)
 
     # Mark settled positions (check market resolution status)
@@ -679,7 +638,7 @@ def main() -> int:
         ts = datetime.now(CST).strftime("%m-%d %H:%M CST")
         lines = [f"🤖 <b>自动跟单执行</b> ({ts})", ""]
         for i, t in enumerate(executed, 1):
-            side_emoji = "📗" if t.get("whale_side", "BUY") == "BUY" else "📕"
+            side_emoji = "📗"  # Always BUY now
             lines.append(
                 f"{i}) {side_emoji} <b>{t['title']}</b>\n"
                 f"   {t['outcome']} ${t['amount_usd']:.2f} ({t['shares']:.1f}股) @ {t['price']:.3f}\n"

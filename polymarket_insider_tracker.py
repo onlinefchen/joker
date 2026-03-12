@@ -279,6 +279,7 @@ def fetch_wallet_winrate(wallet: str, closed_limit: int = 100) -> Dict[str, Any]
 
 
 def load_state(path: str) -> Dict[str, Any]:
+    # State loading only for output purposes - not used for scoring
     if not path:
         return {}
     try:
@@ -296,39 +297,22 @@ def save_state(path: str, state: Dict[str, Any]) -> None:
 
 
 def load_protected_wallets() -> set:
-    """Load wallets with unsettled copy trades - these cannot be demoted."""
-    try:
-        copy_state_file = Path(__file__).parent / "copy_state.json"
-        if not copy_state_file.exists():
-            return set()
-        data = json.loads(copy_state_file.read_text())
-        protected = set()
-        for key, pos in data.get("copied_positions", {}).items():
-            if not pos.get("settled") and pos.get("wallet"):
-                protected.add(pos["wallet"])
-        return protected
-    except Exception:
-        return set()
+    """No longer protecting any wallets - simplified scoring"""
+    return set()
 
 
-# Global: loaded once per run
-_PROTECTED_WALLETS = load_protected_wallets()
+# Global: no longer used for protection
+_PROTECTED_WALLETS = set()
 
 
-def classify_tier(streak_high: int, score: float, streak_low: int, wallet: str = "") -> str:
-    # Never demote wallets with unsettled copy positions
-    if wallet in _PROTECTED_WALLETS:
-        if streak_high >= 3 and score >= 70:
-            return "core"
-        return "core-protected"  # keep as core even if score drops
-
-    if streak_high >= 3 and score >= 70:
+def classify_tier(score: float) -> str:
+    """Simplified tier classification based only on current score"""
+    if score >= 70:
         return "core"
-    if score >= 60:
+    elif score >= 60:
         return "candidate"
-    if streak_low >= 3 and score < 55:
-        return "remove"
-    return "watch"
+    else:
+        return "watch"
 
 
 def build_report_md(title: str, generated_at: str, top_rows: List[Dict[str, Any]]) -> str:
@@ -337,12 +321,12 @@ def build_report_md(title: str, generated_at: str, top_rows: List[Dict[str, Any]
         "",
         f"Generated: {generated_at}",
         "",
-        "| Rank | Wallet | User | Score | ΔScore | Tier | HighStreak | LowStreak |",
-        "|---:|---|---|---:|---:|---|---:|---:|",
+        "| Rank | Wallet | User | Score | Tier |",
+        "|---:|---|---|---:|---|",
     ]
     for i, r in enumerate(top_rows, 1):
         lines.append(
-            f"| {i} | `{r['wallet']}` | {r['username']} | {r['score']:.1f} | {r['delta_score']:+.1f} | {r['tier']} | {r['high_streak']} | {r['low_streak']} |"
+            f"| {i} | `{r['wallet']}` | {r['username']} | {r['score']:.1f} | {r['tier']} |"
         )
     lines.append("")
     return "\n".join(lines)
@@ -384,8 +368,8 @@ def main() -> int:
         print("Unexpected leaderboard response", file=sys.stderr)
         return 1
 
+    # Still load state for debugging output, but don't use for scoring
     prev_state = load_state(args.state_file)
-    prev_wallets = prev_state.get("wallets", {}) if isinstance(prev_state, dict) else {}
 
     mcache = MarketCache()
     reports: List[WalletReport] = []
@@ -436,15 +420,9 @@ def main() -> int:
     new_state_wallets: Dict[str, Any] = {}
 
     for r in reports:
-        prev = prev_wallets.get(r.wallet, {}) if isinstance(prev_wallets, dict) else {}
-        prev_score = float(prev.get("score", 0.0))
-        delta = r.score - prev_score
-
-        prev_high = int(prev.get("high_streak", 0))
-        prev_low = int(prev.get("low_streak", 0))
-        high_streak = (prev_high + 1) if r.score >= 70 else 0
-        low_streak = (prev_low + 1) if r.score < 55 else 0
-        tier = classify_tier(high_streak, r.score, low_streak, wallet=r.wallet)
+        # Simplified: no historical data used for scoring
+        delta_score = 0  # Always 0 since we don't track history
+        tier = classify_tier(r.score)
 
         recent_actions = summarize_recent_actions(
             wallet_trades.get(r.wallet, []),
@@ -458,10 +436,8 @@ def main() -> int:
             "wallet": r.wallet,
             "username": r.username,
             "score": r.score,
-            "delta_score": round(delta, 2),
+            "delta_score": delta_score,
             "tier": tier,
-            "high_streak": high_streak,
-            "low_streak": low_streak,
             "reasons": r.reasons,
             "metrics": r.metrics,
             "win_rate": wr.get("win_rate", 0.0),
@@ -469,11 +445,10 @@ def main() -> int:
             "recent_actions": recent_actions,
         }
         rows.append(row)
+        # Still save state for debugging but don't use for scoring next time
         new_state_wallets[r.wallet] = {
             "username": r.username,
             "score": r.score,
-            "high_streak": high_streak,
-            "low_streak": low_streak,
             "updated_at": datetime.now(timezone.utc).isoformat(),
         }
 
@@ -482,7 +457,7 @@ def main() -> int:
     print(f"\n=== Insider-style suspect wallets (score >= {args.min_score}) ===")
     for x in suspects[: args.top]:
         print(f"\n{x['wallet']}  ({x['username']})")
-        print(f"score: {x['score']}  delta: {x['delta_score']:+.2f}  tier: {x['tier']}")
+        print(f"score: {x['score']}  tier: {x['tier']}")
         print("reasons: " + "; ".join(x["reasons"][:5]))
         m = x["metrics"]
         print(
