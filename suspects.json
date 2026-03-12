@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T21:21:40.012034+00:00",
+  "generated_at": "2026-03-12T21:45:09.963039+00:00",
   "params": {
     "wallet_limit": 30,
     "trades_limit": 200,
@@ -128,13 +128,13 @@
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 704,
+        "unique_markets": 705,
         "median_size": 4007.0,
-        "avg_size": 13483.93,
+        "avg_size": 13498.66,
         "max_size": 150000.0,
-        "total_buy_size": 2398275.04,
+        "total_buy_size": 2401220.59,
         "total_sell_size": 298511.69,
-        "focus_ratio": 0.445,
+        "focus_ratio": 0.44,
         "timed_hits": 175,
         "timed_total": 187,
         "timing_ratio": 0.936,
