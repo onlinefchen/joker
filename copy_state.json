@@ -1,49 +1,63 @@
 {
-  "last_run": "2026-03-10T02:28:32.674089+00:00",
+  "last_run": "2026-03-12T22:48:48.412959+00:00",
   "copied_positions": {
     "cs2-lgc-ast10-2026-03-08:LEGACY:BUY": {
       "wallet": "0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A",
       "username": "bossoskil1",
-      "settled": false,
+      "settled": true,
       "trade_time": "2026-03-08T09:39:44.661054+00:00",
       "slug": "cs2-lgc-ast10-2026-03-08",
       "outcome": "LEGACY",
-      "side": "BUY"
+      "side": "BUY",
+      "perf_recorded": true
     },
     "nba-was-nop-2026-03-08-spread-home-11pt5:WIZARDS:SELL": {
       "wallet": "0x1BC0D88cA86b9049cf05D642E634836d5DdF4429",
       "username": "212121212121212121212",
-      "settled": false,
+      "settled": true,
       "trade_time": "2026-03-08T22:46:19.686719+00:00",
       "slug": "nba-was-nop-2026-03-08-spread-home-11pt5",
       "outcome": "WIZARDS",
-      "side": "SELL"
+      "side": "SELL",
+      "perf_recorded": true
     },
     "nba-orl-mil-2026-03-08:BUCKS:BUY": {
       "wallet": "0x1BC0D88cA86b9049cf05D642E634836d5DdF4429",
       "username": "212121212121212121212",
-      "settled": false,
+      "settled": true,
       "trade_time": "2026-03-08T23:31:28.382695+00:00",
       "slug": "nba-orl-mil-2026-03-08",
       "outcome": "BUCKS",
-      "side": "BUY"
+      "side": "BUY",
+      "perf_recorded": true
     },
     "val-pr1-nrg-2026-03-09:NRG:BUY": {
       "wallet": "0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A",
       "username": "bossoskil1",
-      "settled": false,
+      "settled": true,
       "trade_time": "2026-03-09T22:51:30.400090+00:00",
       "slug": "val-pr1-nrg-2026-03-09",
       "outcome": "NRG",
-      "side": "BUY"
+      "side": "BUY",
+      "perf_recorded": true
     },
     "nba-nyk-lac-2026-03-09:CLIPPERS:BUY": {
       "wallet": "0xBDDF61Af533fF524D27154e589d2D7A81510C684",
       "username": "Countryside",
-      "settled": false,
+      "settled": true,
       "trade_time": "2026-03-10T02:28:31.883991+00:00",
       "slug": "nba-nyk-lac-2026-03-09",
       "outcome": "CLIPPERS",
+      "side": "BUY",
+      "perf_recorded": true
+    },
+    "nba-phi-det-2026-03-12-spread-home-15pt5:PISTONS:BUY": {
+      "wallet": "0x1BC0D88cA86b9049cf05D642E634836d5DdF4429",
+      "username": "212121212121212121212",
+      "settled": false,
+      "trade_time": "2026-03-12T22:48:46.088332+00:00",
+      "slug": "nba-phi-det-2026-03-12-spread-home-15pt5",
+      "outcome": "PISTONS",
       "side": "BUY"
     }
   },
@@ -224,6 +238,92 @@
           "transaction_hashes": []
         }
       }
+    },
+    {
+      "time": "2026-03-12T22:48:46.088303+00:00",
+      "slug": "nba-phi-det-2026-03-12-spread-home-15pt5",
+      "title": "Spread: Pistons (-15.5)",
+      "outcome": "PISTONS",
+      "token_id": "0xbfc4eb1925f6a08fb0e81da76b7690838c14a8ba0bffaf27768ee558a058268e",
+      "price": 0.47,
+      "shares": 5,
+      "amount_usd": 2.3499999999999996,
+      "whale_wallet": "0x1BC0D88cA86b9049cf05D642E634836d5DdF4429",
+      "whale_username": "212121212121212121212",
+      "whale_score": 80.0,
+      "whale_size": 100000.0,
+      "result": {
+        "success": true,
+        "result": {
+          "error_msg": "",
+          "making_amount": "2.349999",
+          "order_id": "0xc9448eac355b023a434dc79de7c3cf9940db03fbcaa92e79e7d20cd9e8a8d151",
+          "status": "MATCHED",
+          "success": true,
+          "taking_amount": "5.010641",
+          "trade_ids": [],
+          "transaction_hashes": [
+            "0x62b82d106890ac2df88040aa36966a2e4cbbb05dad687014e7c5923ac1a140b1"
+          ]
+        }
+      }
     }
-  ]
+  ],
+  "performance": {
+    "total_settled": 4,
+    "wins": 3,
+    "losses": 1,
+    "total_pnl_usd": 5.15,
+    "win_rate_pct": 75.0,
+    "history": [
+      {
+        "slug": "cs2-lgc-ast10-2026-03-08",
+        "outcome": "LEGACY",
+        "side": "BUY",
+        "buy_price": 0.46,
+        "shares": 5.0,
+        "won": true,
+        "pnl_usd": 2.7,
+        "winning_outcome": "LEGACY",
+        "settled_at": "2026-03-12T22:48:47.451815+00:00",
+        "whale_username": "bossoskil1"
+      },
+      {
+        "slug": "nba-orl-mil-2026-03-08",
+        "outcome": "BUCKS",
+        "side": "BUY",
+        "buy_price": 0.36,
+        "shares": 5.0,
+        "won": false,
+        "pnl_usd": -1.8,
+        "winning_outcome": "MAGIC",
+        "settled_at": "2026-03-12T22:48:47.529676+00:00",
+        "whale_username": "212121212121212121212"
+      },
+      {
+        "slug": "val-pr1-nrg-2026-03-09",
+        "outcome": "NRG",
+        "side": "BUY",
+        "buy_price": 0.68,
+        "shares": 5.0,
+        "won": true,
+        "pnl_usd": 1.6,
+        "winning_outcome": "NRG",
+        "settled_at": "2026-03-12T22:48:47.601936+00:00",
+        "whale_username": "bossoskil1"
+      },
+      {
+        "slug": "nba-nyk-lac-2026-03-09",
+        "outcome": "CLIPPERS",
+        "side": "BUY",
+        "buy_price": 0.47,
+        "shares": 5.0,
+        "won": true,
+        "pnl_usd": 2.65,
+        "winning_outcome": "CLIPPERS",
+        "settled_at": "2026-03-12T22:48:47.678935+00:00",
+        "whale_username": "Countryside"
+      }
+    ]
+  }
 }
