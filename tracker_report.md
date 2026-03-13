@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-13T20:04:48.196961+00:00
+Generated: 2026-03-13T20:22:42.041787+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -23,4 +23,4 @@ Generated: 2026-03-13T20:04:48.196961+00:00
 | 17 | `0xEd107a85a4585A381E48C7F7Ca4144909e7Dd2E5` | bobe2 | 58.0 | watch |
 | 18 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
 | 19 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | watch |
-| 20 | `0xB90494d9a5D8f71f1930b2aa4B599F95c344c255` | Avonmore | 48.0 | watch |
+| 20 | `0xB90494d9a5D8f71f1930b2aa4B599F95c344c255` | puntpint | 48.0 | watch |
