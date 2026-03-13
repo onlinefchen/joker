@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-13T08:46:03.419345+00:00",
+  "generated_at": "2026-03-13T09:12:00.297100+00:00",
   "params": {
     "wallet_limit": 30,
     "trades_limit": 200,
@@ -31,7 +31,7 @@
         "109 large bets >= $15,000",
         "high vertical focus (92%)",
         "abnormal burst sizing (32 trades >= max(threshold,4x median))",
-        "some pre-resolution timing edge (85/191)",
+        "some pre-resolution timing edge (85/189)",
         "fast in/out across 41 markets"
       ],
       "metrics": {
@@ -44,8 +44,8 @@
         "total_sell_size": 131186.92,
         "focus_ratio": 0.915,
         "timed_hits": 85,
-        "timed_total": 191,
-        "timing_ratio": 0.445,
+        "timed_total": 189,
+        "timing_ratio": 0.45,
         "fast_rounds": 41
       },
       "win_rate": 0.0,
@@ -165,9 +165,9 @@
         "total_buy_size": 1673099.78,
         "total_sell_size": 0,
         "focus_ratio": 0.765,
-        "timed_hits": 38,
-        "timed_total": 200,
-        "timing_ratio": 0.19,
+        "timed_hits": 37,
+        "timed_total": 199,
+        "timing_ratio": 0.186,
         "fast_rounds": 32
       },
       "win_rate": 0.0,
@@ -285,9 +285,9 @@
         "total_buy_size": 1951843.39,
         "total_sell_size": 196147.0,
         "focus_ratio": 0.765,
-        "timed_hits": 76,
-        "timed_total": 191,
-        "timing_ratio": 0.398,
+        "timed_hits": 75,
+        "timed_total": 190,
+        "timing_ratio": 0.395,
         "fast_rounds": 43
       },
       "win_rate": 0.0,
@@ -891,21 +891,21 @@
       "delta_score": 0,
       "tier": "watch",
       "reasons": [
-        "fast in/out across 28 markets"
+        "fast in/out across 26 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 56591,
-        "median_size": 20.0,
-        "avg_size": 82.35,
-        "max_size": 1413.0,
-        "total_buy_size": 16470.12,
+        "unique_markets": 56603,
+        "median_size": 23.7,
+        "avg_size": 154.62,
+        "max_size": 5472.0,
+        "total_buy_size": 30924.98,
         "total_sell_size": 0,
-        "focus_ratio": 0.265,
-        "timed_hits": 47,
+        "focus_ratio": 0.285,
+        "timed_hits": 24,
         "timed_total": 200,
-        "timing_ratio": 0.235,
-        "fast_rounds": 28
+        "timing_ratio": 0.12,
+        "fast_rounds": 26
       },
       "win_rate": 0.0,
       "closed_count": 0,
