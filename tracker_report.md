@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-13T02:16:12.351069+00:00
+Generated: 2026-03-13T03:26:46.286801+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -13,8 +13,8 @@ Generated: 2026-03-13T02:16:12.351069+00:00
 | 7 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
 | 8 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 66.0 | candidate |
 | 9 | `0x6aDE597C0e2B43C0Bf3542CadA8A5e330D73f5b0` | TheOnlyHuman | 66.0 | candidate |
-| 10 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | candidate |
-| 11 | `0xdb2223Cc5202A4718C3069f577eC971f71C96478` | FTWUTB | 62.0 | candidate |
+| 10 | `0xdb2223Cc5202A4718C3069f577eC971f71C96478` | FTWUTB | 62.0 | candidate |
+| 11 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | candidate |
 | 12 | `0x9CB990F1862568A63d8601EfEebe0304225C32F2` | jtwyslljy | 62.0 | candidate |
 | 13 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | candidate |
 | 14 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 58.0 | watch |
