@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-13T05:08:13.911129+00:00",
+  "generated_at": "2026-03-13T05:36:40.856154+00:00",
   "params": {
     "wallet_limit": 30,
     "trades_limit": 200,
@@ -241,24 +241,24 @@
       "delta_score": 0,
       "tier": "candidate",
       "reasons": [
-        "16 large bets >= $15,000",
+        "17 large bets >= $15,000",
         "high vertical focus (74%)",
-        "abnormal burst sizing (16 trades >= max(threshold,4x median))",
-        "fast in/out across 17 markets"
+        "abnormal burst sizing (17 trades >= max(threshold,4x median))",
+        "fast in/out across 15 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 652,
-        "median_size": 319.96,
-        "avg_size": 10804.95,
+        "unique_markets": 653,
+        "median_size": 384.06,
+        "avg_size": 11149.6,
         "max_size": 866810.34,
-        "total_buy_size": 1865281.05,
-        "total_sell_size": 295709.35,
+        "total_buy_size": 1934244.82,
+        "total_sell_size": 295674.35,
         "focus_ratio": 0.745,
         "timed_hits": 0,
-        "timed_total": 134,
+        "timed_total": 141,
         "timing_ratio": 0.0,
-        "fast_rounds": 17
+        "fast_rounds": 15
       },
       "win_rate": 0.0,
       "closed_count": 0,
@@ -338,7 +338,7 @@
       ],
       "metrics": {
         "trade_count": 194,
-        "unique_markets": 165,
+        "unique_markets": 166,
         "median_size": 3004.94,
         "avg_size": 14104.31,
         "max_size": 179161.44,
@@ -368,7 +368,7 @@
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 1336,
+        "unique_markets": 1337,
         "median_size": 3000.0,
         "avg_size": 12382.35,
         "max_size": 167300.0,
@@ -892,22 +892,22 @@
       "delta_score": 0,
       "tier": "watch",
       "reasons": [
-        "some pre-resolution timing edge (89/200)",
-        "fast in/out across 27 markets"
+        "some pre-resolution timing edge (88/200)",
+        "fast in/out across 29 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 56477,
-        "median_size": 37.0,
-        "avg_size": 236.46,
-        "max_size": 11407.0,
-        "total_buy_size": 47292.9,
+        "unique_markets": 56489,
+        "median_size": 25.1,
+        "avg_size": 115.22,
+        "max_size": 4429.0,
+        "total_buy_size": 23044.47,
         "total_sell_size": 0,
-        "focus_ratio": 0.3,
-        "timed_hits": 89,
+        "focus_ratio": 0.515,
+        "timed_hits": 88,
         "timed_total": 200,
-        "timing_ratio": 0.445,
-        "fast_rounds": 27
+        "timing_ratio": 0.44,
+        "fast_rounds": 29
       },
       "win_rate": 0.0,
       "closed_count": 0,
