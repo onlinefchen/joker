@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-13T06:47:37.924282+00:00",
+  "generated_at": "2026-03-13T07:17:02.749443+00:00",
   "params": {
     "wallet_limit": 30,
     "trades_limit": 200,
@@ -862,22 +862,22 @@
       "delta_score": 0,
       "tier": "watch",
       "reasons": [
-        "precise pre-resolution timing (134/200)",
-        "fast in/out across 34 markets"
+        "precise pre-resolution timing (123/200)",
+        "fast in/out across 31 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 56524,
-        "median_size": 11.0,
-        "avg_size": 42.06,
-        "max_size": 1108.22,
-        "total_buy_size": 8411.75,
+        "unique_markets": 56541,
+        "median_size": 18.02,
+        "avg_size": 214.88,
+        "max_size": 7968.0,
+        "total_buy_size": 42976.73,
         "total_sell_size": 0,
-        "focus_ratio": 0.23,
-        "timed_hits": 134,
+        "focus_ratio": 0.335,
+        "timed_hits": 123,
         "timed_total": 200,
-        "timing_ratio": 0.67,
-        "fast_rounds": 34
+        "timing_ratio": 0.615,
+        "fast_rounds": 31
       },
       "win_rate": 0.0,
       "closed_count": 0,
