@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-13T12:06:45.057768+00:00",
+  "generated_at": "2026-03-13T12:27:00.505805+00:00",
   "params": {
     "wallet_limit": 30,
     "trades_limit": 200,
@@ -152,23 +152,23 @@
       "delta_score": 0,
       "tier": "core",
       "reasons": [
-        "50 large bets >= $15,000",
+        "51 large bets >= $15,000",
         "abnormal burst sizing (45 trades >= max(threshold,4x median))",
-        "precise pre-resolution timing (172/186)",
+        "precise pre-resolution timing (171/185)",
         "fast in/out across 44 markets"
       ],
       "metrics": {
         "trade_count": 200,
         "unique_markets": 713,
-        "median_size": 4586.43,
-        "avg_size": 14743.43,
+        "median_size": 4812.62,
+        "avg_size": 14826.54,
         "max_size": 150000.0,
-        "total_buy_size": 2590279.81,
-        "total_sell_size": 358405.95,
-        "focus_ratio": 0.425,
-        "timed_hits": 172,
-        "timed_total": 186,
-        "timing_ratio": 0.925,
+        "total_buy_size": 2590248.54,
+        "total_sell_size": 375059.13,
+        "focus_ratio": 0.43,
+        "timed_hits": 171,
+        "timed_total": 185,
+        "timing_ratio": 0.924,
         "fast_rounds": 44
       },
       "win_rate": 0.0,
@@ -893,21 +893,21 @@
       "delta_score": 0,
       "tier": "watch",
       "reasons": [
-        "fast in/out across 24 markets"
+        "fast in/out across 26 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 56699,
-        "median_size": 23.0,
-        "avg_size": 142.84,
-        "max_size": 2834.0,
-        "total_buy_size": 28568.67,
+        "unique_markets": 56704,
+        "median_size": 29.03,
+        "avg_size": 109.62,
+        "max_size": 1845.0,
+        "total_buy_size": 21924.41,
         "total_sell_size": 0,
-        "focus_ratio": 0.31,
-        "timed_hits": 16,
+        "focus_ratio": 0.465,
+        "timed_hits": 31,
         "timed_total": 200,
-        "timing_ratio": 0.08,
-        "fast_rounds": 24
+        "timing_ratio": 0.155,
+        "fast_rounds": 26
       },
       "win_rate": 0.0,
       "closed_count": 0,
