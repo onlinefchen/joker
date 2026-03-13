@@ -507,15 +507,22 @@ def main() -> int:
         outcome = trade["outcome"]
         wallet = trade["wallet"]
         whale_side = trade["side"]
-        market_key = f"{slug}:{outcome}:{whale_side}"
+        # Dedup key: slug + outcome (regardless of which whale triggered it)
+        market_key = f"{slug}:{outcome}"
 
         # Only process BUY trades (SELL handling removed)
         if whale_side != "BUY":
             continue
-            
-        # Skip if already copied this BUY (same market+outcome)
-        if market_key in copied_positions and not copied_positions[market_key].get("settled"):
-            log(f"Already copied {market_key} (unsettled), skipping")
+
+        # Skip if already bought this market+outcome (unsettled)
+        # Also check legacy key format (slug:outcome:BUY) for backwards compat
+        legacy_key = f"{slug}:{outcome}:BUY"
+        already_have = (
+            (market_key in copied_positions and not copied_positions[market_key].get("settled"))
+            or (legacy_key in copied_positions and not copied_positions[legacy_key].get("settled"))
+        )
+        if already_have:
+            log(f"Already holding {market_key}, skipping")
             continue
 
         # Check balance and exposure limits for BUY
