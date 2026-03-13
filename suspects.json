@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-13T12:27:00.505805+00:00",
+  "generated_at": "2026-03-13T12:47:24.143414+00:00",
   "params": {
     "wallet_limit": 30,
     "trades_limit": 200,
@@ -152,24 +152,24 @@
       "delta_score": 0,
       "tier": "core",
       "reasons": [
-        "51 large bets >= $15,000",
-        "abnormal burst sizing (45 trades >= max(threshold,4x median))",
+        "50 large bets >= $15,000",
+        "abnormal burst sizing (44 trades >= max(threshold,4x median))",
         "precise pre-resolution timing (171/185)",
-        "fast in/out across 44 markets"
+        "fast in/out across 45 markets"
       ],
       "metrics": {
         "trade_count": 200,
         "unique_markets": 713,
-        "median_size": 4812.62,
-        "avg_size": 14826.54,
+        "median_size": 4586.43,
+        "avg_size": 14204.54,
         "max_size": 150000.0,
-        "total_buy_size": 2590248.54,
+        "total_buy_size": 2465847.93,
         "total_sell_size": 375059.13,
         "focus_ratio": 0.43,
         "timed_hits": 171,
         "timed_total": 185,
         "timing_ratio": 0.924,
-        "fast_rounds": 44
+        "fast_rounds": 45
       },
       "win_rate": 0.0,
       "closed_count": 0,
@@ -537,36 +537,6 @@
       "recent_actions": []
     },
     {
-      "wallet": "0xEd107a85a4585A381E48C7F7Ca4144909e7Dd2E5",
-      "username": "bobe2",
-      "score": 58.0,
-      "delta_score": 0,
-      "tier": "watch",
-      "reasons": [
-        "77 large bets >= $15,000",
-        "moderate vertical focus (56%)",
-        "abnormal burst sizing (64 trades >= max(threshold,4x median))",
-        "fast in/out across 18 markets"
-      ],
-      "metrics": {
-        "trade_count": 200,
-        "unique_markets": 1190,
-        "median_size": 5383.17,
-        "avg_size": 56045.95,
-        "max_size": 863224.6,
-        "total_buy_size": 11006270.62,
-        "total_sell_size": 202918.72,
-        "focus_ratio": 0.555,
-        "timed_hits": 25,
-        "timed_total": 180,
-        "timing_ratio": 0.139,
-        "fast_rounds": 18
-      },
-      "win_rate": 0.0,
-      "closed_count": 0,
-      "recent_actions": []
-    },
-    {
       "wallet": "0x39D3c773be30Fcc73161FC6768f46d563A779EF0",
       "username": "matanovik",
       "score": 52.0,
@@ -887,6 +857,35 @@
       "recent_actions": []
     },
     {
+      "wallet": "0xFd22B8843AE03A33a8a4C5E39EF1E5Ff33ebad91",
+      "username": "AML",
+      "score": 35.0,
+      "delta_score": 0,
+      "tier": "watch",
+      "reasons": [
+        "22 large bets >= $15,000",
+        "abnormal burst sizing (3 trades >= max(threshold,4x median))",
+        "fast in/out across 4 markets"
+      ],
+      "metrics": {
+        "trade_count": 30,
+        "unique_markets": 15,
+        "median_size": 35251.43,
+        "avg_size": 65858.01,
+        "max_size": 333000.0,
+        "total_buy_size": 1814843.31,
+        "total_sell_size": 160897.0,
+        "focus_ratio": 0.433,
+        "timed_hits": 7,
+        "timed_total": 27,
+        "timing_ratio": 0.259,
+        "fast_rounds": 4
+      },
+      "win_rate": 0.0,
+      "closed_count": 0,
+      "recent_actions": []
+    },
+    {
       "wallet": "0x204f72f35326db932158CBA6AdfF0B9A1DA95e14",
       "username": "swisstony",
       "score": 15.0,
@@ -897,16 +896,16 @@
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 56704,
-        "median_size": 29.03,
-        "avg_size": 109.62,
+        "unique_markets": 56711,
+        "median_size": 24.5,
+        "avg_size": 92.57,
         "max_size": 1845.0,
-        "total_buy_size": 21924.41,
+        "total_buy_size": 18513.39,
         "total_sell_size": 0,
-        "focus_ratio": 0.465,
-        "timed_hits": 31,
+        "focus_ratio": 0.46,
+        "timed_hits": 45,
         "timed_total": 200,
-        "timing_ratio": 0.155,
+        "timing_ratio": 0.225,
         "fast_rounds": 26
       },
       "win_rate": 0.0,
