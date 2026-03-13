@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-13T08:26:25.302464+00:00",
+  "generated_at": "2026-03-13T08:46:03.419345+00:00",
   "params": {
     "wallet_limit": 30,
     "trades_limit": 200,
@@ -887,26 +887,25 @@
     {
       "wallet": "0x204f72f35326db932158CBA6AdfF0B9A1DA95e14",
       "username": "swisstony",
-      "score": 29.0,
+      "score": 15.0,
       "delta_score": 0,
       "tier": "watch",
       "reasons": [
-        "some pre-resolution timing edge (81/200)",
-        "fast in/out across 26 markets"
+        "fast in/out across 28 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 56585,
-        "median_size": 31.0,
-        "avg_size": 183.78,
-        "max_size": 4622.0,
-        "total_buy_size": 36756.73,
+        "unique_markets": 56591,
+        "median_size": 20.0,
+        "avg_size": 82.35,
+        "max_size": 1413.0,
+        "total_buy_size": 16470.12,
         "total_sell_size": 0,
-        "focus_ratio": 0.255,
-        "timed_hits": 81,
+        "focus_ratio": 0.265,
+        "timed_hits": 47,
         "timed_total": 200,
-        "timing_ratio": 0.405,
-        "fast_rounds": 26
+        "timing_ratio": 0.235,
+        "fast_rounds": 28
       },
       "win_rate": 0.0,
       "closed_count": 0,
