@@ -1,18 +1,18 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-13T10:08:25.798353+00:00
+Generated: 2026-03-13T10:45:34.163020+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
 | 1 | `0xBDDF61Af533fF524D27154e589d2D7A81510C684` | Countryside | 80.0 | core |
 | 2 | `0xdB27Bf2Ac5D428a9c63dbc914611036855a6c56E` | DrPufferfish | 80.0 | core |
 | 3 | `0x1BC0D88cA86b9049cf05D642E634836d5DdF4429` | 212121212121212121212 | 80.0 | core |
-| 4 | `0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A` | bossoskil1 | 73.0 | core |
-| 5 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 66.0 | candidate |
-| 6 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 66.0 | candidate |
-| 7 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
-| 8 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 66.0 | candidate |
-| 9 | `0x6aDE597C0e2B43C0Bf3542CadA8A5e330D73f5b0` | TheOnlyHuman | 66.0 | candidate |
+| 4 | `0x6aDE597C0e2B43C0Bf3542CadA8A5e330D73f5b0` | TheOnlyHuman | 80.0 | core |
+| 5 | `0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A` | bossoskil1 | 73.0 | core |
+| 6 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 66.0 | candidate |
+| 7 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 66.0 | candidate |
+| 8 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
+| 9 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 66.0 | candidate |
 | 10 | `0xdb2223Cc5202A4718C3069f577eC971f71C96478` | FTWUTB | 62.0 | candidate |
 | 11 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | candidate |
 | 12 | `0x9CB990F1862568A63d8601EfEebe0304225C32F2` | jtwyslljy | 62.0 | candidate |
