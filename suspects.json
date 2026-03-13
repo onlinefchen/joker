@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-13T07:48:53.193166+00:00",
+  "generated_at": "2026-03-13T08:08:51.717379+00:00",
   "params": {
     "wallet_limit": 30,
     "trades_limit": 200,
@@ -856,34 +856,6 @@
       "recent_actions": []
     },
     {
-      "wallet": "0x204f72f35326db932158CBA6AdfF0B9A1DA95e14",
-      "username": "swisstony",
-      "score": 40.0,
-      "delta_score": 0,
-      "tier": "watch",
-      "reasons": [
-        "precise pre-resolution timing (135/200)",
-        "fast in/out across 28 markets"
-      ],
-      "metrics": {
-        "trade_count": 200,
-        "unique_markets": 56567,
-        "median_size": 16.51,
-        "avg_size": 71.59,
-        "max_size": 1268.12,
-        "total_buy_size": 14318.61,
-        "total_sell_size": 0,
-        "focus_ratio": 0.38,
-        "timed_hits": 135,
-        "timed_total": 200,
-        "timing_ratio": 0.675,
-        "fast_rounds": 28
-      },
-      "win_rate": 0.0,
-      "closed_count": 0,
-      "recent_actions": []
-    },
-    {
       "wallet": "0xFd22B8843AE03A33a8a4C5E39EF1E5Ff33ebad91",
       "username": "AML",
       "score": 35.0,
@@ -907,6 +879,34 @@
         "timed_total": 27,
         "timing_ratio": 0.259,
         "fast_rounds": 4
+      },
+      "win_rate": 0.0,
+      "closed_count": 0,
+      "recent_actions": []
+    },
+    {
+      "wallet": "0x204f72f35326db932158CBA6AdfF0B9A1DA95e14",
+      "username": "swisstony",
+      "score": 29.0,
+      "delta_score": 0,
+      "tier": "watch",
+      "reasons": [
+        "some pre-resolution timing edge (101/200)",
+        "fast in/out across 30 markets"
+      ],
+      "metrics": {
+        "trade_count": 200,
+        "unique_markets": 56578,
+        "median_size": 31.01,
+        "avg_size": 185.18,
+        "max_size": 4622.0,
+        "total_buy_size": 37035.64,
+        "total_sell_size": 0,
+        "focus_ratio": 0.245,
+        "timed_hits": 101,
+        "timed_total": 200,
+        "timing_ratio": 0.505,
+        "fast_rounds": 30
       },
       "win_rate": 0.0,
       "closed_count": 0,
