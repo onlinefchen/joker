@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-13T20:45:56.561356+00:00",
+  "generated_at": "2026-03-13T21:10:31.966618+00:00",
   "params": {
     "wallet_limit": 30,
     "trades_limit": 200,
@@ -173,17 +173,7 @@
       },
       "win_rate": 0.0,
       "closed_count": 0,
-      "recent_actions": [
-        {
-          "time": "2026-03-13T20:06:33+00:00",
-          "side": "BUY",
-          "size": 100000.0,
-          "price": 0.2106,
-          "outcome": "Astralis",
-          "slug": "cs2-ast10-ts7-2026-03-13",
-          "title": "Counter-Strike: Astralis vs Spirit (BO3) - ESL Pro League Playoffs"
-        }
-      ]
+      "recent_actions": []
     },
     {
       "wallet": "0x9CB990F1862568A63d8601EfEebe0304225C32F2",
@@ -320,7 +310,7 @@
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 318,
+        "unique_markets": 320,
         "median_size": 236.46,
         "avg_size": 2183.4,
         "max_size": 89855.55,
@@ -441,16 +431,16 @@
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 519,
+        "unique_markets": 520,
         "median_size": 12494.73,
-        "avg_size": 35075.2,
+        "avg_size": 35088.99,
         "max_size": 400000.0,
-        "total_buy_size": 7015040.04,
+        "total_buy_size": 7017798.0,
         "total_sell_size": 0,
         "focus_ratio": 0.56,
-        "timed_hits": 13,
+        "timed_hits": 14,
         "timed_total": 200,
-        "timing_ratio": 0.065,
+        "timing_ratio": 0.07,
         "fast_rounds": 37
       },
       "win_rate": 0.0,
@@ -641,19 +631,19 @@
       "delta_score": 0,
       "tier": "watch",
       "reasons": [
-        "48 large bets >= $15,000",
+        "47 large bets >= $15,000",
         "abnormal burst sizing (33 trades >= max(threshold,4x median))",
         "fast in/out across 47 markets"
       ],
       "metrics": {
         "trade_count": 200,
         "unique_markets": 1358,
-        "median_size": 5289.91,
-        "avg_size": 12471.82,
+        "median_size": 5217.02,
+        "avg_size": 12373.93,
         "max_size": 143066.13,
-        "total_buy_size": 2492782.46,
+        "total_buy_size": 2473204.67,
         "total_sell_size": 1581.4,
-        "focus_ratio": 0.45,
+        "focus_ratio": 0.455,
         "timed_hits": 27,
         "timed_total": 198,
         "timing_ratio": 0.136,
@@ -902,21 +892,21 @@
       "delta_score": 0,
       "tier": "watch",
       "reasons": [
-        "fast in/out across 42 markets"
+        "fast in/out across 38 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 57051,
-        "median_size": 40.0,
-        "avg_size": 254.96,
-        "max_size": 5055.0,
-        "total_buy_size": 50992.51,
+        "unique_markets": 57054,
+        "median_size": 49.5,
+        "avg_size": 358.85,
+        "max_size": 10172.0,
+        "total_buy_size": 71769.47,
         "total_sell_size": 0,
-        "focus_ratio": 0.135,
-        "timed_hits": 11,
+        "focus_ratio": 0.265,
+        "timed_hits": 8,
         "timed_total": 200,
-        "timing_ratio": 0.055,
-        "fast_rounds": 42
+        "timing_ratio": 0.04,
+        "fast_rounds": 38
       },
       "win_rate": 0.0,
       "closed_count": 0,
