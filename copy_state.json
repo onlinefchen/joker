@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-03-12T23:20:56.923843+00:00",
+  "last_run": "2026-03-13T00:07:41.050017+00:00",
   "copied_positions": {
     "cs2-lgc-ast10-2026-03-08:LEGACY:BUY": {
       "wallet": "0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A",
@@ -58,6 +58,15 @@
       "trade_time": "2026-03-12T22:48:46.088332+00:00",
       "slug": "nba-phi-det-2026-03-12-spread-home-15pt5",
       "outcome": "PISTONS",
+      "side": "BUY"
+    },
+    "nba-dal-mem-2026-03-12:GRIZZLIES:BUY": {
+      "wallet": "0xBDDF61Af533fF524D27154e589d2D7A81510C684",
+      "username": "Countryside",
+      "settled": false,
+      "trade_time": "2026-03-13T00:07:40.742610+00:00",
+      "slug": "nba-dal-mem-2026-03-12",
+      "outcome": "GRIZZLIES",
       "side": "BUY"
     }
   },
@@ -265,6 +274,33 @@
           "transaction_hashes": [
             "0x62b82d106890ac2df88040aa36966a2e4cbbb05dad687014e7c5923ac1a140b1"
           ]
+        }
+      }
+    },
+    {
+      "time": "2026-03-13T00:07:40.742580+00:00",
+      "slug": "nba-dal-mem-2026-03-12",
+      "title": "Mavericks vs. Grizzlies",
+      "outcome": "GRIZZLIES",
+      "token_id": "0x9e234ce10a34a80372d8bc39bd18aa4834740855588669d5a719794a64bd5aa8",
+      "price": 0.35,
+      "shares": 5,
+      "amount_usd": 1.75,
+      "whale_wallet": "0xBDDF61Af533fF524D27154e589d2D7A81510C684",
+      "whale_username": "Countryside",
+      "whale_score": 80.0,
+      "whale_size": 210948.24,
+      "result": {
+        "success": true,
+        "result": {
+          "error_msg": "",
+          "making_amount": "0",
+          "order_id": "0xf7c78e526b9d254c6eb3a81d5dcb86611c965e5485a8a63f11e3ea7cd19f783c",
+          "status": "DELAYED",
+          "success": true,
+          "taking_amount": "0",
+          "trade_ids": [],
+          "transaction_hashes": []
         }
       }
     }
