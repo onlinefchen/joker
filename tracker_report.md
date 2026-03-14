@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-14T00:04:59.742806+00:00
+Generated: 2026-03-14T00:40:42.968404+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -8,11 +8,11 @@ Generated: 2026-03-14T00:04:59.742806+00:00
 | 2 | `0xBDDF61Af533fF524D27154e589d2D7A81510C684` | Countryside | 80.0 | core |
 | 3 | `0x1BC0D88cA86b9049cf05D642E634836d5DdF4429` | 212121212121212121212 | 80.0 | core |
 | 4 | `0x9CB990F1862568A63d8601EfEebe0304225C32F2` | jtwyslljy | 73.0 | core |
-| 5 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 68.0 | candidate |
-| 6 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 66.0 | candidate |
-| 7 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
-| 8 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 66.0 | candidate |
-| 9 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | candidate |
+| 5 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 66.0 | candidate |
+| 6 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
+| 7 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 66.0 | candidate |
+| 8 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | candidate |
+| 9 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 62.0 | candidate |
 | 10 | `0xdb2223Cc5202A4718C3069f577eC971f71C96478` | FTWUTB | 62.0 | candidate |
 | 11 | `0x6ac5BB06A9Eb05641fD5e82640268b92f3Ab4B6E` | 0p0jogggg | 62.0 | candidate |
 | 12 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | candidate |
