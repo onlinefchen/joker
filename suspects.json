@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-14T05:29:53.061173+00:00",
+  "generated_at": "2026-03-14T05:50:02.662035+00:00",
   "params": {
     "wallet_limit": 30,
     "trades_limit": 200,
@@ -242,21 +242,21 @@
       "reasons": [
         "50 large bets >= $15,000",
         "abnormal burst sizing (50 trades >= max(threshold,4x median))",
-        "some pre-resolution timing edge (88/199)",
+        "some pre-resolution timing edge (89/200)",
         "fast in/out across 35 markets"
       ],
       "metrics": {
-        "trade_count": 199,
-        "unique_markets": 174,
-        "median_size": 2954.3,
-        "avg_size": 13774.97,
+        "trade_count": 200,
+        "unique_markets": 176,
+        "median_size": 2941.64,
+        "avg_size": 13710.33,
         "max_size": 179161.44,
-        "total_buy_size": 2741219.5,
+        "total_buy_size": 2742065.11,
         "total_sell_size": 0,
-        "focus_ratio": 0.151,
-        "timed_hits": 88,
-        "timed_total": 199,
-        "timing_ratio": 0.442,
+        "focus_ratio": 0.15,
+        "timed_hits": 89,
+        "timed_total": 200,
+        "timing_ratio": 0.445,
         "fast_rounds": 35
       },
       "win_rate": 0.0,
@@ -277,7 +277,7 @@
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 15884,
+        "unique_markets": 15897,
         "median_size": 120.97,
         "avg_size": 2916.06,
         "max_size": 138066.48,
@@ -451,22 +451,22 @@
       "tier": "watch",
       "reasons": [
         "94 large bets >= $15,000",
-        "abnormal burst sizing (39 trades >= max(threshold,4x median))",
-        "fast in/out across 42 markets"
+        "abnormal burst sizing (38 trades >= max(threshold,4x median))",
+        "fast in/out across 41 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 548,
+        "unique_markets": 549,
         "median_size": 12736.72,
-        "avg_size": 33191.34,
+        "avg_size": 32789.31,
         "max_size": 618042.92,
-        "total_buy_size": 6638268.87,
+        "total_buy_size": 6557861.52,
         "total_sell_size": 0,
-        "focus_ratio": 0.545,
-        "timed_hits": 18,
+        "focus_ratio": 0.54,
+        "timed_hits": 19,
         "timed_total": 200,
-        "timing_ratio": 0.09,
-        "fast_rounds": 42
+        "timing_ratio": 0.095,
+        "fast_rounds": 41
       },
       "win_rate": 0.0,
       "closed_count": 0,
@@ -740,22 +740,22 @@
       "delta_score": 0,
       "tier": "watch",
       "reasons": [
-        "precise pre-resolution timing (132/200)",
-        "fast in/out across 19 markets"
+        "precise pre-resolution timing (130/200)",
+        "fast in/out across 20 markets"
       ],
       "metrics": {
         "trade_count": 200,
         "unique_markets": 553,
-        "median_size": 84.74,
-        "avg_size": 219.85,
+        "median_size": 89.59,
+        "avg_size": 220.71,
         "max_size": 3320.0,
-        "total_buy_size": 43970.08,
+        "total_buy_size": 44141.48,
         "total_sell_size": 0,
-        "focus_ratio": 0.52,
-        "timed_hits": 132,
+        "focus_ratio": 0.5,
+        "timed_hits": 130,
         "timed_total": 200,
-        "timing_ratio": 0.66,
-        "fast_rounds": 19
+        "timing_ratio": 0.65,
+        "fast_rounds": 20
       },
       "win_rate": 0.0,
       "closed_count": 0,
@@ -768,22 +768,22 @@
       "delta_score": 0,
       "tier": "watch",
       "reasons": [
-        "some pre-resolution timing edge (82/200)",
-        "fast in/out across 48 markets"
+        "some pre-resolution timing edge (90/200)",
+        "fast in/out across 57 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 57398,
-        "median_size": 38.0,
-        "avg_size": 171.36,
-        "max_size": 3185.0,
-        "total_buy_size": 34271.68,
+        "unique_markets": 57430,
+        "median_size": 30.0,
+        "avg_size": 101.99,
+        "max_size": 5212.0,
+        "total_buy_size": 20397.07,
         "total_sell_size": 0,
-        "focus_ratio": 0.205,
-        "timed_hits": 82,
+        "focus_ratio": 0.22,
+        "timed_hits": 90,
         "timed_total": 200,
-        "timing_ratio": 0.41,
-        "fast_rounds": 48
+        "timing_ratio": 0.45,
+        "fast_rounds": 57
       },
       "win_rate": 0.0,
       "closed_count": 0,
@@ -796,22 +796,22 @@
       "delta_score": 0,
       "tier": "watch",
       "reasons": [
-        "moderate vertical focus (64%)",
-        "fast in/out across 27 markets"
+        "moderate vertical focus (63%)",
+        "fast in/out across 28 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 36530,
-        "median_size": 67.62,
-        "avg_size": 468.86,
-        "max_size": 8297.33,
-        "total_buy_size": 93771.69,
+        "unique_markets": 36539,
+        "median_size": 67.45,
+        "avg_size": 469.07,
+        "max_size": 7469.05,
+        "total_buy_size": 93814.94,
         "total_sell_size": 0,
-        "focus_ratio": 0.635,
+        "focus_ratio": 0.63,
         "timed_hits": 0,
         "timed_total": 200,
         "timing_ratio": 0.0,
-        "fast_rounds": 27
+        "fast_rounds": 28
       },
       "win_rate": 0.0,
       "closed_count": 0,
@@ -830,11 +830,11 @@
         "trade_count": 200,
         "unique_markets": 40267,
         "median_size": 25.0,
-        "avg_size": 305.02,
+        "avg_size": 256.59,
         "max_size": 2000.0,
-        "total_buy_size": 61003.41,
+        "total_buy_size": 51318.1,
         "total_sell_size": 0,
-        "focus_ratio": 0.38,
+        "focus_ratio": 0.39,
         "timed_hits": 0,
         "timed_total": 200,
         "timing_ratio": 0.0,
@@ -855,16 +855,16 @@
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 34399,
-        "median_size": 162.93,
-        "avg_size": 232.8,
+        "unique_markets": 34402,
+        "median_size": 169.44,
+        "avg_size": 235.98,
         "max_size": 3516.98,
-        "total_buy_size": 46559.64,
+        "total_buy_size": 47196.24,
         "total_sell_size": 0,
-        "focus_ratio": 0.52,
-        "timed_hits": 1,
+        "focus_ratio": 0.515,
+        "timed_hits": 3,
         "timed_total": 200,
-        "timing_ratio": 0.005,
+        "timing_ratio": 0.015,
         "fast_rounds": 27
       },
       "win_rate": 0.0,
@@ -878,21 +878,21 @@
       "delta_score": 0,
       "tier": "watch",
       "reasons": [
-        "fast in/out across 12 markets"
+        "fast in/out across 14 markets"
       ],
       "metrics": {
         "trade_count": 200,
-        "unique_markets": 42573,
-        "median_size": 26.01,
-        "avg_size": 33.3,
-        "max_size": 121.0,
-        "total_buy_size": 6126.25,
-        "total_sell_size": 533.55,
-        "focus_ratio": 0.36,
+        "unique_markets": 42585,
+        "median_size": 50.0,
+        "avg_size": 59.16,
+        "max_size": 199.0,
+        "total_buy_size": 11579.79,
+        "total_sell_size": 253.11,
+        "focus_ratio": 0.345,
         "timed_hits": 0,
-        "timed_total": 177,
+        "timed_total": 193,
         "timing_ratio": 0.0,
-        "fast_rounds": 12
+        "fast_rounds": 14
       },
       "win_rate": 0.0,
       "closed_count": 0,
