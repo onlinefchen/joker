@@ -1,17 +1,17 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-14T15:06:36.717137+00:00
+Generated: 2026-03-14T15:23:01.988849+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
 | 1 | `0xC65cA4755436F82D8eb461E65781584B8CaDEa39` | UAEVALORANTFAN | 83.0 | core |
 | 2 | `0xBDDF61Af533fF524D27154e589d2D7A81510C684` | Countryside | 80.0 | core |
-| 3 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 73.0 | core |
-| 4 | `0x9CB990F1862568A63d8601EfEebe0304225C32F2` | jtwyslljy | 73.0 | core |
-| 5 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 66.0 | candidate |
-| 6 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
-| 7 | `0x6A72f61820b26b1fe4d956E17B6DC2A1Ea3033EE` | kch123 | 66.0 | candidate |
-| 8 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 66.0 | candidate |
+| 3 | `0x9CB990F1862568A63d8601EfEebe0304225C32F2` | jtwyslljy | 73.0 | core |
+| 4 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 66.0 | candidate |
+| 5 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
+| 6 | `0x6A72f61820b26b1fe4d956E17B6DC2A1Ea3033EE` | kch123 | 66.0 | candidate |
+| 7 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 66.0 | candidate |
+| 8 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 62.0 | candidate |
 | 9 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | candidate |
 | 10 | `0x6ac5BB06A9Eb05641fD5e82640268b92f3Ab4B6E` | 0p0jogggg | 62.0 | candidate |
 | 11 | `0xdb2223Cc5202A4718C3069f577eC971f71C96478` | FTWUTB | 62.0 | candidate |
