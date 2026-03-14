@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-14T14:20:06.092695+00:00
+Generated: 2026-03-14T14:46:35.382829+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -17,7 +17,7 @@ Generated: 2026-03-14T14:20:06.092695+00:00
 | 11 | `0xdb2223Cc5202A4718C3069f577eC971f71C96478` | FTWUTB | 62.0 | candidate |
 | 12 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | candidate |
 | 13 | `0xF19D7D88Cf362110027DcD64750FDd209A04276f` | huhaoli | 58.0 | watch |
-| 14 | `0x39D3c773be30Fcc73161FC6768f46d563A779EF0` | matanovik | 52.0 | watch |
+| 14 | `0x39D3c773be30Fcc73161FC6768f46d563A779EF0` | matanovik | 50.0 | watch |
 | 15 | `0xdE17f7144fbD0eddb2679132C10ff5e74B120988` | 0xdE17f7144fbD0eddb2679132C10ff5e74B120988-1772205225932 | 50.0 | watch |
 | 16 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
 | 17 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 48.0 | watch |
