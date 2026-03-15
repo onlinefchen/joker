@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-15T08:06:10.752043+00:00
+Generated: 2026-03-15T08:27:09.564352+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
