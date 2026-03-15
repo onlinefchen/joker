@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-03-14T02:19:35.895116+00:00",
+  "last_run": "2026-03-15T13:48:02.610672+00:00",
   "copied_positions": {
     "cs2-lgc-ast10-2026-03-08:LEGACY:BUY": {
       "wallet": "0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A",
@@ -74,11 +74,12 @@
     "nba-min-gsw-2026-03-13:WARRIORS": {
       "wallet": "0x1BC0D88cA86b9049cf05D642E634836d5DdF4429",
       "username": "212121212121212121212",
-      "settled": false,
+      "settled": true,
       "trade_time": "2026-03-13T18:10:11.556146+00:00",
       "slug": "nba-min-gsw-2026-03-13",
       "outcome": "WARRIORS",
-      "side": "BUY"
+      "side": "BUY",
+      "perf_recorded": true
     },
     "cs2-ast10-ts7-2026-03-13:ASTRALIS": {
       "wallet": "0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A",
@@ -93,10 +94,20 @@
     "nba-uta-por-2026-03-13-spread-home-15pt5:TRAIL BLAZERS": {
       "wallet": "0x1BC0D88cA86b9049cf05D642E634836d5DdF4429",
       "username": "212121212121212121212",
-      "settled": false,
+      "settled": true,
       "trade_time": "2026-03-14T02:19:34.361921+00:00",
       "slug": "nba-uta-por-2026-03-13-spread-home-15pt5",
       "outcome": "TRAIL BLAZERS",
+      "side": "BUY",
+      "perf_recorded": true
+    },
+    "nhl-ana-mon-2026-03-15:CANADIENS": {
+      "wallet": "0x03E8a544e97eEff5753BC1E90D46e5EF22af1697",
+      "username": "weflyhigh",
+      "settled": false,
+      "trade_time": "2026-03-15T13:48:01.571372+00:00",
+      "slug": "nhl-ana-mon-2026-03-15",
+      "outcome": "CANADIENS",
       "side": "BUY"
     }
   },
@@ -416,14 +427,43 @@
           "transaction_hashes": []
         }
       }
+    },
+    {
+      "time": "2026-03-15T13:48:01.571344+00:00",
+      "slug": "nhl-ana-mon-2026-03-15",
+      "title": "Ducks vs. Canadiens",
+      "outcome": "CANADIENS",
+      "token_id": "0xd71170ae61911f6ce9e5fb6c5eb69bed1f4abfae971a013779a160ecfb04616b",
+      "price": 0.59,
+      "shares": 5,
+      "amount_usd": 2.9499999999999997,
+      "whale_wallet": "0x03E8a544e97eEff5753BC1E90D46e5EF22af1697",
+      "whale_username": "weflyhigh",
+      "whale_score": 91.0,
+      "whale_size": 110000.0,
+      "result": {
+        "success": true,
+        "result": {
+          "error_msg": "",
+          "making_amount": "2.95",
+          "order_id": "0xb8737482e990306a41a76a948ad655494c2823731bbd83cdf0cbc0dd416f774d",
+          "status": "MATCHED",
+          "success": true,
+          "taking_amount": "5",
+          "trade_ids": [],
+          "transaction_hashes": [
+            "0xbe0ecd3b9ab838228b3f06710f84f389d9b9399e6f4d46b4aa0967f351524e28"
+          ]
+        }
+      }
     }
   ],
   "performance": {
-    "total_settled": 7,
+    "total_settled": 9,
     "wins": 5,
-    "losses": 2,
-    "total_pnl_usd": 13.39,
-    "win_rate_pct": 71.4,
+    "losses": 4,
+    "total_pnl_usd": 8.35,
+    "win_rate_pct": 55.6,
     "history": [
       {
         "slug": "cs2-lgc-ast10-2026-03-08",
@@ -508,6 +548,30 @@
         "winning_outcome": "ASTRALIS",
         "settled_at": "2026-03-14T02:19:35.233977+00:00",
         "whale_username": "bossoskil1"
+      },
+      {
+        "slug": "nba-min-gsw-2026-03-13",
+        "outcome": "WARRIORS",
+        "side": "BUY",
+        "buy_price": 0.33,
+        "shares": 7.4,
+        "won": false,
+        "pnl_usd": -2.44,
+        "winning_outcome": "TIMBERWOLVES",
+        "settled_at": "2026-03-15T13:48:01.880820+00:00",
+        "whale_username": "212121212121212121212"
+      },
+      {
+        "slug": "nba-uta-por-2026-03-13-spread-home-15pt5",
+        "outcome": "TRAIL BLAZERS",
+        "side": "BUY",
+        "buy_price": 0.52,
+        "shares": 5.0,
+        "won": false,
+        "pnl_usd": -2.6,
+        "winning_outcome": "JAZZ",
+        "settled_at": "2026-03-15T13:48:01.970106+00:00",
+        "whale_username": "212121212121212121212"
       }
     ]
   }
