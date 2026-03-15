@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-15T21:18:32.794646+00:00
+Generated: 2026-03-15T21:43:28.449552+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -10,12 +10,12 @@ Generated: 2026-03-15T21:18:32.794646+00:00
 | 4 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 66.0 | candidate |
 | 5 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 66.0 | candidate |
 | 6 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
-| 7 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 66.0 | candidate |
-| 8 | `0x8F037a2e4FD49D11267f4Ab874AB7Ba745ac64d6` | Anointed-Connect | 66.0 | candidate |
-| 9 | `0x6ac5BB06A9Eb05641fD5e82640268b92f3Ab4B6E` | 0p0jogggg | 62.0 | candidate |
-| 10 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | candidate |
-| 11 | `0x83720820a8aa6c3f20AD71850E7A1A17d16c5223` | Jsram | 62.0 | candidate |
-| 12 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | candidate |
+| 7 | `0x8F037a2e4FD49D11267f4Ab874AB7Ba745ac64d6` | Anointed-Connect | 66.0 | candidate |
+| 8 | `0x6ac5BB06A9Eb05641fD5e82640268b92f3Ab4B6E` | 0p0jogggg | 62.0 | candidate |
+| 9 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | candidate |
+| 10 | `0x83720820a8aa6c3f20AD71850E7A1A17d16c5223` | Jsram | 62.0 | candidate |
+| 11 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | candidate |
+| 12 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 58.0 | watch |
 | 13 | `0xdE17f7144fbD0eddb2679132C10ff5e74B120988` | 0xdE17f7144fbD0eddb2679132C10ff5e74B120988-1772205225932 | 58.0 | watch |
 | 14 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
 | 15 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | watch |
