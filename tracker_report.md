@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-15T10:05:11.205717+00:00
+Generated: 2026-03-15T10:22:33.174819+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -15,12 +15,12 @@ Generated: 2026-03-15T10:05:11.205717+00:00
 | 9 | `0x6ac5BB06A9Eb05641fD5e82640268b92f3Ab4B6E` | 0p0jogggg | 62.0 | candidate |
 | 10 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | candidate |
 | 11 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | candidate |
-| 12 | `0xF19D7D88Cf362110027DcD64750FDd209A04276f` | huhaoli | 58.0 | watch |
-| 13 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
-| 14 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | watch |
-| 15 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 48.0 | watch |
-| 16 | `0xB45a797faA52B0fd8aDc56D30382022B7b12192C` | bcda | 48.0 | watch |
-| 17 | `0xE90Bec87d9Ef430F27F9dCfe72C34b76967d5dA2` | gmanas | 48.0 | watch |
-| 18 | `0x916f7165c2c836Aba22eDB6453cdbb5F3eA253Ba` | WoofMaster | 48.0 | watch |
-| 19 | `0xB90494d9a5D8f71f1930b2aa4B599F95c344c255` | puntpint | 48.0 | watch |
-| 20 | `0x8c80d213c0CbaD777D06ee3f58F6cA4bc03102C3` | SecondWindCapital | 48.0 | watch |
+| 12 | `0x204f72f35326db932158CBA6AdfF0B9A1DA95e14` | swisstony | 61.0 | candidate |
+| 13 | `0xF19D7D88Cf362110027DcD64750FDd209A04276f` | huhaoli | 58.0 | watch |
+| 14 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
+| 15 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | watch |
+| 16 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 48.0 | watch |
+| 17 | `0xB45a797faA52B0fd8aDc56D30382022B7b12192C` | bcda | 48.0 | watch |
+| 18 | `0xE90Bec87d9Ef430F27F9dCfe72C34b76967d5dA2` | gmanas | 48.0 | watch |
+| 19 | `0x916f7165c2c836Aba22eDB6453cdbb5F3eA253Ba` | WoofMaster | 48.0 | watch |
+| 20 | `0xB90494d9a5D8f71f1930b2aa4B599F95c344c255` | puntpint | 48.0 | watch |
