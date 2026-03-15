@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-15T18:06:01.886668+00:00
+Generated: 2026-03-15T18:20:09.669682+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -23,4 +23,4 @@ Generated: 2026-03-15T18:06:01.886668+00:00
 | 17 | `0xE90Bec87d9Ef430F27F9dCfe72C34b76967d5dA2` | gmanas | 48.0 | watch |
 | 18 | `0xB90494d9a5D8f71f1930b2aa4B599F95c344c255` | waterbottle6 | 48.0 | watch |
 | 19 | `0x916f7165c2c836Aba22eDB6453cdbb5F3eA253Ba` | WoofMaster | 48.0 | watch |
-| 20 | `0x96489Abcb9f583D6835c8eF95FFc923D05A86825` | anoin123 | 48.0 | watch |
+| 20 | `0xF19D7D88Cf362110027DcD64750FDd209A04276f` | huhaoli | 48.0 | watch |
