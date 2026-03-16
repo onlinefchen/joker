@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-16T21:48:53.290051+00:00
+Generated: 2026-03-16T22:08:21.726574+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -13,7 +13,7 @@ Generated: 2026-03-16T21:48:53.290051+00:00
 | 7 | `0x83720820a8aa6c3f20AD71850E7A1A17d16c5223` | Jsram | 62.0 | candidate |
 | 8 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | candidate |
 | 9 | `0x742DEfec5672b86ae1366546977323D0b0fb33FB` | theboywhogambledALL | 59.0 | watch |
-| 10 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 55.0 | watch |
+| 10 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 57.0 | watch |
 | 11 | `0xeFBc5FeC8D7B0Acdc8911bDD9a98d6964308f9A2` | reachingthesky | 55.0 | watch |
 | 12 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
 | 13 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | watch |
