@@ -1,12 +1,12 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-16T15:21:02.020453+00:00
+Generated: 2026-03-16T15:53:38.274977+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
 | 1 | `0xC65cA4755436F82D8eb461E65781584B8CaDEa39` | UAEVALORANTFAN | 83.0 | core |
-| 2 | `0xBDDF61Af533fF524D27154e589d2D7A81510C684` | Countryside | 80.0 | core |
-| 3 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 66.0 | candidate |
+| 2 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 80.0 | core |
+| 3 | `0xBDDF61Af533fF524D27154e589d2D7A81510C684` | Countryside | 80.0 | core |
 | 4 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 66.0 | candidate |
 | 5 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
 | 6 | `0x6aDE597C0e2B43C0Bf3542CadA8A5e330D73f5b0` | TheOnlyHuman | 66.0 | candidate |
