@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-16T00:46:50.220889+00:00
+Generated: 2026-03-16T01:27:12.852353+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -9,8 +9,8 @@ Generated: 2026-03-16T00:46:50.220889+00:00
 | 3 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 66.0 | candidate |
 | 4 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 66.0 | candidate |
 | 5 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
-| 6 | `0x6A72f61820b26b1fe4d956E17B6DC2A1Ea3033EE` | kch123 | 66.0 | candidate |
-| 7 | `0x8F037a2e4FD49D11267f4Ab874AB7Ba745ac64d6` | Anointed-Connect | 66.0 | candidate |
+| 6 | `0xdB27Bf2Ac5D428a9c63dbc914611036855a6c56E` | DrPufferfish | 66.0 | candidate |
+| 7 | `0x6aDE597C0e2B43C0Bf3542CadA8A5e330D73f5b0` | TheOnlyHuman | 66.0 | candidate |
 | 8 | `0x6ac5BB06A9Eb05641fD5e82640268b92f3Ab4B6E` | 0p0jogggg | 62.0 | candidate |
 | 9 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | candidate |
 | 10 | `0x83720820a8aa6c3f20AD71850E7A1A17d16c5223` | Jsram | 62.0 | candidate |
