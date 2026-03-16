@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-16T23:19:26.512534+00:00
+Generated: 2026-03-16T23:45:18.545159+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -14,8 +14,8 @@ Generated: 2026-03-16T23:19:26.512534+00:00
 | 8 | `0x83720820a8aa6c3f20AD71850E7A1A17d16c5223` | Jsram | 62.0 | candidate |
 | 9 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | candidate |
 | 10 | `0xB45a797faA52B0fd8aDc56D30382022B7b12192C` | bcda | 58.0 | watch |
-| 11 | `0xeFBc5FeC8D7B0Acdc8911bDD9a98d6964308f9A2` | reachingthesky | 55.0 | watch |
-| 12 | `0xdE17f7144fbD0eddb2679132C10ff5e74B120988` | 0xdE17f7144fbD0eddb2679132C10ff5e74B120988-1772205225932 | 50.0 | watch |
+| 11 | `0xdE17f7144fbD0eddb2679132C10ff5e74B120988` | 0xdE17f7144fbD0eddb2679132C10ff5e74B120988-1772205225932 | 58.0 | watch |
+| 12 | `0xeFBc5FeC8D7B0Acdc8911bDD9a98d6964308f9A2` | reachingthesky | 55.0 | watch |
 | 13 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
 | 14 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | watch |
 | 15 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 48.0 | watch |
