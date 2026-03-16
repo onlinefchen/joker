@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-16T17:22:03.480118+00:00
+Generated: 2026-03-16T17:52:51.552815+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -18,9 +18,9 @@ Generated: 2026-03-16T17:22:03.480118+00:00
 | 12 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 48.0 | watch |
 | 13 | `0xB45a797faA52B0fd8aDc56D30382022B7b12192C` | bcda | 48.0 | watch |
 | 14 | `0xE90Bec87d9Ef430F27F9dCfe72C34b76967d5dA2` | gmanas | 48.0 | watch |
-| 15 | `0xB90494d9a5D8f71f1930b2aa4B599F95c344c255` | waterbottle6 | 48.0 | watch |
-| 16 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 48.0 | watch |
+| 15 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 48.0 | watch |
+| 16 | `0xB90494d9a5D8f71f1930b2aa4B599F95c344c255` | waterbottle6 | 48.0 | watch |
 | 17 | `0x916f7165c2c836Aba22eDB6453cdbb5F3eA253Ba` | WoofMaster | 48.0 | watch |
-| 18 | `0x8c80d213c0CbaD777D06ee3f58F6cA4bc03102C3` | SecondWindCapital | 48.0 | watch |
-| 19 | `0xF19D7D88Cf362110027DcD64750FDd209A04276f` | huhaoli | 48.0 | watch |
+| 18 | `0xF19D7D88Cf362110027DcD64750FDd209A04276f` | huhaoli | 48.0 | watch |
+| 19 | `0x8c80d213c0CbaD777D06ee3f58F6cA4bc03102C3` | SecondWindCapital | 48.0 | watch |
 | 20 | `0x96489Abcb9f583D6835c8eF95FFc923D05A86825` | anoin123 | 48.0 | watch |
