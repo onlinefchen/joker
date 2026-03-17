@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-17T15:54:16.221047+00:00
+Generated: 2026-03-17T16:24:26.564855+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -20,7 +20,7 @@ Generated: 2026-03-17T15:54:16.221047+00:00
 | 14 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 58.0 | watch |
 | 15 | `0xB45a797faA52B0fd8aDc56D30382022B7b12192C` | bcda | 58.0 | watch |
 | 16 | `0xeFBc5FeC8D7B0Acdc8911bDD9a98d6964308f9A2` | reachingthesky | 55.0 | watch |
-| 17 | `0x204f72f35326db932158CBA6AdfF0B9A1DA95e14` | swisstony | 50.0 | watch |
-| 18 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
-| 19 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | watch |
-| 20 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 48.0 | watch |
+| 17 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
+| 18 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | watch |
+| 19 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 48.0 | watch |
+| 20 | `0xE90Bec87d9Ef430F27F9dCfe72C34b76967d5dA2` | gmanas | 48.0 | watch |
