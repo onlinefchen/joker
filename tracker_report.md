@@ -1,15 +1,15 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-17T15:23:06.678155+00:00
+Generated: 2026-03-17T15:54:16.221047+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
 | 1 | `0xC65cA4755436F82D8eb461E65781584B8CaDEa39` | UAEVALORANTFAN | 83.0 | core |
 | 2 | `0xBDDF61Af533fF524D27154e589d2D7A81510C684` | Countryside | 80.0 | core |
-| 3 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 66.0 | candidate |
-| 4 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 66.0 | candidate |
-| 5 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
-| 6 | `0xf195721ad850377c96cd634457C70cD9e8308057` | JaJackson | 66.0 | candidate |
+| 3 | `0xf195721ad850377c96cd634457C70cD9e8308057` | JaJackson | 80.0 | core |
+| 4 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 66.0 | candidate |
+| 5 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 66.0 | candidate |
+| 6 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
 | 7 | `0x6A72f61820b26b1fe4d956E17B6DC2A1Ea3033EE` | kch123 | 66.0 | candidate |
 | 8 | `0x6aDE597C0e2B43C0Bf3542CadA8A5e330D73f5b0` | TheOnlyHuman | 66.0 | candidate |
 | 9 | `0x6ac5BB06A9Eb05641fD5e82640268b92f3Ab4B6E` | 0p0jogggg | 62.0 | candidate |
@@ -20,7 +20,7 @@ Generated: 2026-03-17T15:23:06.678155+00:00
 | 14 | `0x0b9CAe2B0dfe7a71c413E0604EaAC1C352f87e44` | geniusMC | 58.0 | watch |
 | 15 | `0xB45a797faA52B0fd8aDc56D30382022B7b12192C` | bcda | 58.0 | watch |
 | 16 | `0xeFBc5FeC8D7B0Acdc8911bDD9a98d6964308f9A2` | reachingthesky | 55.0 | watch |
-| 17 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
-| 18 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | watch |
-| 19 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 48.0 | watch |
-| 20 | `0xE90Bec87d9Ef430F27F9dCfe72C34b76967d5dA2` | gmanas | 48.0 | watch |
+| 17 | `0x204f72f35326db932158CBA6AdfF0B9A1DA95e14` | swisstony | 50.0 | watch |
+| 18 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
+| 19 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | watch |
+| 20 | `0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1` | 0x2a2C53bD278c04DA9962Fcf96490E17F3DfB9Bc1-1772479215461 | 48.0 | watch |
