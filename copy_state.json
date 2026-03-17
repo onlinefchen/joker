@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-03-15T14:25:55.820395+00:00",
+  "last_run": "2026-03-17T15:55:35.842598+00:00",
   "copied_positions": {
     "cs2-lgc-ast10-2026-03-08:LEGACY:BUY": {
       "wallet": "0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A",
@@ -104,10 +104,29 @@
     "nhl-ana-mon-2026-03-15:CANADIENS": {
       "wallet": "0x03E8a544e97eEff5753BC1E90D46e5EF22af1697",
       "username": "weflyhigh",
-      "settled": false,
+      "settled": true,
       "trade_time": "2026-03-15T13:48:01.571372+00:00",
       "slug": "nhl-ana-mon-2026-03-15",
       "outcome": "CANADIENS",
+      "side": "BUY",
+      "perf_recorded": true
+    },
+    "nhl-nsh-wpg-2026-03-17:PREDATORS": {
+      "wallet": "0xf195721ad850377c96cd634457C70cD9e8308057",
+      "username": "JaJackson",
+      "settled": false,
+      "trade_time": "2026-03-17T15:55:31.117993+00:00",
+      "slug": "nhl-nsh-wpg-2026-03-17",
+      "outcome": "PREDATORS",
+      "side": "BUY"
+    },
+    "nhl-sj-edm-2026-03-17:SHARKS": {
+      "wallet": "0xf195721ad850377c96cd634457C70cD9e8308057",
+      "username": "JaJackson",
+      "settled": false,
+      "trade_time": "2026-03-17T15:55:34.591290+00:00",
+      "slug": "nhl-sj-edm-2026-03-17",
+      "outcome": "SHARKS",
       "side": "BUY"
     }
   },
@@ -456,14 +475,72 @@
           ]
         }
       }
+    },
+    {
+      "time": "2026-03-17T15:55:31.117964+00:00",
+      "slug": "nhl-nsh-wpg-2026-03-17",
+      "title": "Predators vs. Jets",
+      "outcome": "PREDATORS",
+      "token_id": "0xa6883527929d95d941c8d246e867cc26d6dd840b1241f2ee2ea29d4790830c94",
+      "price": 0.46,
+      "shares": 5.2,
+      "amount_usd": 2.38,
+      "whale_wallet": "0xf195721ad850377c96cd634457C70cD9e8308057",
+      "whale_username": "JaJackson",
+      "whale_score": 80.0,
+      "whale_size": 137012.21,
+      "result": {
+        "success": true,
+        "result": {
+          "error_msg": "",
+          "making_amount": "2.379999",
+          "order_id": "0x57aac4eb73653154fd3a3fb02595000bf87356f49a5362b1c47074e40fbbd619",
+          "status": "MATCHED",
+          "success": true,
+          "taking_amount": "5.173912",
+          "trade_ids": [],
+          "transaction_hashes": [
+            "0x8763c23025bb92266a4e18145f0b083d5351d0e9f973cd5adb0f7bb658ddc284"
+          ]
+        }
+      }
+    },
+    {
+      "time": "2026-03-17T15:55:34.591268+00:00",
+      "slug": "nhl-sj-edm-2026-03-17",
+      "title": "Sharks vs. Oilers",
+      "outcome": "SHARKS",
+      "token_id": "0xf90f5c020b1170fb4b29f86bc4a08566cf940eb235bd63816c22f410525dd66c",
+      "price": 0.41,
+      "shares": 5,
+      "amount_usd": 2.05,
+      "whale_wallet": "0xf195721ad850377c96cd634457C70cD9e8308057",
+      "whale_username": "JaJackson",
+      "whale_score": 80.0,
+      "whale_size": 124759.76,
+      "result": {
+        "success": true,
+        "result": {
+          "error_msg": "",
+          "making_amount": "2.05",
+          "order_id": "0x87783c7b55e302c2522e887199ddfd947341dbf0880cd3ff492d898eaa77414f",
+          "status": "MATCHED",
+          "success": true,
+          "taking_amount": "5",
+          "trade_ids": [],
+          "transaction_hashes": [
+            "0x1ee4f60abf507dbcf90669524411620febf51497b20cd57ca6d4a0aa87236118"
+          ]
+        }
+      }
     }
   ],
   "performance": {
-    "total_settled": 9,
+    "total_settled": 10,
     "wins": 5,
-    "losses": 4,
-    "total_pnl_usd": 8.35,
-    "win_rate_pct": 55.6,
+    "losses": 5,
+    "total_pnl_usd": 5.4,
+    "win_rate_pct": 50.0,
     "history": [
       {
         "slug": "cs2-lgc-ast10-2026-03-08",
@@ -572,6 +649,18 @@
         "winning_outcome": "JAZZ",
         "settled_at": "2026-03-15T13:48:01.970106+00:00",
         "whale_username": "212121212121212121212"
+      },
+      {
+        "slug": "nhl-ana-mon-2026-03-15",
+        "outcome": "CANADIENS",
+        "side": "BUY",
+        "buy_price": 0.59,
+        "shares": 5.0,
+        "won": false,
+        "pnl_usd": -2.95,
+        "winning_outcome": "DUCKS",
+        "settled_at": "2026-03-17T15:55:35.068762+00:00",
+        "whale_username": "weflyhigh"
       }
     ]
   }
