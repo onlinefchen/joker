@@ -1,6 +1,6 @@
 # Polymarket Insider Tracker Report
 
-Generated: 2026-03-18T00:56:55.148289+00:00
+Generated: 2026-03-18T01:27:00.571784+00:00
 
 | Rank | Wallet | User | Score | Tier |
 |---:|---|---|---:|---|
@@ -8,14 +8,14 @@ Generated: 2026-03-18T00:56:55.148289+00:00
 | 2 | `0xBDDF61Af533fF524D27154e589d2D7A81510C684` | Countryside | 80.0 | core |
 | 3 | `0xf195721ad850377c96cd634457C70cD9e8308057` | JaJackson | 80.0 | core |
 | 4 | `0xDc876E6873772D38716Fda7f2452a78D426d7AB6` | 432614799197 | 66.0 | candidate |
-| 5 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 66.0 | candidate |
-| 6 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
-| 7 | `0x492442EaB586F242B53bDa933fD5dE859c8A3782` | 0x492442EaB586F242B53bDa933fD5dE859c8A3782-1766317541188 | 66.0 | candidate |
-| 8 | `0x6A72f61820b26b1fe4d956E17B6DC2A1Ea3033EE` | kch123 | 66.0 | candidate |
-| 9 | `0x83720820a8aa6c3f20AD71850E7A1A17d16c5223` | Jsram | 62.0 | candidate |
-| 10 | `0x6ac5BB06A9Eb05641fD5e82640268b92f3Ab4B6E` | 0p0jogggg | 62.0 | candidate |
-| 11 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | candidate |
-| 12 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | candidate |
+| 5 | `0x93ABBC022ce98d6F45D4444b594791CC4B7a9723` | gatorr | 66.0 | candidate |
+| 6 | `0x492442EaB586F242B53bDa933fD5dE859c8A3782` | 0x492442EaB586F242B53bDa933fD5dE859c8A3782-1766317541188 | 66.0 | candidate |
+| 7 | `0x6A72f61820b26b1fe4d956E17B6DC2A1Ea3033EE` | kch123 | 66.0 | candidate |
+| 8 | `0x83720820a8aa6c3f20AD71850E7A1A17d16c5223` | Jsram | 62.0 | candidate |
+| 9 | `0x6ac5BB06A9Eb05641fD5e82640268b92f3Ab4B6E` | 0p0jogggg | 62.0 | candidate |
+| 10 | `0x036C159D5a348058A81066a76B89f35926D4178D` | HedgeMaster88 | 62.0 | candidate |
+| 11 | `0x019782cAB5d844F02BAFB71F512758BE78579f3C` | majorexploiter | 61.0 | candidate |
+| 12 | `0x37c1874A60d348903594A96703E0507c518fC53a` | CemeterySun | 58.0 | watch |
 | 13 | `0xeFBc5FeC8D7B0Acdc8911bDD9a98d6964308f9A2` | reachingthesky | 53.0 | watch |
 | 14 | `0x02227B8f5a9636e895607EDD3185ED6ee5598fF7` | HorizonSplendidView | 48.0 | watch |
 | 15 | `0xc2e7800b5Af46e6093872b177b7a5e7f0563be51` | beachboy4 | 48.0 | watch |
