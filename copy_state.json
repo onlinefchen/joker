@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-03-17T16:25:37.181984+00:00",
+  "last_run": "2026-03-18T02:19:11.212347+00:00",
   "copied_positions": {
     "cs2-lgc-ast10-2026-03-08:LEGACY:BUY": {
       "wallet": "0xa5eA13A81d2B7E8e424b182BDC1db08e756bd96A",
@@ -127,6 +127,15 @@
       "trade_time": "2026-03-17T15:55:34.591290+00:00",
       "slug": "nhl-sj-edm-2026-03-17",
       "outcome": "SHARKS",
+      "side": "BUY"
+    },
+    "nba-phi-den-2026-03-17:76ERS": {
+      "wallet": "0xBDDF61Af533fF524D27154e589d2D7A81510C684",
+      "username": "Countryside",
+      "settled": false,
+      "trade_time": "2026-03-18T02:19:10.573259+00:00",
+      "slug": "nba-phi-den-2026-03-17",
+      "outcome": "76ERS",
       "side": "BUY"
     }
   },
@@ -531,6 +540,33 @@
           "transaction_hashes": [
             "0x1ee4f60abf507dbcf90669524411620febf51497b20cd57ca6d4a0aa87236118"
           ]
+        }
+      }
+    },
+    {
+      "time": "2026-03-18T02:19:10.573231+00:00",
+      "slug": "nba-phi-den-2026-03-17",
+      "title": "76ers vs. Nuggets",
+      "outcome": "76ERS",
+      "token_id": "0x63182c12611e53ab36da6ca5470ac792176a4c6a4d2014d4668e92620e231588",
+      "price": 0.1,
+      "shares": 14.9,
+      "amount_usd": 1.49,
+      "whale_wallet": "0xBDDF61Af533fF524D27154e589d2D7A81510C684",
+      "whale_username": "Countryside",
+      "whale_score": 80.0,
+      "whale_size": 165828.37,
+      "result": {
+        "success": true,
+        "result": {
+          "error_msg": "",
+          "making_amount": "0",
+          "order_id": "0x75ff140907d74b5a44e2c0aeee10571e6e9a5675b692c9a0bd6d830d74e5f9de",
+          "status": "DELAYED",
+          "success": true,
+          "taking_amount": "0",
+          "trade_ids": [],
+          "transaction_hashes": []
         }
       }
     }
